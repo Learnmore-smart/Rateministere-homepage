@@ -12,16 +12,16 @@ type Project = {
 
 // --- Data ---
 const projects: Project[] = [
+  { id: 'hidden-china-atlas', name: 'Hidden China Atlas', description: 'An interactive geographic atlas exploring undiscovered cultural sites.', path: '/hidden-china-atlas', year: '2026' },
+  { id: 'release-panic-room', name: 'Release Panic Room', description: 'Emergency toolkit and dashboard for handling deployment disasters.', path: '/release-panic-room', year: '2026' },
   { id: 'rateministere', name: 'RateMinistere', description: 'The flagship platform and central namespace for the entire ecosystem.', path: '/rateministere', year: '2026' },
   { id: 'caelum', name: 'Caelum', description: 'Next-generation cloud architecture and specialized developer tools.', path: '/caelum', year: '2026' },
-  { id: 'release-panic-room', name: 'Release Panic Room', description: 'Emergency toolkit and dashboard for handling deployment disasters.', path: '/release-panic-room', year: '2025' },
-  { id: 'hidden-china-atlas', name: 'Hidden China Atlas', description: 'An interactive geographic atlas exploring undiscovered cultural sites.', path: '/hidden-china-atlas', year: '2025' },
   { id: 'mari-msu-2026', name: 'Mari MSU 2026', description: 'Student portal, academic resources, and community hub for MSU.', path: '/mari-msu-2026', year: '2026' },
   { id: 'christmas-2025', name: 'Christmas 2025', description: 'Festive holiday countdowns and seasonal interactive experiences.', path: '/christmas-2025', year: '2025' },
-  { id: 'code-share', name: 'Code Share', description: 'Real-time collaborative platform for sharing code snippets effortlessly.', path: '/code-share', year: '2024' },
-  { id: 'academic-tutoring', name: 'Academic Tutoring', description: 'A comprehensive platform connecting students with expert tutors.', path: '/academic-tutoring', year: '2024' },
-  { id: 'zhich-pvp', name: 'Zhich PvP', description: 'Competitive multiplayer arena statistics and player leaderboards.', path: '/zhich-pvp', year: '2024' },
-  { id: '2d-shooter', name: '2D Shooter', description: 'Fast-paced web-based retro arcade action and survival game.', path: '/2d-shooter', year: '2023' },
+  { id: 'code-share', name: 'Code Share', description: 'Real-time collaborative platform for sharing code snippets effortlessly.', path: '/code-share', year: '2025' },
+  { id: 'academic-tutoring', name: 'Academic Tutoring', description: 'A comprehensive platform connecting students with expert tutors.', path: '/academic-tutoring', year: '2025' },
+  { id: 'zhich-pvp', name: 'Zhich PvP', description: 'Competitive multiplayer arena statistics and player leaderboards.', path: '/zhich-pvp', year: '2026' },
+  { id: '2d-shooter', name: '2D Shooter', description: 'Fast-paced web-based retro arcade action and survival game.', path: '/2d-shooter', year: '2026' },
 ];
 
 export default function Home() {
@@ -29,17 +29,6 @@ export default function Home() {
     <main className="min-h-screen bg-background text-white selection:bg-primary selection:text-white">
       {/* Hero Section */}
       <section className="relative w-full h-[100svh] min-h-[600px] flex flex-col justify-end p-6 md:p-12 lg:p-24 overflow-hidden">
-        {/* Full bleed image */}
-        <div className="absolute inset-0 z-0">
-          <img 
-            src="https://coreva-normal.trae.ai/api/ide/v1/text_to_image?prompt=minimalist%20abstract%20geometric%20architecture%20in%20deep%20blue%20tones%2C%20dramatic%20chiaroscuro%20lighting%2C%20studio%20quality%2C%20highly%20detailed&image_size=landscape_16_9"
-            alt="Deep blue architectural abstraction"
-            className="w-full h-full object-cover opacity-60 mix-blend-luminosity"
-          />
-          <div className="absolute inset-0 bg-gradient-to-t from-background via-background/80 to-transparent" />
-          <div className="absolute inset-0 bg-blue-900/10 mix-blend-overlay" />
-        </div>
-
         {/* Hero Content */}
         <div className="relative z-10 max-w-4xl pb-12 md:pb-0">
           <p className="text-primary font-bold tracking-widest uppercase text-sm md:text-base mb-6 flex items-center gap-3 animate-reveal">
