@@ -1,14 +1,14 @@
 import type { Metadata } from "next";
-import { Syne, DM_Sans } from "next/font/google";
+import { Oswald, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 
-const displayFont = Syne({
+const displayFont = Oswald({
   variable: "--font-display",
   subsets: ["latin"],
   display: "swap",
 });
 
-const bodyFont = DM_Sans({
+const bodyFont = JetBrains_Mono({
   variable: "--font-body",
   subsets: ["latin"],
   display: "swap",
