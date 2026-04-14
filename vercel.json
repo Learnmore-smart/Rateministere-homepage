@@ -8,6 +8,14 @@
     {
       "source": "/hidden-china-atlas/:path*",
       "destination": "https://hidden-china-atlas.vercel.app/hidden-china-atlas/:path*"
+    },
+    {
+      "source": "/release-panic-room",
+      "destination": "https://release-panic-room.vercel.app/release-panic-room"
+    },
+    {
+      "source": "/release-panic-room/:path*",
+      "destination": "https://release-panic-room.vercel.app/release-panic-room/:path*"
     }
   ]
 }
