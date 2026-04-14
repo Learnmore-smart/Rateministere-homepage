@@ -7,199 +7,122 @@ type Project = {
   name: string;
   description: string;
   path: string;
-  accentColor: string;
+  year: string;
 };
 
 // --- Data ---
-// To extract this later: 
-// 1. Create a file `src/data/projects.ts`
-// 2. Export the `Project` type and `projects` array from that file
-// 3. Import them here via `import { projects, type Project } from '@/data/projects'`
 const projects: Project[] = [
-  {
-    id: 'rateministere',
-    name: 'RateMinistere',
-    description: 'The flagship platform and central namespace for the entire ecosystem.',
-    path: '/rateministere',
-    accentColor: 'bg-blue-500',
-  },
-  {
-    id: 'caelum',
-    name: 'Caelum',
-    description: 'Next-generation cloud architecture and specialized developer tools.',
-    path: '/caelum',
-    accentColor: 'bg-indigo-500',
-  },
-  {
-    id: 'release-panic-room',
-    name: 'Release Panic Room',
-    description: 'Emergency toolkit and dashboard for handling deployment disasters.',
-    path: '/release-panic-room',
-    accentColor: 'bg-rose-500',
-  },
-  {
-    id: 'hidden-china-atlas',
-    name: 'Hidden China Atlas',
-    description: 'An interactive geographic atlas exploring undiscovered cultural sites.',
-    path: '/hidden-china-atlas',
-    accentColor: 'bg-amber-500',
-  },
-  {
-    id: 'mari-msu-2026',
-    name: 'Mari MSU 2026',
-    description: 'Student portal, academic resources, and community hub for MSU.',
-    path: '/mari-msu-2026',
-    accentColor: 'bg-emerald-500',
-  },
-  {
-    id: 'christmas-2025',
-    name: 'Christmas 2025',
-    description: 'Festive holiday countdowns and seasonal interactive experiences.',
-    path: '/christmas-2025',
-    accentColor: 'bg-red-500',
-  },
-  {
-    id: 'code-share',
-    name: 'Code Share',
-    description: 'Real-time collaborative platform for sharing code snippets effortlessly.',
-    path: '/code-share',
-    accentColor: 'bg-violet-500',
-  },
-  {
-    id: 'academic-tutoring',
-    name: 'Academic Tutoring',
-    description: 'A comprehensive platform connecting students with expert tutors.',
-    path: '/academic-tutoring',
-    accentColor: 'bg-cyan-500',
-  },
-  {
-    id: 'zhich-pvp',
-    name: 'Zhich PvP',
-    description: 'Competitive multiplayer arena statistics and player leaderboards.',
-    path: '/zhich-pvp',
-    accentColor: 'bg-orange-500',
-  },
-  {
-    id: '2d-shooter',
-    name: '2D Shooter',
-    description: 'Fast-paced web-based retro arcade action and survival game.',
-    path: '/2d-shooter',
-    accentColor: 'bg-fuchsia-500',
-  },
+  { id: 'rateministere', name: 'RateMinistere', description: 'The flagship platform and central namespace for the entire ecosystem.', path: '/rateministere', year: '2026' },
+  { id: 'caelum', name: 'Caelum', description: 'Next-generation cloud architecture and specialized developer tools.', path: '/caelum', year: '2026' },
+  { id: 'release-panic-room', name: 'Release Panic Room', description: 'Emergency toolkit and dashboard for handling deployment disasters.', path: '/release-panic-room', year: '2025' },
+  { id: 'hidden-china-atlas', name: 'Hidden China Atlas', description: 'An interactive geographic atlas exploring undiscovered cultural sites.', path: '/hidden-china-atlas', year: '2025' },
+  { id: 'mari-msu-2026', name: 'Mari MSU 2026', description: 'Student portal, academic resources, and community hub for MSU.', path: '/mari-msu-2026', year: '2026' },
+  { id: 'christmas-2025', name: 'Christmas 2025', description: 'Festive holiday countdowns and seasonal interactive experiences.', path: '/christmas-2025', year: '2025' },
+  { id: 'code-share', name: 'Code Share', description: 'Real-time collaborative platform for sharing code snippets effortlessly.', path: '/code-share', year: '2024' },
+  { id: 'academic-tutoring', name: 'Academic Tutoring', description: 'A comprehensive platform connecting students with expert tutors.', path: '/academic-tutoring', year: '2024' },
+  { id: 'zhich-pvp', name: 'Zhich PvP', description: 'Competitive multiplayer arena statistics and player leaderboards.', path: '/zhich-pvp', year: '2024' },
+  { id: '2d-shooter', name: '2D Shooter', description: 'Fast-paced web-based retro arcade action and survival game.', path: '/2d-shooter', year: '2023' },
 ];
-
-// --- Components ---
-
-function ProjectCard({ project }: { project: Project }) {
-  return (
-    <Link 
-      href={project.path} 
-      className="group relative flex flex-col h-full outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 focus-visible:ring-offset-white dark:focus-visible:ring-offset-neutral-950 rounded-2xl"
-    >
-      {/* Glow effect behind the card on hover */}
-      <div className="absolute -inset-0.5 rounded-2xl bg-gradient-to-br from-gray-200 to-gray-100 dark:from-neutral-800 dark:to-neutral-900 opacity-0 group-hover:opacity-100 transition-opacity duration-500 blur-sm" aria-hidden="true" />
-      
-      {/* Card Content */}
-      <div className="relative flex flex-col h-full p-6 bg-white dark:bg-neutral-900/80 backdrop-blur-sm rounded-2xl border border-gray-100 dark:border-neutral-800 shadow-sm transition-all duration-300 group-hover:shadow-md group-hover:-translate-y-1 overflow-hidden">
-        
-        {/* Playful top accent bar */}
-        <div 
-          className={`absolute top-0 left-0 w-full h-1 ${project.accentColor} opacity-80`} 
-          aria-hidden="true"
-        />
-        
-        <div className="flex items-center justify-between mb-4 mt-1">
-          <h3 className="text-xl font-semibold text-gray-900 dark:text-gray-100 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
-            {project.name}
-          </h3>
-          <div className="w-8 h-8 rounded-full bg-gray-50 dark:bg-neutral-800 flex items-center justify-center text-gray-400 group-hover:text-blue-600 dark:group-hover:text-blue-400 group-hover:bg-blue-50 dark:group-hover:bg-blue-900/30 transition-colors shrink-0">
-            <svg 
-              xmlns="http://www.w3.org/2000/svg" 
-              width="16" 
-              height="16" 
-              viewBox="0 0 24 24" 
-              fill="none" 
-              stroke="currentColor" 
-              strokeWidth="2" 
-              strokeLinecap="round" 
-              strokeLinejoin="round" 
-              className="transform transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
-            >
-              <line x1="7" y1="17" x2="17" y2="7" />
-              <polyline points="7 7 17 7 17 17" />
-            </svg>
-          </div>
-        </div>
-        
-        <p className="text-gray-500 dark:text-neutral-400 leading-relaxed flex-grow text-sm sm:text-base">
-          {project.description}
-        </p>
-      </div>
-    </Link>
-  );
-}
-
-// --- Main Page ---
 
 export default function Home() {
   return (
-    <div className="min-h-screen bg-gray-50 dark:bg-neutral-950 font-sans selection:bg-blue-200 dark:selection:bg-blue-900/50 relative overflow-hidden">
-      
-      {/* Subtle Background Accents */}
-      <div className="absolute inset-0 overflow-hidden pointer-events-none" aria-hidden="true">
-        <div className="absolute -top-[20%] -right-[10%] w-[50%] h-[50%] rounded-full bg-blue-100/40 dark:bg-blue-900/10 blur-[100px]" />
-        <div className="absolute top-[20%] -left-[10%] w-[40%] h-[40%] rounded-full bg-purple-100/40 dark:bg-purple-900/10 blur-[100px]" />
-      </div>
+    <main className="min-h-screen bg-background text-white selection:bg-primary selection:text-white">
+      {/* Hero Section */}
+      <section className="relative w-full h-[100svh] min-h-[600px] flex flex-col justify-end p-6 md:p-12 lg:p-24 overflow-hidden">
+        {/* Full bleed image */}
+        <div className="absolute inset-0 z-0">
+          <img 
+            src="https://coreva-normal.trae.ai/api/ide/v1/text_to_image?prompt=minimalist%20abstract%20geometric%20architecture%20in%20deep%20blue%20tones%2C%20dramatic%20chiaroscuro%20lighting%2C%20studio%20quality%2C%20highly%20detailed&image_size=landscape_16_9"
+            alt="Deep blue architectural abstraction"
+            className="w-full h-full object-cover opacity-60 mix-blend-luminosity"
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-background via-background/80 to-transparent" />
+          <div className="absolute inset-0 bg-blue-900/10 mix-blend-overlay" />
+        </div>
 
-      <div className="relative max-w-6xl mx-auto px-6 py-16 sm:py-24 md:py-32 flex flex-col min-h-screen">
-        
-        {/* Hero Section */}
-        <header className="mb-16 md:mb-24 text-center md:text-left">
-          <div className="inline-flex items-center gap-2 px-3 py-1.5 mb-8 rounded-full bg-white dark:bg-neutral-900 border border-gray-200 dark:border-neutral-800 shadow-sm text-sm font-medium text-gray-700 dark:text-gray-300 transition-transform hover:scale-105 cursor-default">
-            <span className="relative flex h-2 w-2">
-              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
-              <span className="relative inline-flex rounded-full h-2 w-2 bg-green-500"></span>
-            </span>
-            rateministere.com
-          </div>
-          
-          <h1 className="text-4xl sm:text-5xl md:text-6xl font-extrabold tracking-tight text-gray-900 dark:text-white mb-6 leading-[1.1]">
-            Open Source <br className="hidden md:block" />
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-violet-500 dark:from-blue-400 dark:to-violet-400">
-              Project Hub
-            </span>
-          </h1>
-          
-          <p className="text-lg md:text-xl text-gray-500 dark:text-neutral-400 max-w-2xl mx-auto md:mx-0 leading-relaxed">
-            Welcome to the central portal for my open-source initiatives. Explore a collection of applications, tools, and creative experiments built for the modern web.
+        {/* Hero Content */}
+        <div className="relative z-10 max-w-4xl pb-12 md:pb-0">
+          <p className="text-primary font-bold tracking-widest uppercase text-sm md:text-base mb-6 flex items-center gap-3 animate-reveal">
+            <span className="w-8 h-[2px] bg-primary"></span>
+            RateMinistere
           </p>
-        </header>
+          <h1 className="font-display text-5xl md:text-7xl lg:text-8xl font-bold leading-[1.05] tracking-tight mb-8 animate-reveal delay-100">
+            Digital craftsmanship <br />
+            <span className="text-muted/80 italic font-normal">in the open.</span>
+          </h1>
+          <div className="flex flex-col sm:flex-row gap-6 items-start sm:items-center animate-reveal delay-200">
+            <p className="text-lg md:text-xl text-muted max-w-xl font-body font-light leading-relaxed">
+              The flagship platform and central namespace for our entire ecosystem. Next-generation tools, platforms, and interactive experiences.
+            </p>
+            <a 
+              href="#projects" 
+              className="inline-flex items-center justify-center px-8 py-4 bg-primary text-white rounded-full font-medium hover:bg-primary-hover transition-colors duration-300 flex-shrink-0 group"
+            >
+              Explore Index
+              <svg className="w-5 h-5 ml-2 transform group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+              </svg>
+            </a>
+          </div>
+        </div>
+      </section>
 
-        {/* Projects Grid */}
-        <main className="flex-grow z-10">
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
-            {projects.map((project) => (
-              <ProjectCard key={project.id} project={project} />
+      {/* Project Index */}
+      <section id="projects" className="py-24 md:py-32 px-6 md:px-12 lg:px-24 bg-background">
+        <div className="max-w-7xl mx-auto">
+          <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-8 animate-reveal delay-300">
+            <div>
+              <h2 className="font-display text-3xl md:text-5xl font-bold tracking-tight mb-4">Index</h2>
+              <p className="text-muted max-w-md font-light">A comprehensive directory of applications, tools, and creative experiments built for the modern web.</p>
+            </div>
+            <div className="text-sm font-mono text-muted uppercase tracking-widest">
+              {projects.length} Projects Total
+            </div>
+          </div>
+
+          <div className="border-t border-border">
+            {projects.map((project, idx) => (
+              <Link 
+                key={project.id} 
+                href={project.path}
+                className="group flex flex-col md:flex-row md:items-center justify-between py-8 md:py-10 border-b border-border hover:border-primary transition-colors duration-500"
+              >
+                <div className="flex flex-col md:flex-row md:items-baseline gap-4 md:gap-12 w-full md:w-2/3">
+                  <span className="font-mono text-xs md:text-sm text-muted/40 group-hover:text-primary transition-colors w-8">
+                    {(idx + 1).toString().padStart(2, '0')}
+                  </span>
+                  <div>
+                    <h3 className="font-display text-2xl md:text-4xl font-semibold group-hover:text-primary transform group-hover:translate-x-2 transition-all duration-500">
+                      {project.name}
+                    </h3>
+                    <p className="text-muted font-light text-sm md:text-base mt-3 md:mt-2 line-clamp-2 md:line-clamp-1 transform group-hover:translate-x-2 transition-all duration-500 delay-75">
+                      {project.description}
+                    </p>
+                  </div>
+                </div>
+                
+                <div className="flex items-center justify-between md:justify-end gap-8 mt-6 md:mt-0 w-full md:w-1/3">
+                  <span className="font-mono text-sm text-muted/60">{project.year}</span>
+                  <div className="w-12 h-12 rounded-full border border-border flex items-center justify-center group-hover:bg-primary group-hover:border-primary group-hover:text-white transition-all duration-500 transform group-hover:-rotate-45">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+                      <line x1="5" y1="12" x2="19" y2="12"></line>
+                      <polyline points="12 5 19 12 12 19"></polyline>
+                    </svg>
+                  </div>
+                </div>
+              </Link>
             ))}
           </div>
-        </main>
+        </div>
+      </section>
 
-        {/* Footer & About */}
-        <footer className="mt-24 md:mt-32 pt-12 border-t border-gray-200 dark:border-neutral-800/60 flex flex-col md:flex-row justify-between items-start md:items-center gap-8 z-10">
-          <div className="max-w-md">
-            <h2 className="text-sm font-semibold text-gray-900 dark:text-gray-100 uppercase tracking-wider mb-3">
-              About this hub
-            </h2>
-            <p className="text-sm text-gray-500 dark:text-neutral-400 leading-relaxed">
-              This portal serves as the launchpad for all `rateministere.com` projects. 
-              Each application is maintained independently but unified under this domain for easy access and discovery.
-            </p>
-          </div>
-          <div className="text-sm text-gray-400 dark:text-neutral-500 font-medium">
-            © {new Date().getFullYear()} RateMinistere. All rights reserved.
-          </div>
-        </footer>
-      </div>
-    </div>
+      {/* Footer */}
+      <footer className="py-12 px-6 md:px-12 lg:px-24 border-t border-border flex flex-col md:flex-row justify-between items-center gap-6 bg-background">
+        <p className="font-display font-bold text-xl tracking-tight">RateMinistere</p>
+        <p className="text-sm text-muted font-light">
+          © {new Date().getFullYear()} All rights reserved.
+        </p>
+      </footer>
+    </main>
   );
 }
