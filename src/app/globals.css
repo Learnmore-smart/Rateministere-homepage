@@ -1,19 +1,20 @@
 @import "tailwindcss";
 
 @theme inline {
-  --color-primary: #0055ff;
-  --color-primary-hover: #0033cc;
-  --color-background: #000814;
-  --color-surface: #001533;
-  --color-border: #002b66;
-  --color-muted: #8ba3cc;
+  --color-primary: #FF2A00;
+  --color-primary-hover: #CC2200;
+  --color-background: #F4F4F0;
+  --color-surface: #EAEAE5;
+  --color-border: #111111;
+  --color-text: #111111;
+  --color-muted: #666666;
   --font-display: var(--font-display), sans-serif;
-  --font-body: var(--font-body), sans-serif;
+  --font-body: var(--font-body), monospace;
 }
 
 body {
   background-color: var(--color-background);
-  color: #ffffff;
+  color: var(--color-text);
   font-family: var(--font-body);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -21,42 +22,70 @@ body {
 
 h1, h2, h3, h4, h5, h6 {
   font-family: var(--font-display);
+  text-transform: uppercase;
 }
 
-@keyframes reveal {
+::selection {
+  background-color: var(--color-primary);
+  color: var(--color-background);
+}
+
+@keyframes reveal-up {
   0% {
     opacity: 0;
-    transform: translateY(30px);
-    filter: blur(8px);
+    transform: translateY(40px);
   }
   100% {
     opacity: 1;
     transform: translateY(0);
-    filter: blur(0);
   }
 }
 
-.animate-reveal {
+@keyframes reveal-scale {
+  0% {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.animate-reveal-up {
   opacity: 0;
-  animation: reveal 1.2s cubic-bezier(0.19, 1, 0.22, 1) forwards;
+  animation: reveal-up 1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.animate-reveal-scale {
+  opacity: 0;
+  animation: reveal-scale 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
 
 .delay-100 { animation-delay: 100ms; }
 .delay-200 { animation-delay: 200ms; }
 .delay-300 { animation-delay: 300ms; }
 .delay-400 { animation-delay: 400ms; }
+.delay-500 { animation-delay: 500ms; }
 
-/* Custom scrollbar for webkit */
+/* Custom scrollbar */
 ::-webkit-scrollbar {
-  width: 10px;
+  width: 8px;
 }
 ::-webkit-scrollbar-track {
   background: var(--color-background);
+  border-left: 1px solid var(--color-border);
 }
 ::-webkit-scrollbar-thumb {
   background: var(--color-border);
-  border-radius: 5px;
 }
 ::-webkit-scrollbar-thumb:hover {
   background: var(--color-primary);
+}
+
+/* Utilities for grid */
+.grid-lines {
+  background-image: linear-gradient(to right, rgba(17,17,17,0.1) 1px, transparent 1px),
+                    linear-gradient(to bottom, rgba(17,17,17,0.1) 1px, transparent 1px);
+  background-size: 4rem 4rem;
 }
