@@ -1,0 +1,9 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "rewrites": [
+    {
+      "source": "/hidden-china-atlas/:path*",
+      "destination": "https://hidden-china-atlas.vercel.app/hidden-china-atlas/:path*"
+    }
+  ]
+}
