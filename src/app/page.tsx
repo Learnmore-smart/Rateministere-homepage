@@ -284,11 +284,11 @@ export default function Home() {
           </div>
 
           <div className="col-span-1 md:col-span-8 flex flex-col justify-between">
-            <div className="flex flex-col gap-4 mb-24 md:mb-0">
+            <div className="flex flex-col gap-4 mt-24 md:mt-0 max-w-full">
               <h4 className="font-body text-xs uppercase tracking-widest opacity-50 border-b border-text/20 pb-2">{t.techSkills}</h4>
-              <div className="flex flex-wrap gap-2">
-                {['React', 'Next.js', 'TypeScript', 'Node.js', 'Tailwind', 'Framer Motion', 'Figma', 'UI/UX'].map(skill => (
-                  <span key={skill} className="font-body text-xs md:text-sm border border-text/20 px-3 py-1 rounded-full uppercase tracking-wider hover:bg-text hover:text-background transition-colors cursor-default">
+              <div className="flex flex-wrap gap-x-2 gap-y-3">
+                {['React', 'Next.js', 'TypeScript', 'JavaScript', 'C#', 'Node.js', 'Tailwind', 'CSS Modules', 'Framer Motion', 'Google Cloud', 'AWS', 'Figma', 'UI/UX'].map(skill => (
+                  <span key={skill} className="font-body text-xs md:text-sm border border-text/20 px-3 py-1 rounded-full uppercase tracking-wider hover:bg-text hover:text-background transition-colors cursor-default whitespace-nowrap">
                     {skill}
                   </span>
                 ))}
