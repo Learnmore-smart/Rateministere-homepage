@@ -34,7 +34,7 @@ const projects: Project[] = [
 const dict = {
   en: {
     ongoing: "STATUS: AVAILABLE",
-    indexSystem: "LEARNMORE_SMART",
+    indexSystem: "Learnmore_smart",
     centralNamespace: "Software Developer",
     title: ["Learnmore_", "smart"],
     description: "Software Developer, Creator of LearnX, and Content Creator. I build tools, platforms, and interactive experiences crafted with precision.",
@@ -54,7 +54,7 @@ const dict = {
   },
   zh: {
     ongoing: "STATUS: 欢迎合作",
-    indexSystem: "LEARNMORE_SMART",
+    indexSystem: "Learnmore_smart",
     centralNamespace: "软件开发者",
     title: ["Learnmore_", "smart"],
     description: "软件开发者、LearnX 创始人、内容创作者。我致力于打造精密的工具、平台和互动体验。",
@@ -203,8 +203,8 @@ export default function Home() {
                 <h3 className="text-xl font-bold text-primary">LearnX</h3>
                 <p className="text-sm text-muted leading-relaxed flex-grow">
                   {lang === 'en'
-                    ? 'A comprehensive platform connecting students with expert tutors. Built with React, Node.js, and a focus on seamless user experience.'
-                    : '一个连接学生和专家导师的综合平台。使用 React、Node.js 构建，专注于无缝的用户体验。'}
+                    ? 'Built for students preparing for agent exams — focused on exam prediction, smart planning, and clear progress tracking.'
+                    : '面向学生的特工考试预测平台，帮助你制定学习计划并清晰追踪进度。'}
                 </p>
                 <a href="https://www.learnx.pro" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 mt-4 text-sm font-bold text-text hover:text-primary transition-colors border border-border px-4 py-2 rounded self-start hover:border-primary/50">
                   ./run_learnx.sh
@@ -231,8 +231,8 @@ export default function Home() {
                 <h3 className="text-xl font-bold text-primary">Piano_Journey.mp4</h3>
                 <p className="text-sm text-muted leading-relaxed flex-grow">
                   {lang === 'en'
-                    ? 'A personal documentation of my musical progress, exploring classical pieces and contemporary arrangements through performance and theory.'
-                    : '我音乐进步的个人记录，通过表演和理论探索古典乐曲和现代改编。'}
+                    ? 'A piano channel built for beginners — simple practice routines, first pieces, and step-by-step progress.'
+                    : '面向初学者的钢琴频道：简单的练习方法、入门曲目与循序渐进的进步记录。'}
                 </p>
                 <a href="https://youtube.com/@NoahsPianoJourney?sub_confirmation=1" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 mt-4 text-sm font-bold text-text hover:text-primary transition-colors border border-border px-4 py-2 rounded self-start hover:border-primary/50">
                   ./play_video.sh
@@ -365,12 +365,12 @@ export default function Home() {
         <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-6 w-full max-w-6xl mx-auto">
           <div className="flex flex-col gap-2">
             <div className="flex items-center gap-3">
-              <span className="font-bold text-lg text-text">Noah Zhang</span>
+              <span className="font-bold text-lg text-text">Learnmore_smart</span>
               <span className="text-border">|</span>
               <span className="text-xs text-muted">{mounted ? t.systemActive : dict.en.systemActive}</span>
             </div>
             <div className="text-xs text-muted/60">
-              © {new Date().getFullYear()} {mounted ? t.rights : dict.en.rights}
+              © 2026 Noah Zixin Zhang {mounted ? t.rights : dict.en.rights}
             </div>
           </div>
 
