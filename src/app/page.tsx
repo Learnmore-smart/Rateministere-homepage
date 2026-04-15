@@ -3,7 +3,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { motion, useScroll, useTransform, useSpring, AnimatePresence } from 'framer-motion';
 import Link from 'next/link';
-import { ArrowUpRight } from 'lucide-react';
+import { ArrowUpRight, Github, Twitter, Instagram, Youtube, Mail } from 'lucide-react';
 
 // --- Types ---
 type LocalizedString = {
@@ -47,7 +47,8 @@ const dict = {
     switchLang: "ZH",
     socials: "Network",
     learnxDesc: "Exam prediction, smart planning, and clear progress tracking for students.",
-    pianoDesc: "A piano channel built for beginners — simple practice routines, first pieces, and step-by-step progress."
+    pianoDesc: "A piano channel built for beginners — simple practice routines, first pieces, and step-by-step progress.",
+    bio: "Currently studying at Marianopolis College in Montreal. Fluent in English, French, and Mandarin."
   },
   zh: {
     role: "创意开发者",
@@ -62,7 +63,8 @@ const dict = {
     switchLang: "EN",
     socials: "社交网络",
     learnxDesc: "面向学生的考试预测平台，帮助你制定学习计划并清晰追踪进度。",
-    pianoDesc: "面向初学者的钢琴频道：简单的练习方法、入门曲目与循序渐进的进步记录。"
+    pianoDesc: "面向初学者的钢琴频道：简单的练习方法、入门曲目与循序渐进的进步记录。",
+    bio: "目前在蒙特利尔 Marianopolis College 就读。精通英语、法语和普通话。"
   }
 };
 
@@ -72,7 +74,7 @@ export default function Home() {
   const containerRef = useRef<HTMLDivElement>(null);
 
   const { scrollYProgress } = useScroll({
-    target: containerRef,
+    target: mounted ? containerRef : undefined,
     offset: ["start start", "end end"]
   });
 
@@ -98,7 +100,7 @@ export default function Home() {
   return (
     <div ref={containerRef} className="relative w-full min-h-screen selection:bg-accent selection:text-white">
       <div className="noise-overlay" />
-      
+
       {/* Navigation */}
       <nav className="fixed top-0 w-full p-6 flex justify-between items-start z-50 mix-blend-difference text-[#F2F1EB]">
         <div className="flex flex-col gap-1 text-xs uppercase tracking-widest font-body">
@@ -106,10 +108,9 @@ export default function Home() {
             <div className="w-1.5 h-1.5 bg-accent rounded-full animate-pulse" />
             {t.ongoing}
           </span>
-          <span className="opacity-60">{t.location}</span>
         </div>
-        
-        <button 
+
+        <button
           onClick={toggleLanguage}
           className="text-xs uppercase tracking-widest font-body hover:text-accent transition-colors"
         >
@@ -119,7 +120,7 @@ export default function Home() {
 
       {/* Hero Section */}
       <section className="relative w-full h-[100svh] flex flex-col justify-end px-6 md:px-12 pb-12 md:pb-24 pt-32 overflow-hidden">
-        <motion.div 
+        <motion.div
           initial={{ opacity: 0, y: 50 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
@@ -130,7 +131,7 @@ export default function Home() {
               NOAH ZIXIN <br />
               <span className="text-accent italic pr-4">ZHANG</span>
             </h1>
-            
+
             <div className="max-w-xs md:max-w-sm flex flex-col gap-4 text-sm md:text-base font-body leading-relaxed">
               <span className="uppercase font-display tracking-widest text-xs opacity-50 border-b border-text/20 pb-2">{t.role}</span>
               <p>{t.description}</p>
@@ -142,7 +143,7 @@ export default function Home() {
       {/* Featured Section */}
       <section className="relative w-full bg-text text-background py-32 px-6 md:px-12 overflow-hidden">
         <div className="max-w-screen-2xl mx-auto">
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
             viewport={{ once: true, margin: "-100px" }}
@@ -157,11 +158,11 @@ export default function Home() {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-24 md:gap-32">
             {/* Project 1 */}
             <div className="flex flex-col gap-6">
-              <div className="overflow-hidden bg-background/5 aspect-[4/5] relative group cursor-pointer">
+              <div className="overflow-hidden bg-background/5 aspect-[16/10] relative group cursor-pointer border border-background/10">
                 <motion.div style={{ y: yImage1 }} className="absolute inset-[-20%] w-[140%] h-[140%]">
-                  <img 
-                    src="/LearnX.png" 
-                    alt="LearnX" 
+                  <img
+                    src="/LearnX.png"
+                    alt="LearnX"
                     className="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity duration-700 group-hover:scale-105 ease-out"
                   />
                 </motion.div>
@@ -179,12 +180,12 @@ export default function Home() {
             </div>
 
             {/* Project 2 */}
-            <div className="flex flex-col gap-6 lg:mt-48">
-              <div className="overflow-hidden bg-background/5 aspect-[4/5] relative group cursor-pointer">
+            <div className="flex flex-col gap-6 lg:mt-32">
+              <div className="overflow-hidden bg-background/5 aspect-[16/10] relative group cursor-pointer border border-background/10">
                 <motion.div style={{ y: yImage2 }} className="absolute inset-[-20%] w-[140%] h-[140%]">
-                  <img 
-                    src="/Noah-Piano-Journey.png" 
-                    alt="Piano Journey" 
+                  <img
+                    src="/Noah-Piano-Journey.png"
+                    alt="Noah's Piano Journey"
                     className="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity duration-700 group-hover:scale-105 ease-out"
                   />
                 </motion.div>
@@ -192,7 +193,7 @@ export default function Home() {
               </div>
               <div className="flex justify-between items-start pt-4 border-t border-background/20">
                 <div className="flex flex-col gap-2">
-                  <h3 className="text-3xl md:text-5xl uppercase tracking-tight">Piano Journey</h3>
+                  <h3 className="text-3xl md:text-5xl uppercase tracking-tight">Noah&apos;s Piano Journey</h3>
                   <p className="font-body text-sm md:text-base opacity-70 max-w-sm">{t.pianoDesc}</p>
                 </div>
                 <a href="https://youtube.com/@NoahsPianoJourney?sub_confirmation=1" target="_blank" rel="noreferrer" className="p-4 bg-background text-text rounded-full hover:bg-accent hover:text-white transition-colors">
@@ -215,7 +216,7 @@ export default function Home() {
           <div className="flex flex-col">
             {projects.map((project, idx) => (
               <Link href={project.path} key={project.id}>
-                <motion.div 
+                <motion.div
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
@@ -228,7 +229,7 @@ export default function Home() {
                       {project.name[lang]}
                     </h3>
                   </div>
-                  
+
                   <div className="flex items-center justify-between md:justify-end w-full md:w-auto gap-8 md:gap-16 mt-4 md:mt-0 pl-12 md:pl-0">
                     <p className="font-body text-xs md:text-sm opacity-60 group-hover:opacity-80 max-w-xs">
                       {project.description[lang]}
@@ -248,22 +249,36 @@ export default function Home() {
       {/* Footer / About */}
       <footer className="w-full bg-surface py-24 md:py-32 px-6 md:px-12 border-t border-text/10">
         <div className="max-w-screen-2xl mx-auto grid grid-cols-1 md:grid-cols-12 gap-16 md:gap-8">
-          
+
           <div className="col-span-1 md:col-span-4 flex flex-col gap-12">
             <div className="flex flex-col gap-4">
               <h4 className="font-body text-xs uppercase tracking-widest opacity-50 border-b border-text/20 pb-2">{t.background}</h4>
               <p className="font-body text-sm leading-relaxed max-w-xs">
-                Currently studying at Marianopolis College in Montreal. Fluent in English, French, and Mandarin.
+                {t.bio}
               </p>
+              <div className="flex items-center gap-2 mt-2 opacity-60">
+                <div className="w-1.5 h-1.5 bg-accent rounded-full" />
+                <span className="text-xs uppercase tracking-widest font-body">{t.location}</span>
+              </div>
             </div>
             <div className="flex flex-col gap-4">
               <h4 className="font-body text-xs uppercase tracking-widest opacity-50 border-b border-text/20 pb-2">{t.socials}</h4>
-              <div className="flex gap-4">
-                <a href="https://github.com" className="hover:text-accent transition-colors font-body text-xs uppercase tracking-widest">[GH]</a>
-                <a href="https://x.com/Learnmore_smart" className="hover:text-accent transition-colors font-body text-xs uppercase tracking-widest">[X]</a>
-                <a href="https://www.instagram.com/learnmore_smart/" className="hover:text-accent transition-colors font-body text-xs uppercase tracking-widest">[IG]</a>
-                <a href="https://youtube.com/@NoahsPianoJourney?sub_confirmation=1" className="hover:text-accent transition-colors font-body text-xs uppercase tracking-widest">[YT]</a>
-                <a href="mailto:hello@example.com" className="hover:text-accent transition-colors font-body text-xs uppercase tracking-widest">[EM]</a>
+              <div className="flex gap-6">
+                <a href="https://github.com" target="_blank" rel="noreferrer" className="hover:text-accent transition-colors" title="GitHub">
+                  <Github size={20} />
+                </a>
+                <a href="https://x.com/Learnmore_smart" target="_blank" rel="noreferrer" className="hover:text-accent transition-colors" title="X (Twitter)">
+                  <Twitter size={20} />
+                </a>
+                <a href="https://www.instagram.com/learnmore_smart/" target="_blank" rel="noreferrer" className="hover:text-accent transition-colors" title="Instagram">
+                  <Instagram size={20} />
+                </a>
+                <a href="https://youtube.com/@NoahsPianoJourney?sub_confirmation=1" target="_blank" rel="noreferrer" className="hover:text-accent transition-colors" title="YouTube">
+                  <Youtube size={20} />
+                </a>
+                <a href="mailto:hello@example.com" className="hover:text-accent transition-colors" title="Email">
+                  <Mail size={20} />
+                </a>
               </div>
             </div>
           </div>
