@@ -1,15 +1,15 @@
 @import "tailwindcss";
 
 @theme inline {
-  --color-primary: #a1c4fd;
-  --color-primary-hover: #c2e9fb;
-  --color-background: #0f172a;
-  --color-surface: #1e293b;
-  --color-border: #334155;
-  --color-text: #f8fafc;
-  --color-muted: #94a3b8;
-  --font-display: var(--font-body), monospace;
-  --font-body: var(--font-body), monospace;
+  --color-primary: #0f172a;
+  --color-primary-hover: #334155;
+  --color-background: #ffffff;
+  --color-surface: #f8fafc;
+  --color-border: #e2e8f0;
+  --color-text: #0f172a;
+  --color-muted: #64748b;
+  --font-display: var(--font-display), serif;
+  --font-body: var(--font-body), sans-serif;
 }
 
 body {
@@ -22,7 +22,6 @@ body {
 
 h1, h2, h3, h4, h5, h6 {
   font-family: var(--font-display);
-  /* removed uppercase as dev aesthetic can be mixed case */
 }
 
 ::selection {
@@ -41,34 +40,9 @@ h1, h2, h3, h4, h5, h6 {
   }
 }
 
-@keyframes reveal-scale {
-  0% {
-    opacity: 0;
-    transform: scale(0.98);
-  }
-  100% {
-    opacity: 1;
-    transform: scale(1);
-  }
-}
-
-@keyframes cursor-blink {
-  0%, 100% { opacity: 1; }
-  50% { opacity: 0; }
-}
-
 .animate-reveal-up {
   opacity: 0;
   animation: reveal-up 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-}
-
-.animate-reveal-scale {
-  opacity: 0;
-  animation: reveal-scale 1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-}
-
-.animate-cursor-blink {
-  animation: cursor-blink 1s step-end infinite;
 }
 
 .delay-100 { animation-delay: 100ms; }
@@ -79,54 +53,15 @@ h1, h2, h3, h4, h5, h6 {
 
 /* Custom scrollbar */
 ::-webkit-scrollbar {
-  width: 10px;
+  width: 8px;
 }
 ::-webkit-scrollbar-track {
   background: var(--color-background);
-  border-left: 1px solid var(--color-border);
 }
 ::-webkit-scrollbar-thumb {
-  background: var(--color-surface);
-  border: 1px solid var(--color-border);
+  background: var(--color-border);
+  border-radius: 4px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: var(--color-border);
+  background: var(--color-muted);
 }
-
-/* Utilities for terminal-like background */
-.soft-bg {
-  background-image: 
-    linear-gradient(var(--color-border) 1px, transparent 1px),
-    linear-gradient(90deg, var(--color-border) 1px, transparent 1px);
-  background-size: 40px 40px;
-  background-position: center center;
-  opacity: 0.8;
-}
-
-.terminal-window {
-  border: 1px solid var(--color-border);
-  border-radius: 0.5rem;
-  background-color: rgba(30, 41, 59, 0.5);
-  backdrop-filter: blur(10px);
-  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
-}
-
-.terminal-header {
-  border-bottom: 1px solid var(--color-border);
-  background-color: var(--color-surface);
-  border-top-left-radius: 0.5rem;
-  border-top-right-radius: 0.5rem;
-  padding: 0.5rem 1rem;
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-}
-
-.terminal-dot {
-  width: 0.75rem;
-  height: 0.75rem;
-  border-radius: 9999px;
-}
-.terminal-dot.close { background-color: #ef4444; }
-.terminal-dot.minimize { background-color: #eab308; }
-.terminal-dot.maximize { background-color: #22c55e; }
