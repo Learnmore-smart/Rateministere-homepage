@@ -1,0 +1,6 @@
+- [ ] YouTube image successfully loads using `/Noah-Piano-Journey.png`.
+- [ ] The website uses a bright, light-themed color palette.
+- [ ] Terminal UI elements (headers, borders, bash syntax) are completely removed.
+- [ ] Typography uses a premium, clean pairing (not exclusively monospace).
+- [ ] The hero section is clean, spacious, and impactful without dark backgrounds.
+- [ ] Content sections use a cardless, editorial layout.
