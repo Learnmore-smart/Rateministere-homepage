@@ -20,15 +20,15 @@ type Project = {
 // --- Data ---
 const projects: Project[] = [
   { id: 'hidden-china-atlas', name: { en: 'Hidden China Atlas', zh: '隐藏中国地图集' }, description: { en: 'An interactive geographic atlas exploring undiscovered cultural sites.', zh: '一个探索未发现文化遗址的互动地理图集。' }, path: '/hidden-china-atlas', year: '2026' },
-  { id: 'release-panic-room', name: { en: 'Release Panic Room', zh: '发布恐慌室' }, description: { en: 'Emergency toolkit and dashboard for handling deployment disasters.', zh: '用于处理部署灾难的应急工具包和仪表板。' }, path: '/release-panic-room', year: '2026' },
-  { id: 'rateministere', name: { en: 'RateMinistere', zh: 'RateMinistere' }, description: { en: 'The flagship platform and central namespace for the entire ecosystem.', zh: '整个生态系统的旗舰平台和中央命名空间。' }, path: '/rateministere', year: '2026' },
-  { id: 'caelum', name: { en: 'Caelum', zh: 'Caelum' }, description: { en: 'Next-generation cloud architecture and specialized developer tools.', zh: '下一代云架构和专业开发人员工具。' }, path: '/caelum', year: '2026' },
-  { id: 'mari-msu-2026', name: { en: 'Mari MSU 2026', zh: 'Mari MSU 2026' }, description: { en: 'Student portal, academic resources, and community hub for MSU.', zh: '密歇根州立大学的学生门户、学术资源和社区中心。' }, path: '/mari-msu-2026', year: '2026' },
+  { id: 'release-panic-room', name: { en: 'Release Panic Room', zh: '发布恐慌室' }, description: { en: 'A game to stimulate last minute stress and find your character.', zh: '一款刺激最后一刻压力并寻找你角色的游戏。' }, path: '/release-panic-room', year: '2026' },
+  { id: 'rateministere', name: { en: 'RateMinistere', zh: 'RateMinistere' }, description: { en: 'A voting teacher platform - I got called by director and got my graduate speech (I was selected) cancelled.', zh: '一个教师投票平台 - 我被校长叫去谈话，导致我（被选中的）毕业演讲被取消了' }, path: '/rateministere', year: '2026' },
+  { id: 'caelum', name: { en: 'Caelum', zh: 'Caelum' }, description: { en: 'Windows Note taking app.', zh: 'Windows 笔记应用程序。' }, path: '/caelum', year: '2026' },
+  { id: 'mari-msu-2026', name: { en: 'Mari MSU 2026', zh: 'Mari MSU 2026' }, description: { en: 'Student Portal Design.', zh: '学生门户网站设计。' }, path: '/mari-msu-2026', year: '2026' },
   { id: 'christmas-2025', name: { en: 'Christmas 2025', zh: '2025年圣诞节' }, description: { en: 'Festive holiday countdowns and seasonal interactive experiences.', zh: '节日倒计时和季节性互动体验。' }, path: '/christmas-2025', year: '2025' },
-  { id: 'code-share', name: { en: 'Code Share', zh: '代码分享' }, description: { en: 'Real-time collaborative platform for sharing code snippets effortlessly.', zh: '轻松共享代码片段的实时协作平台。' }, path: '/code-share', year: '2025' },
-  { id: 'academic-tutoring', name: { en: 'Academic Tutoring', zh: '学术辅导' }, description: { en: 'A comprehensive platform connecting students with expert tutors.', zh: '连接学生和专家导师的综合平台。' }, path: '/academic-tutoring', year: '2025' },
+  { id: 'code-share', name: { en: 'Code Share', zh: '代码分享' }, description: { en: 'Trae Invite code share system...', zh: 'Trae 邀请码分享系统...' }, path: '/code-share', year: '2025' },
+  { id: 'academic-tutoring', name: { en: 'Academic Tutoring', zh: '学术辅导' }, description: { en: "A landing page connecting students and expert tutors. it's just a landing page...", zh: "连接学生和专家导师的landing page。it's just landing page..." }, path: '/academic-tutoring', year: '2025' },
   { id: 'zhich-pvp', name: { en: 'Zhich PvP', zh: 'Zhich PvP' }, description: { en: 'Competitive multiplayer arena statistics and player leaderboards.', zh: '竞技多人竞技场统计和玩家排行榜。' }, path: '/zhich-pvp', year: '2026' },
-  { id: '2d-shooter', name: { en: '2D Shooter', zh: '2D射击游戏' }, description: { en: 'Fast-paced web-based retro arcade action and survival game.', zh: '快节奏的基于网络的复古街机动作和生存游戏。' }, path: '/2d-shooter', year: '2026' },
+  { id: '2d-shooter', name: { en: '2D Shooter', zh: '2D射击游戏' }, description: { en: '2D simple shooting game.', zh: '2D简单射击游戏。' }, path: '/2d-shooter', year: '2026' },
 ];
 
 const dict = {
@@ -211,7 +211,7 @@ export default function Home() {
                     ? 'A personal documentation of my musical progress, exploring classical pieces and contemporary arrangements through performance and theory.'
                     : '我音乐进步的个人记录，通过表演和理论探索古典乐曲和现代改编。'}
                 </p>
-                <a href="https://youtube.com" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 mt-4 font-body text-sm font-bold text-primary hover:text-primary-hover transition-colors">
+                <a href="https://youtube.com/@NoahsPianoJourney?sub_confirmation=1" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 mt-4 font-body text-sm font-bold text-primary hover:text-primary-hover transition-colors">
                   {lang === 'en' ? 'Watch on YouTube' : '在 YouTube 观看'}
                   <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                     <path d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 2A29 29 0 0 0 1 11.75a29 29 0 0 0 .46 5.33 2.78 2.78 0 0 0 1.94 2c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-2 29 29 0 0 0 .46-5.33 29 29 0 0 0-.46-5.33z"></path>
@@ -363,7 +363,7 @@ export default function Home() {
                   <path d="M4 20l6.768 -6.768m2.46 -2.46l6.772 -6.772" />
                 </svg>
               </a>
-              <a href="https://youtube.com" target="_blank" rel="noopener noreferrer" className="text-muted hover:text-primary transition-colors" aria-label="YouTube">
+              <a href="https://youtube.com/@NoahsPianoJourney?sub_confirmation=1" target="_blank" rel="noopener noreferrer" className="text-muted hover:text-primary transition-colors" aria-label="YouTube">
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                   <path d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 2A29 29 0 0 0 1 11.75a29 29 0 0 0 .46 5.33 2.78 2.78 0 0 0 1.94 2c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-2 29 29 0 0 0 .46-5.33 29 29 0 0 0-.46-5.33z"></path>
                   <polygon points="9.75 15.02 15.5 11.75 9.75 8.48 9.75 15.02"></polygon>
