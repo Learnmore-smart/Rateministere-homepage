@@ -34,9 +34,9 @@ const projects: Project[] = [
 const dict = {
   en: {
     ongoing: "Available for opportunities",
-    indexSystem: "NOAH ZHANG",
+    indexSystem: "LEARNMORE_SMART",
     centralNamespace: "Software Developer",
-    title: ["Noah", "Zhang"],
+    title: ["Learnmore_", "smart"],
     description: "Software Developer, Creator of LearnX, and Content Creator. I build tools, platforms, and interactive experiences crafted with precision.",
     explore: "View Projects",
     directory: "Projects",
@@ -50,9 +50,9 @@ const dict = {
   },
   zh: {
     ongoing: "欢迎合作",
-    indexSystem: "NOAH ZHANG",
+    indexSystem: "LEARNMORE_SMART",
     centralNamespace: "软件开发者",
-    title: ["Noah", "Zhang"],
+    title: ["Learnmore_", "smart"],
     description: "软件开发者、LearnX 创始人、内容创作者。我致力于打造精密的工具、平台和互动体验。",
     explore: "查看项目",
     directory: "项目集",
@@ -173,7 +173,7 @@ export default function Home() {
             <div className="flex flex-col gap-6 group animate-reveal-up delay-100">
               <div className="w-full aspect-[4/3] rounded-2xl overflow-hidden bg-background relative shadow-md">
                 <img
-                  src="https://coreva-normal.trae.ai/api/ide/v1/text_to_image?prompt=a%20modern%20clean%20educational%20technology%20platform%20interface%20with%20pastel%20blue%20accents%20and%20soft%20shadows&image_size=landscape_4_3"
+                  src="/learnx.png"
                   alt="LearnX"
                   className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-in-out"
                 />
@@ -195,17 +195,17 @@ export default function Home() {
               </div>
             </div>
 
-            {/* Noah's Piano Journey */}
+            {/* Learnmore_smart's Piano Journey */}
             <div className="flex flex-col gap-6 group animate-reveal-up delay-200">
               <div className="w-full aspect-[4/3] rounded-2xl overflow-hidden bg-background relative shadow-md">
                 <img
-                  src="https://coreva-normal.trae.ai/api/ide/v1/text_to_image?prompt=a%20grand%20piano%20keys%20in%20soft%20pastel%20lighting%20cinematic%20composition&image_size=landscape_4_3"
-                  alt="Noah's Piano Journey"
+                  src="/ytb.png"
+                  alt="YouTube Channel"
                   className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-in-out"
                 />
               </div>
               <div>
-                <h3 className="font-display text-2xl font-bold mb-3 group-hover:text-primary transition-colors">Noah's Piano Journey</h3>
+                <h3 className="font-display text-2xl font-bold mb-3 group-hover:text-primary transition-colors">Learnmore_smart's YouTube Channel</h3>
                 <p className="font-body text-sm text-muted leading-relaxed">
                   {lang === 'en'
                     ? 'A personal documentation of my musical progress, exploring classical pieces and contemporary arrangements through performance and theory.'
@@ -332,7 +332,7 @@ export default function Home() {
         <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-8 w-full max-w-5xl mx-auto">
           <div className="flex flex-col gap-3">
             <div className="flex items-center gap-3">
-              <span className="font-display font-bold text-xl">Noah Zhang</span>
+              <span className="font-display font-bold text-xl">Learnmore_smart</span>
               <span className="text-muted/30">|</span>
               <span className="text-sm text-muted">{mounted ? t.systemActive : dict.en.systemActive}</span>
             </div>
