@@ -48,7 +48,7 @@ const dict = {
     socials: "Network",
     learnxDesc: "Exam prediction, smart planning, and clear progress tracking for students.",
     pianoDesc: "A piano channel built for beginners — simple practice routines, first pieces, and step-by-step progress.",
-    bio: "Currently studying at Marianopolis College in Montreal. Fluent in English, French, and Mandarin."
+    bio: "Currently studying at Marianopolis College in Montreal. Fluent in English, French, Mandarin; conversational in Spanish."
   },
   zh: {
     role: "创意开发者",
@@ -64,7 +64,7 @@ const dict = {
     socials: "社交网络",
     learnxDesc: "面向学生的考试预测平台，帮助你制定学习计划并清晰追踪进度。",
     pianoDesc: "面向初学者的钢琴频道：简单的练习方法、入门曲目与循序渐进的进步记录。",
-    bio: "目前在蒙特利尔 Marianopolis College 就读。精通英语、法语和普通话。"
+    bio: "目前在蒙特利尔 Marianopolis College 就读。精通英语、法语、普通话，西班牙语可进行日常交流。"
   }
 };
 
