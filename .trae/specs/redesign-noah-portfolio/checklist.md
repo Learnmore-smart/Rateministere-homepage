@@ -1,0 +1,9 @@
+- [x] Color palette uses pastel blue as the primary color
+- [x] "Index System" and "RateMinistere" branding are completely removed
+- [x] Hero section clearly displays "Noah Zhang" and his roles (Software Developer | Creator of LearnX | Content Creator)
+- [x] LearnX and Noah's Piano Journey are prominently featured with generated image placeholders
+- [x] Technical Skills (React, Node.js, etc.) and Background sections are present
+- [x] All 10 existing projects are still displayed in the new design (cardless list style)
+- [x] Footer contains correct contact information and social links
+- [x] Design follows `frontend-skill` and `frontend-design` principles (cardless, strong typography, restrained composition)
+- [x] The app runs successfully without errors on `npm run dev`
