@@ -1,0 +1,520 @@
+diff --git a/src/app/page.tsx b/src/app/page.tsx
+index 7725c70..8c54d13 100644
+--- a/src/app/page.tsx
++++ b/src/app/page.tsx
+@@ -2,4 +2,6 @@
+ 
++import React, { useState, useEffect, useRef } from 'react';
++import { motion, useScroll, useTransform, useSpring, AnimatePresence } from 'framer-motion';
+ import Link from 'next/link';
+-import React, { useState, useEffect } from 'react';
++import { ArrowUpRight } from 'lucide-react';
+ 
+@@ -21,11 +23,11 @@ type Project = {
+ const projects: Project[] = [
+-  { id: 'hidden-china-atlas', name: { en: 'Hidden China Atlas', zh: '隐藏中国地图集' }, description: { en: 'An interactive geographic atlas exploring undiscovered cultural sites.', zh: '一个探索未发现文化遗址的互动地理图集。' }, path: '/hidden-china-atlas', year: '2026' },
+-  { id: 'release-panic-room', name: { en: 'Release Panic Room', zh: '发布恐慌室' }, description: { en: 'A game to stimulate last minute stress and find your character.', zh: '一款刺激最后一刻压力并寻找你角色的游戏。' }, path: '/release-panic-room', year: '2026' },
+-  { id: 'rateministere', name: { en: 'RateMinistere', zh: 'RateMinistere' }, description: { en: 'A voting teacher platform - I got called by director and got my graduate speech (I was selected) cancelled.', zh: '一个教师投票平台 - 我被校长叫去谈话，导致我（被选中的）毕业演讲被取消了' }, path: '/rateministere', year: '2026' },
++  { id: 'hidden-china-atlas', name: { en: 'Hidden China Atlas', zh: '隐藏中国地图集' }, description: { en: 'Interactive geographic atlas.', zh: '互动地理图集。' }, path: '/hidden-china-atlas', year: '2026' },
++  { id: 'release-panic-room', name: { en: 'Release Panic Room', zh: '发布恐慌室' }, description: { en: 'A last minute stress game.', zh: '一款刺激最后一刻压力的游戏。' }, path: '/release-panic-room', year: '2026' },
++  { id: 'rateministere', name: { en: 'RateMinistere', zh: 'RateMinistere' }, description: { en: 'Voting teacher platform.', zh: '教师投票平台' }, path: '/rateministere', year: '2026' },
+   { id: 'caelum', name: { en: 'Caelum', zh: 'Caelum' }, description: { en: 'Windows Note taking app.', zh: 'Windows 笔记应用程序。' }, path: '/caelum', year: '2026' },
+   { id: 'mari-msu-2026', name: { en: 'Mari MSU 2026', zh: 'Mari MSU 2026' }, description: { en: 'Student Portal Design.', zh: '学生门户网站设计。' }, path: '/mari-msu-2026', year: '2026' },
+-  { id: 'christmas-2025', name: { en: 'Christmas 2025', zh: '2025年圣诞节' }, description: { en: 'Festive holiday countdowns and seasonal interactive experiences.', zh: '节日倒计时和季节性互动体验。' }, path: '/christmas-2025', year: '2025' },
+-  { id: 'code-share', name: { en: 'Code Share', zh: '代码分享' }, description: { en: 'Trae Invite code share system...', zh: 'Trae 邀请码分享系统...' }, path: '/code-share', year: '2025' },
+-  { id: 'academic-tutoring', name: { en: 'Academic Tutoring', zh: '学术辅导' }, description: { en: "A landing page connecting students and expert tutors. it's just a landing page...", zh: "连接学生和专家导师的landing page。it's just landing page..." }, path: '/academic-tutoring', year: '2025' },
+-  { id: 'zhich-pvp', name: { en: 'Zhich PvP', zh: 'Zhich PvP' }, description: { en: 'Competitive multiplayer arena statistics and player leaderboards.', zh: '竞技多人竞技场统计和玩家排行榜。' }, path: '/zhich-pvp', year: '2026' },
++  { id: 'christmas-2025', name: { en: 'Christmas 2025', zh: '2025年圣诞节' }, description: { en: 'Festive holiday countdowns.', zh: '节日倒计时。' }, path: '/christmas-2025', year: '2025' },
++  { id: 'code-share', name: { en: 'Code Share', zh: '代码分享' }, description: { en: 'Invite code share system.', zh: '邀请码分享系统。' }, path: '/code-share', year: '2025' },
++  { id: 'academic-tutoring', name: { en: 'Academic Tutoring', zh: '学术辅导' }, description: { en: "A landing page for tutors.", zh: "连接导师的landing page。" }, path: '/academic-tutoring', year: '2025' },
++  { id: 'zhich-pvp', name: { en: 'Zhich PvP', zh: 'Zhich PvP' }, description: { en: 'Multiplayer arena statistics.', zh: '多人竞技场统计。' }, path: '/zhich-pvp', year: '2026' },
+   { id: '2d-shooter', name: { en: '2D Shooter', zh: '2D射击游戏' }, description: { en: '2D simple shooting game.', zh: '2D简单射击游戏。' }, path: '/2d-shooter', year: '2026' },
+@@ -35,38 +37,30 @@ const dict = {
+   en: {
++    role: "Creative Developer",
++    location: "Montreal, QC",
+     ongoing: "Available for new opportunities",
+-    indexSystem: "Learnmore_smart",
+-    centralNamespace: "Software Developer",
+-    description: "Software Developer, Creator of LearnX, and Content Creator. I build tools, platforms, and interactive experiences crafted with precision.",
+-    explore: "View Projects",
+-    directory: "Project Index",
+-    directoryDesc: "A collection of applications, tools, and creative experiments built for the modern web.",
+-    entriesAvailable: "Projects Available",
+-    systemActive: "Montreal, QC",
+-    rights: "All rights reserved.",
+-    switchLang: "ZH",
+-    socials: "Social Links",
+-    connect: "Connect",
+-    featuredTitle: "Featured Ventures",
++    description: "I build tools, platforms, and interactive experiences crafted with precision. Obsessed with detail, motion, and digital brutalism.",
++    explore: "View Index",
++    featuredTitle: "SELECTED WORKS",
++    directory: "Archive",
+     background: "Background",
+-    techSkills: "Technical Skills",
+-    interests: "Interests"
++    techSkills: "Capabilities",
++    switchLang: "ZH",
++    socials: "Network",
++    learnxDesc: "Exam prediction, smart planning, and clear progress tracking for students.",
++    pianoDesc: "A piano channel built for beginners — simple practice routines, first pieces, and step-by-step progress."
+   },
+   zh: {
++    role: "创意开发者",
++    location: "魁北克省蒙特利尔",
+     ongoing: "欢迎合作",
+-    indexSystem: "Learnmore_smart",
+-    centralNamespace: "软件开发者",
+-    description: "软件开发者、LearnX 创始人、内容创作者。我致力于打造精密的工具、平台和互动体验。",
+-    explore: "查看项目",
+-    directory: "项目索引",
+-    directoryDesc: "为现代网络构建的应用程序、工具和创意实验的集合。",
+-    entriesAvailable: "个项目",
+-    systemActive: "魁北克省蒙特利尔",
+-    rights: "版权所有。",
+-    switchLang: "EN",
+-    socials: "社交链接",
+-    connect: "联系我",
++    description: "我致力于打造精密的工具、平台和互动体验。痴迷于细节、动效与数字粗野主义。",
++    explore: "查看索引",
+     featuredTitle: "精选项目",
++    directory: "归档项目",
+     background: "背景",
+-    techSkills: "技术栈",
+-    interests: "兴趣"
++    techSkills: "技术能力",
++    switchLang: "EN",
++    socials: "社交网络",
++    learnxDesc: "面向学生的考试预测平台，帮助你制定学习计划并清晰追踪进度。",
++    pianoDesc: "面向初学者的钢琴频道：简单的练习方法、入门曲目与循序渐进的进步记录。"
+   }
+@@ -77,2 +71,12 @@ export default function Home() {
+   const [mounted, setMounted] = useState(false);
++  const containerRef = useRef<HTMLDivElement>(null);
++
++  const { scrollYProgress } = useScroll({
++    target: containerRef,
++    offset: ["start start", "end end"]
++  });
++
++  const smoothProgress = useSpring(scrollYProgress, { stiffness: 100, damping: 30 });
++  const yImage1 = useTransform(smoothProgress, [0, 1], ["0%", "20%"]);
++  const yImage2 = useTransform(smoothProgress, [0, 1], ["0%", "-20%"]);
+ 
+@@ -89,35 +93,26 @@ export default function Home() {
+   const t = dict[lang];
++  const toggleLanguage = () => setLang((prev) => (prev === 'en' ? 'zh' : 'en'));
+ 
+-  const toggleLanguage = () => {
+-    setLang((prev) => (prev === 'en' ? 'zh' : 'en'));
+-  };
++  if (!mounted) return null;
+ 
+   return (
+-    <main className="min-h-screen flex flex-col bg-background text-text font-body">
++    <div ref={containerRef} className="relative w-full min-h-screen selection:bg-accent selection:text-white">
++      <div className="noise-overlay" />
+       
+-      {/* Top Nav Bar */}
+-      <nav className="w-full flex justify-between items-center px-6 md:px-12 py-6 text-sm font-medium sticky top-0 z-50 bg-background/90 backdrop-blur-md border-b border-border/40">
+-        <span className="flex items-center gap-3 text-primary">
+-          <span className="relative flex h-2 w-2">
+-            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75"></span>
+-            <span className="relative inline-flex rounded-full h-2 w-2 bg-primary"></span>
++      {/* Navigation */}
++      <nav className="fixed top-0 w-full p-6 flex justify-between items-start z-50 mix-blend-difference text-[#F2F1EB]">
++        <div className="flex flex-col gap-1 text-xs uppercase tracking-widest font-body">
++          <span className="flex items-center gap-2">
++            <div className="w-1.5 h-1.5 bg-accent rounded-full animate-pulse" />
++            {t.ongoing}
+           </span>
+-          {mounted ? t.ongoing : dict.en.ongoing}
+-        </span>
+-        <div className="flex items-center gap-6">
+-          <a 
+-            href="https://www.learnx.pro" 
+-            target="_blank" 
+-            rel="noopener noreferrer"
+-            className="hover:text-primary transition-colors text-muted"
+-          >
+-            LearnX
+-          </a>
+-          <button 
+-            onClick={toggleLanguage}
+-            className="text-muted hover:text-primary transition-colors uppercase text-xs tracking-wider"
+-          >
+-            {mounted ? t.switchLang : dict.en.switchLang}
+-          </button>
++          <span className="opacity-60">{t.location}</span>
+         </div>
++        
++        <button 
++          onClick={toggleLanguage}
++          className="text-xs uppercase tracking-widest font-body hover:text-accent transition-colors"
++        >
++          {t.switchLang}
++        </button>
+       </nav>
+@@ -125,102 +120,59 @@ export default function Home() {
+       {/* Hero Section */}
+-      <section className="relative w-full flex flex-col justify-center min-h-[80svh] px-6 md:px-12 py-20 overflow-hidden">
+-        <div className="max-w-4xl mx-auto w-full animate-reveal-up">
+-          <h2 className="text-sm md:text-base tracking-[0.2em] text-muted uppercase mb-4 font-medium">
+-            {mounted ? t.centralNamespace : dict.en.centralNamespace}
+-          </h2>
+-          <h1 className="text-5xl sm:text-6xl md:text-8xl font-bold leading-tight tracking-tight text-text mb-8">
+-            {mounted ? t.indexSystem : dict.en.indexSystem}
+-          </h1>
+-          <p className="text-lg md:text-2xl leading-relaxed text-muted max-w-2xl font-light">
+-            {mounted ? t.description : dict.en.description}
+-          </p>
+-
+-          <div className="mt-12 flex items-center gap-6">
+-            <a 
+-              href="#projects" 
+-              className="inline-flex items-center justify-center px-8 py-4 bg-primary text-background hover:bg-primary-hover transition-colors rounded-full text-sm font-medium tracking-wide"
+-            >
+-              {mounted ? t.explore : dict.en.explore}
+-            </a>
++      <section className="relative w-full h-[100svh] flex flex-col justify-end px-6 md:px-12 pb-12 md:pb-24 pt-32 overflow-hidden">
++        <motion.div 
++          initial={{ opacity: 0, y: 50 }}
++          animate={{ opacity: 1, y: 0 }}
++          transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
++          className="w-full flex flex-col gap-6"
++        >
++          <div className="flex flex-col md:flex-row justify-between items-start md:items-end w-full border-b-2 border-text pb-6 md:pb-12 gap-8">
++            <h1 className="text-[14vw] md:text-[10vw] leading-[0.85] tracking-[-0.03em] uppercase">
++              NOAH ZIXIN <br />
++              <span className="text-accent italic pr-4">ZHANG</span>
++            </h1>
++            
++            <div className="max-w-xs md:max-w-sm flex flex-col gap-4 text-sm md:text-base font-body leading-relaxed">
++              <span className="uppercase font-display tracking-widest text-xs opacity-50 border-b border-text/20 pb-2">{t.role}</span>
++              <p>{t.description}</p>
++            </div>
+           </div>
+-        </div>
++        </motion.div>
+       </section>
+ 
+-      {/* Featured Ventures Section */}
+-      <section id="featured" className="w-full py-24 md:py-32 bg-surface">
+-        <div className="max-w-6xl mx-auto w-full px-6 md:px-12">
+-          <div className="mb-16 animate-reveal-up">
+-            <h2 className="text-3xl md:text-4xl font-bold tracking-tight mb-4">
+-              {mounted ? t.featuredTitle : dict.en.featuredTitle}
++      {/* Featured Section */}
++      <section className="relative w-full bg-text text-background py-32 px-6 md:px-12 overflow-hidden">
++        <div className="max-w-screen-2xl mx-auto">
++          <motion.div 
++            initial={{ opacity: 0 }}
++            whileInView={{ opacity: 1 }}
++            viewport={{ once: true, margin: "-100px" }}
++            className="flex items-center gap-6 mb-20 md:mb-32"
++          >
++            <h2 className="text-5xl md:text-8xl tracking-tight uppercase">
++              {t.featuredTitle}
+             </h2>
+-            <p className="text-muted text-lg">
+-              {lang === 'en' ? 'Highlighting my main ongoing projects and creative pursuits.' : '突出展示我正在进行的主要项目和创意追求。'}
+-            </p>
+-          </div>
+-
+-          <div className="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-16">
+-            {/* LearnX */}
+-            <div className="group animate-reveal-up delay-100 flex flex-col">
+-              <div className="w-full aspect-video bg-background relative overflow-hidden mb-6 rounded-lg shadow-sm">
+-                <img
+-                  src="/LearnX.png"
+-                  alt="LearnX"
+-                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+-                />
+-              </div>
+-              <h3 className="text-2xl font-bold text-text mb-3">LearnX</h3>
+-              <p className="text-muted leading-relaxed mb-6 flex-grow">
+-                {lang === 'en'
+-                  ? 'Built for students preparing for agent exams — focused on exam prediction, smart planning, and clear progress tracking.'
+-                  : '面向学生的特工考试预测平台，帮助你制定学习计划并清晰追踪进度。'}
+-              </p>
+-              <a href="https://www.learnx.pro" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 text-sm font-medium text-primary hover:text-primary-hover transition-colors group-hover:underline underline-offset-4">
+-                {lang === 'en' ? 'Visit LearnX' : '访问 LearnX'} &rarr;
+-              </a>
+-            </div>
++            <div className="h-0.5 flex-1 bg-background opacity-20 hidden md:block" />
++          </motion.div>
+ 
+-            {/* Learnmore_smart's Piano Journey */}
+-            <div className="group animate-reveal-up delay-200 flex flex-col">
+-              <div className="w-full aspect-video bg-background relative overflow-hidden mb-6 rounded-lg shadow-sm">
+-                <img
+-                  src="/Noah-Piano-Journey.png"
+-                  alt="YouTube Channel"
+-                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+-                />
++          <div className="grid grid-cols-1 lg:grid-cols-2 gap-24 md:gap-32">
++            {/* Project 1 */}
++            <div className="flex flex-col gap-6">
++              <div className="overflow-hidden bg-background/5 aspect-[4/5] relative group cursor-pointer">
++                <motion.div style={{ y: yImage1 }} className="absolute inset-[-20%] w-[140%] h-[140%]">
++                  <img 
++                    src="/LearnX.png" 
++                    alt="LearnX" 
++                    className="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity duration-700 group-hover:scale-105 ease-out"
++                  />
++                </motion.div>
++                <div className="absolute inset-0 bg-gradient-to-t from-text/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+               </div>
+-              <h3 className="text-2xl font-bold text-text mb-3">Piano Journey</h3>
+-              <p className="text-muted leading-relaxed mb-6 flex-grow">
+-                {lang === 'en'
+-                  ? 'A piano channel built for beginners — simple practice routines, first pieces, and step-by-step progress.'
+-                  : '面向初学者的钢琴频道：简单的练习方法、入门曲目与循序渐进的进步记录。'}
+-              </p>
+-              <a href="https://youtube.com/@NoahsPianoJourney?sub_confirmation=1" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 text-sm font-medium text-primary hover:text-primary-hover transition-colors group-hover:underline underline-offset-4">
+-                {lang === 'en' ? 'Watch Channel' : '观看频道'} &rarr;
+-              </a>
+-            </div>
+-          </div>
+-        </div>
+-      </section>
+-
+-      {/* Technical Skills & Background */}
+-      <section id="about" className="w-full py-24 md:py-32">
+-        <div className="max-w-6xl mx-auto w-full px-6 md:px-12">
+-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-16">
+-            <div className="lg:col-span-1 animate-reveal-up">
+-              <h2 className="text-2xl font-bold text-text mb-6">
+-                {mounted ? t.background : dict.en.background}
+-              </h2>
+-              <div className="flex flex-col gap-6">
+-                <div>
+-                  <h4 className="text-sm uppercase tracking-wider text-muted mb-1">Location</h4>
+-                  <p className="text-text">Montreal, QC</p>
+-                </div>
+-                <div>
+-                  <h4 className="text-sm uppercase tracking-wider text-muted mb-1">Education</h4>
+-                  <p className="text-text">Marianopolis College</p>
+-                </div>
+-                <div>
+-                  <h4 className="text-sm uppercase tracking-wider text-muted mb-1">Languages</h4>
+-                  <p className="text-text">English, French, Mandarin</p>
++              <div className="flex justify-between items-start pt-4 border-t border-background/20">
++                <div className="flex flex-col gap-2">
++                  <h3 className="text-3xl md:text-5xl uppercase tracking-tight">LearnX</h3>
++                  <p className="font-body text-sm md:text-base opacity-70 max-w-sm">{t.learnxDesc}</p>
+                 </div>
++                <a href="https://www.learnx.pro" target="_blank" rel="noreferrer" className="p-4 bg-background text-text rounded-full hover:bg-accent hover:text-white transition-colors">
++                  <ArrowUpRight size={24} />
++                </a>
+               </div>
+@@ -228,25 +180,22 @@ export default function Home() {
+ 
+-            <div className="lg:col-span-2 animate-reveal-up delay-200 flex flex-col gap-12">
+-              <div>
+-                <h2 className="text-2xl font-bold text-text mb-6">
+-                  {mounted ? t.techSkills : dict.en.techSkills}
+-                </h2>
+-                <div className="flex flex-wrap gap-3">
+-                  {['React', 'Next.js', 'Node.js', 'TypeScript', 'JavaScript', 'HTML5', 'CSS3', 'Tailwind CSS', 'Git', 'Figma'].map((skill) => (
+-                    <span key={skill} className="px-4 py-2 bg-surface text-text text-sm rounded-full border border-border/50">
+-                      {skill}
+-                    </span>
+-                  ))}
+-                </div>
++            {/* Project 2 */}
++            <div className="flex flex-col gap-6 lg:mt-48">
++              <div className="overflow-hidden bg-background/5 aspect-[4/5] relative group cursor-pointer">
++                <motion.div style={{ y: yImage2 }} className="absolute inset-[-20%] w-[140%] h-[140%]">
++                  <img 
++                    src="/Noah-Piano-Journey.png" 
++                    alt="Piano Journey" 
++                    className="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity duration-700 group-hover:scale-105 ease-out"
++                  />
++                </motion.div>
++                <div className="absolute inset-0 bg-gradient-to-t from-text/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+               </div>
+-              
+-              <div>
+-                <h2 className="text-2xl font-bold text-text mb-4">
+-                  {mounted ? t.interests : dict.en.interests}
+-                </h2>
+-                <p className="text-lg leading-relaxed text-muted max-w-2xl">
+-                  {lang === 'en' 
+-                    ? 'Beyond coding, I am deeply passionate about music, specifically playing the piano. I also enjoy creating content, exploring new technologies, and building products that make a positive impact.'
+-                    : '除了编程，我非常热爱音乐，特别是弹钢琴。我也喜欢创作内容、探索新技术，以及构建能产生积极影响的产品。'}
+-                </p>
++              <div className="flex justify-between items-start pt-4 border-t border-background/20">
++                <div className="flex flex-col gap-2">
++                  <h3 className="text-3xl md:text-5xl uppercase tracking-tight">Piano Journey</h3>
++                  <p className="font-body text-sm md:text-base opacity-70 max-w-sm">{t.pianoDesc}</p>
++                </div>
++                <a href="https://youtube.com/@NoahsPianoJourney?sub_confirmation=1" target="_blank" rel="noreferrer" className="p-4 bg-background text-text rounded-full hover:bg-accent hover:text-white transition-colors">
++                  <ArrowUpRight size={24} />
++                </a>
+               </div>
+@@ -257,38 +206,37 @@ export default function Home() {
+ 
+-      {/* Project Index */}
+-      <section id="projects" className="w-full py-24 md:py-32 bg-surface border-t border-border/50">
+-        <div className="max-w-4xl mx-auto w-full px-6 md:px-12">
+-          <div className="mb-16 animate-reveal-up">
+-            <h2 className="text-3xl md:text-4xl font-bold tracking-tight mb-4">
+-              {mounted ? t.directory : dict.en.directory}
+-            </h2>
+-            <p className="text-lg text-muted mb-4">
+-              {mounted ? t.directoryDesc : dict.en.directoryDesc}
+-            </p>
++      {/* Index Section */}
++      <section className="relative w-full py-32 px-6 md:px-12 bg-background">
++        <div className="max-w-screen-2xl mx-auto">
++          <div className="flex justify-between items-end border-b-2 border-text pb-6 mb-12">
++            <h2 className="text-4xl md:text-6xl tracking-tight uppercase">{t.directory}</h2>
++            <span className="font-body text-sm md:text-base opacity-50 uppercase tracking-widest">{projects.length} Entries</span>
+           </div>
+-          
+-          <div className="flex flex-col gap-4 animate-reveal-up delay-200">
+-            {projects.map((project) => (
+-              <Link 
+-                key={project.id} 
+-                href={project.path}
+-                className="group flex flex-col sm:flex-row sm:items-center justify-between p-6 bg-background rounded-xl border border-border/40 hover:border-primary/30 hover:shadow-md transition-all duration-300"
+-              >
+-                <div className="flex items-start gap-4">
+-                  <div>
+-                    <h3 className="text-xl font-bold text-text group-hover:text-primary transition-colors mb-2">
+-                      {mounted ? project.name[lang] : project.name.en}
++
++          <div className="flex flex-col">
++            {projects.map((project, idx) => (
++              <Link href={project.path} key={project.id}>
++                <motion.div 
++                  initial={{ opacity: 0, y: 20 }}
++                  whileInView={{ opacity: 1, y: 0 }}
++                  viewport={{ once: true }}
++                  transition={{ delay: idx * 0.05 }}
++                  className="group flex flex-col md:flex-row md:items-center justify-between py-6 md:py-8 border-b border-text/20 hover:bg-text hover:text-background px-4 md:px-8 transition-all duration-300 -mx-4 md:-mx-8 cursor-pointer"
++                >
++                  <div className="flex items-center gap-8 md:gap-16 w-full md:w-auto">
++                    <span className="font-body text-xs md:text-sm opacity-40 group-hover:opacity-60">{(idx + 1).toString().padStart(2, '0')}</span>
++                    <h3 className="text-2xl md:text-4xl uppercase tracking-tight group-hover:translate-x-4 transition-transform duration-300">
++                      {project.name[lang]}
+                     </h3>
+-                    <p className="text-muted leading-relaxed">
+-                      {mounted ? project.description[lang] : project.description.en}
++                  </div>
++                  
++                  <div className="flex items-center justify-between md:justify-end w-full md:w-auto gap-8 md:gap-16 mt-4 md:mt-0 pl-12 md:pl-0">
++                    <p className="font-body text-xs md:text-sm opacity-60 group-hover:opacity-80 max-w-xs">
++                      {project.description[lang]}
+                     </p>
++                    <div className="flex items-center gap-4">
++                      <span className="font-body text-xs md:text-sm uppercase tracking-widest">{project.year}</span>
++                      <ArrowUpRight className="opacity-0 -translate-x-4 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300" />
++                    </div>
+                   </div>
+-                </div>
+-                
+-                <div className="flex items-center gap-4 mt-4 sm:mt-0 self-start sm:self-auto ml-0">
+-                  <span className="text-sm font-medium text-muted bg-surface px-3 py-1 rounded-full">{project.year}</span>
+-                  <span className="text-primary opacity-0 group-hover:opacity-100 group-hover:translate-x-1 transition-all">
+-                    &rarr;
+-                  </span>
+-                </div>
++                </motion.div>
+               </Link>
+@@ -299,9 +247,22 @@ export default function Home() {
+ 
+-      {/* Footer */}
+-      <footer className="w-full py-12 px-6 md:px-12 border-t border-border/40 bg-background">
+-        <div className="flex flex-col md:flex-row justify-between items-center gap-8 w-full max-w-6xl mx-auto">
+-          <div className="flex flex-col items-center md:items-start gap-2">
+-            <span className="font-bold text-xl tracking-tight text-text">Learnmore_smart</span>
+-            <div className="text-sm text-muted">
+-              © 2026 Noah Zixin Zhang. {mounted ? t.rights : dict.en.rights}
++      {/* Footer / About */}
++      <footer className="w-full bg-surface py-24 md:py-32 px-6 md:px-12 border-t border-text/10">
++        <div className="max-w-screen-2xl mx-auto grid grid-cols-1 md:grid-cols-12 gap-16 md:gap-8">
++          
++          <div className="col-span-1 md:col-span-4 flex flex-col gap-12">
++            <div className="flex flex-col gap-4">
++              <h4 className="font-body text-xs uppercase tracking-widest opacity-50 border-b border-text/20 pb-2">{t.background}</h4>
++              <p className="font-body text-sm leading-relaxed max-w-xs">
++                Currently studying at Marianopolis College in Montreal. Fluent in English, French, and Mandarin.
++              </p>
++            </div>
++            <div className="flex flex-col gap-4">
++              <h4 className="font-body text-xs uppercase tracking-widest opacity-50 border-b border-text/20 pb-2">{t.socials}</h4>
++              <div className="flex gap-4">
++                <a href="https://github.com" className="hover:text-accent transition-colors font-body text-xs uppercase tracking-widest">[GH]</a>
++                <a href="https://x.com/Learnmore_smart" className="hover:text-accent transition-colors font-body text-xs uppercase tracking-widest">[X]</a>
++                <a href="https://www.instagram.com/learnmore_smart/" className="hover:text-accent transition-colors font-body text-xs uppercase tracking-widest">[IG]</a>
++                <a href="https://youtube.com/@NoahsPianoJourney?sub_confirmation=1" className="hover:text-accent transition-colors font-body text-xs uppercase tracking-widest">[YT]</a>
++                <a href="mailto:hello@example.com" className="hover:text-accent transition-colors font-body text-xs uppercase tracking-widest">[EM]</a>
++              </div>
+             </div>
+@@ -309,40 +270,28 @@ export default function Home() {
+ 
+-          {/* Social Links */}
+-          <div className="flex items-center gap-6">
+-            <a href="mailto:hello@example.com" className="text-muted hover:text-primary transition-colors" aria-label="Email">
+-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+-                <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+-                <polyline points="22,6 12,13 2,6"></polyline>
+-              </svg>
+-            </a>
+-            <a href="https://www.linkedin.com/in/noah-zixin-zhang-656a13367/" target="_blank" rel="noopener noreferrer" className="text-muted hover:text-primary transition-colors" aria-label="LinkedIn">
+-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+-                <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path>
+-                <rect x="2" y="9" width="4" height="12"></rect>
+-                <circle cx="4" cy="4" r="2"></circle>
+-              </svg>
+-            </a>
+-            <a href="https://x.com/Learnmore_smart" target="_blank" rel="noopener noreferrer" className="text-muted hover:text-primary transition-colors" aria-label="X (Twitter)">
+-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+-                <path d="M4 4l11.733 16h4.267l-11.733 -16z" />
+-                <path d="M4 20l6.768 -6.768m2.46 -2.46l6.772 -6.772" />
+-              </svg>
+-            </a>
+-            <a href="https://youtube.com/@NoahsPianoJourney?sub_confirmation=1" target="_blank" rel="noopener noreferrer" className="text-muted hover:text-primary transition-colors" aria-label="YouTube">
+-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+-                <path d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 2A29 29 0 0 0 1 11.75a29 29 0 0 0 .46 5.33 2.78 2.78 0 0 0 1.94 2c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-2 29 29 0 0 0 .46-5.33 29 29 0 0 0-.46-5.33z"></path>
+-                <polygon points="9.75 15.02 15.5 11.75 9.75 8.48 9.75 15.02"></polygon>
+-              </svg>
+-            </a>
+-            <a href="https://www.instagram.com/learnmore_smart/" target="_blank" rel="noopener noreferrer" className="text-muted hover:text-primary transition-colors" aria-label="Instagram">
+-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+-                <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+-                <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+-                <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+-              </svg>
+-            </a>
++          <div className="col-span-1 md:col-span-8 flex flex-col justify-between">
++            <div className="flex flex-col gap-4 mb-24 md:mb-0">
++              <h4 className="font-body text-xs uppercase tracking-widest opacity-50 border-b border-text/20 pb-2">{t.techSkills}</h4>
++              <div className="flex flex-wrap gap-2">
++                {['React', 'Next.js', 'TypeScript', 'Node.js', 'Tailwind', 'Framer Motion', 'Figma', 'UI/UX'].map(skill => (
++                  <span key={skill} className="font-body text-xs md:text-sm border border-text/20 px-3 py-1 rounded-full uppercase tracking-wider hover:bg-text hover:text-background transition-colors cursor-default">
++                    {skill}
++                  </span>
++                ))}
++              </div>
++            </div>
++
++            <div className="flex flex-col gap-4 mt-auto">
++              <h2 className="text-[8vw] md:text-[6vw] leading-[0.8] tracking-tight uppercase break-words hover:text-accent transition-colors cursor-pointer w-fit">
++                <a href="mailto:hello@example.com">SAY HELLO ↗</a>
++              </h2>
++              <div className="flex justify-between items-center border-t border-text/20 pt-4 font-body text-xs uppercase tracking-widest opacity-50">
++                <span>© 2026 Noah Zixin Zhang</span>
++                <span>All Rights Reserved</span>
++              </div>
++            </div>
+           </div>
++
+         </div>
+       </footer>
+-    </main>
++    </div>
+   );

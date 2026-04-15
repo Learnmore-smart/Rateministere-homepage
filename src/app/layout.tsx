@@ -1,22 +1,22 @@
 import type { Metadata } from "next";
-import { Inter, Playfair_Display } from "next/font/google";
+import { Bricolage_Grotesque, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 
-const inter = Inter({
-  variable: "--font-body",
-  subsets: ["latin"],
-  display: "swap",
-});
-
-const playfair = Playfair_Display({
+const bricolage = Bricolage_Grotesque({
   variable: "--font-display",
   subsets: ["latin"],
   display: "swap",
 });
 
+const jetbrains = JetBrains_Mono({
+  variable: "--font-body",
+  subsets: ["latin"],
+  display: "swap",
+});
+
 export const metadata: Metadata = {
-  title: "Learnmore_smart | Dev Portfolio",
-  description: "Software Developer Portfolio",
+  title: "NOAH ZIXIN ZHANG — PORTFOLIO",
+  description: "Software Developer, Creator of LearnX.",
 };
 
 export default function RootLayout({
@@ -27,9 +27,9 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${inter.variable} ${playfair.variable} h-full antialiased scroll-smooth`}
+      className={`${bricolage.variable} ${jetbrains.variable} h-full antialiased scroll-smooth`}
     >
-      <body className="min-h-full flex flex-col">{children}</body>
+      <body className="min-h-full flex flex-col bg-background text-text selection:bg-accent selection:text-white">{children}</body>
     </html>
   );
 }
