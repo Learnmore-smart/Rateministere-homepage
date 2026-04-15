@@ -1,0 +1,7 @@
+- [x] The overall aesthetic feels like a "dev's webpage" (e.g., terminal-inspired, minimal developer layout).
+- [x] The color palette prominently features blue and pastel blue.
+- [x] The top of the page displays "Learnmore_smart".
+- [x] The bottom left of the page displays "Noah Zhang".
+- [x] Typography uses a developer-friendly font (like JetBrains Mono).
+- [x] The projects and skills sections are structured with a clean, code-like presentation.
+- [x] The app runs successfully without errors on `npm run dev`.
