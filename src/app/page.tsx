@@ -33,57 +33,44 @@ const projects: Project[] = [
 
 const dict = {
   en: {
-    ongoing: "STATUS: AVAILABLE",
+    ongoing: "Available for new opportunities",
     indexSystem: "Learnmore_smart",
     centralNamespace: "Software Developer",
-    title: ["Learnmore_", "smart"],
     description: "Software Developer, Creator of LearnX, and Content Creator. I build tools, platforms, and interactive experiences crafted with precision.",
-    explore: "./view_projects.sh",
-    directory: "ls -la ./projects",
+    explore: "View Projects",
+    directory: "Project Index",
     directoryDesc: "A collection of applications, tools, and creative experiments built for the modern web.",
     entriesAvailable: "Projects Available",
     systemActive: "Montreal, QC",
     rights: "All rights reserved.",
-    switchLang: "lang=zh",
+    switchLang: "ZH",
     socials: "Social Links",
     connect: "Connect",
-    featuredTitle: "cat ./featured_ventures.md",
-    background: "whoami --background",
-    techSkills: "cat ./skills.json",
-    interests: "cat ./interests.txt"
+    featuredTitle: "Featured Ventures",
+    background: "Background",
+    techSkills: "Technical Skills",
+    interests: "Interests"
   },
   zh: {
-    ongoing: "STATUS: 欢迎合作",
+    ongoing: "欢迎合作",
     indexSystem: "Learnmore_smart",
     centralNamespace: "软件开发者",
-    title: ["Learnmore_", "smart"],
     description: "软件开发者、LearnX 创始人、内容创作者。我致力于打造精密的工具、平台和互动体验。",
-    explore: "./view_projects.sh",
-    directory: "ls -la ./projects",
+    explore: "查看项目",
+    directory: "项目索引",
     directoryDesc: "为现代网络构建的应用程序、工具和创意实验的集合。",
     entriesAvailable: "个项目",
     systemActive: "魁北克省蒙特利尔",
     rights: "版权所有。",
-    switchLang: "lang=en",
+    switchLang: "EN",
     socials: "社交链接",
     connect: "联系我",
-    featuredTitle: "cat ./featured_ventures.md",
-    background: "whoami --background",
-    techSkills: "cat ./skills.json",
-    interests: "cat ./interests.txt"
+    featuredTitle: "精选项目",
+    background: "背景",
+    techSkills: "技术栈",
+    interests: "兴趣"
   }
 };
-
-const TerminalHeader = () => (
-  <div className="terminal-header">
-    <div className="flex gap-2">
-      <div className="terminal-dot close"></div>
-      <div className="terminal-dot minimize"></div>
-      <div className="terminal-dot maximize"></div>
-    </div>
-    <div className="mx-auto text-xs text-muted font-body tracking-wider">bash - learnmore_smart</div>
-  </div>
-);
 
 export default function Home() {
   const [lang, setLang] = useState<'en' | 'zh'>('en');
@@ -106,10 +93,10 @@ export default function Home() {
   };
 
   return (
-    <main className="min-h-screen flex flex-col relative soft-bg text-text selection:bg-primary selection:text-background font-body">
+    <main className="min-h-screen flex flex-col bg-background text-text font-body">
       
       {/* Top Nav Bar */}
-      <div className="w-full bg-surface/80 border-b border-border flex justify-between items-center px-6 py-3 text-xs md:text-sm font-medium tracking-widest sticky top-0 z-50 backdrop-blur-md">
+      <nav className="w-full flex justify-between items-center px-6 md:px-12 py-6 text-sm font-medium sticky top-0 z-50 bg-background/90 backdrop-blur-md border-b border-border/40">
         <span className="flex items-center gap-3 text-primary">
           <span className="relative flex h-2 w-2">
             <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75"></span>
@@ -117,189 +104,151 @@ export default function Home() {
           </span>
           {mounted ? t.ongoing : dict.en.ongoing}
         </span>
-        <a 
-          href="https://www.learnx.pro" 
-          target="_blank" 
-          rel="noopener noreferrer"
-          className="flex items-center gap-2 hover:text-primary transition-colors text-muted"
-        >
-          <span>LearnX</span>
-          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-            <line x1="7" y1="17" x2="17" y2="7"></line>
-            <polyline points="7 7 17 7 17 17"></polyline>
-          </svg>
-        </a>
-      </div>
+        <div className="flex items-center gap-6">
+          <a 
+            href="https://www.learnx.pro" 
+            target="_blank" 
+            rel="noopener noreferrer"
+            className="hover:text-primary transition-colors text-muted"
+          >
+            LearnX
+          </a>
+          <button 
+            onClick={toggleLanguage}
+            className="text-muted hover:text-primary transition-colors uppercase text-xs tracking-wider"
+          >
+            {mounted ? t.switchLang : dict.en.switchLang}
+          </button>
+        </div>
+      </nav>
 
       {/* Hero Section */}
-      <section className="relative w-full flex-grow flex flex-col justify-center min-h-[85svh] px-4 md:px-12 py-16 overflow-hidden">
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full text-center pointer-events-none opacity-[0.02] select-none">
-          <h1 className="text-[15vw] leading-none whitespace-nowrap text-primary font-bold">
+      <section className="relative w-full flex flex-col justify-center min-h-[80svh] px-6 md:px-12 py-20 overflow-hidden">
+        <div className="max-w-4xl mx-auto w-full animate-reveal-up">
+          <h2 className="text-sm md:text-base tracking-[0.2em] text-muted uppercase mb-4 font-medium">
+            {mounted ? t.centralNamespace : dict.en.centralNamespace}
+          </h2>
+          <h1 className="text-5xl sm:text-6xl md:text-8xl font-bold leading-tight tracking-tight text-text mb-8">
             {mounted ? t.indexSystem : dict.en.indexSystem}
           </h1>
+          <p className="text-lg md:text-2xl leading-relaxed text-muted max-w-2xl font-light">
+            {mounted ? t.description : dict.en.description}
+          </p>
+
+          <div className="mt-12 flex items-center gap-6">
+            <a 
+              href="#projects" 
+              className="inline-flex items-center justify-center px-8 py-4 bg-primary text-background hover:bg-primary-hover transition-colors rounded-full text-sm font-medium tracking-wide"
+            >
+              {mounted ? t.explore : dict.en.explore}
+            </a>
+          </div>
         </div>
+      </section>
 
-        <div className="relative z-10 w-full max-w-4xl mx-auto terminal-window animate-reveal-scale">
-          <TerminalHeader />
-          <div className="p-6 md:p-10 flex flex-col gap-6">
-            <div className="flex flex-col gap-2">
-              <div className="text-primary text-sm mb-4">
-                <span className="text-muted">learnmore_smart@system:~$</span> ./init_profile.sh
+      {/* Featured Ventures Section */}
+      <section id="featured" className="w-full py-24 md:py-32 bg-surface">
+        <div className="max-w-6xl mx-auto w-full px-6 md:px-12">
+          <div className="mb-16 animate-reveal-up">
+            <h2 className="text-3xl md:text-4xl font-bold tracking-tight mb-4">
+              {mounted ? t.featuredTitle : dict.en.featuredTitle}
+            </h2>
+            <p className="text-muted text-lg">
+              {lang === 'en' ? 'Highlighting my main ongoing projects and creative pursuits.' : '突出展示我正在进行的主要项目和创意追求。'}
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-16">
+            {/* LearnX */}
+            <div className="group animate-reveal-up delay-100 flex flex-col">
+              <div className="w-full aspect-video bg-background relative overflow-hidden mb-6 rounded-lg shadow-sm">
+                <img
+                  src="/LearnX.png"
+                  alt="LearnX"
+                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                />
               </div>
-              <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold leading-tight tracking-tight text-text">
-                <span className="text-primary">&lt;</span>
-                {mounted ? t.indexSystem : dict.en.indexSystem}
-                <span className="text-primary">/&gt;</span>
-              </h1>
-              <h2 className="text-sm md:text-base tracking-[0.2em] text-muted uppercase mt-2">
-                {mounted ? t.centralNamespace : dict.en.centralNamespace}
-              </h2>
-            </div>
-            
-            <div className="mt-4 delay-200">
-              <p className="text-base md:text-lg leading-relaxed text-muted max-w-2xl">
-                <span className="text-primary">const</span> <span className="text-text">bio</span> = <span className="text-[#c3e88d]">"{mounted ? t.description : dict.en.description}"</span>;
+              <h3 className="text-2xl font-bold text-text mb-3">LearnX</h3>
+              <p className="text-muted leading-relaxed mb-6 flex-grow">
+                {lang === 'en'
+                  ? 'Built for students preparing for agent exams — focused on exam prediction, smart planning, and clear progress tracking.'
+                  : '面向学生的特工考试预测平台，帮助你制定学习计划并清晰追踪进度。'}
               </p>
+              <a href="https://www.learnx.pro" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 text-sm font-medium text-primary hover:text-primary-hover transition-colors group-hover:underline underline-offset-4">
+                {lang === 'en' ? 'Visit LearnX' : '访问 LearnX'} &rarr;
+              </a>
             </div>
 
-            <div className="flex flex-col sm:flex-row items-start sm:items-center gap-6 mt-8">
-              <a 
-                href="#projects" 
-                className="inline-flex items-center justify-center px-6 py-3 bg-primary/10 text-primary border border-primary/30 rounded hover:bg-primary/20 transition-all duration-300 group text-sm font-medium tracking-wide w-full sm:w-auto"
-              >
-                <span className="mr-2">&gt;</span> {mounted ? t.explore : dict.en.explore}
-                <span className="inline-block w-2 h-4 bg-primary ml-2 animate-cursor-blink"></span>
+            {/* Learnmore_smart's Piano Journey */}
+            <div className="group animate-reveal-up delay-200 flex flex-col">
+              <div className="w-full aspect-video bg-background relative overflow-hidden mb-6 rounded-lg shadow-sm">
+                <img
+                  src="/Noah-Piano-Journey.png"
+                  alt="YouTube Channel"
+                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                />
+              </div>
+              <h3 className="text-2xl font-bold text-text mb-3">Piano Journey</h3>
+              <p className="text-muted leading-relaxed mb-6 flex-grow">
+                {lang === 'en'
+                  ? 'A piano channel built for beginners — simple practice routines, first pieces, and step-by-step progress.'
+                  : '面向初学者的钢琴频道：简单的练习方法、入门曲目与循序渐进的进步记录。'}
+              </p>
+              <a href="https://youtube.com/@NoahsPianoJourney?sub_confirmation=1" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 text-sm font-medium text-primary hover:text-primary-hover transition-colors group-hover:underline underline-offset-4">
+                {lang === 'en' ? 'Watch Channel' : '观看频道'} &rarr;
               </a>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Featured Ventures Section */}
-      <section id="featured" className="w-full relative py-24 border-t border-border bg-background/50">
-        <div className="max-w-6xl mx-auto w-full px-6 md:px-12">
-          <div className="mb-12 animate-reveal-up">
-            <h2 className="text-2xl md:text-3xl font-bold tracking-tight mb-4 flex items-center gap-3">
-              <span className="text-primary">$</span> {mounted ? t.featuredTitle : dict.en.featuredTitle}
-            </h2>
-            <p className="text-sm text-muted">
-              // {lang === 'en' ? 'Highlighting my main ongoing projects and creative pursuits.' : '突出展示我正在进行的主要项目和创意追求。'}
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            {/* LearnX */}
-            <div className="terminal-window group animate-reveal-up delay-100 flex flex-col h-full">
-              <TerminalHeader />
-              <div className="p-6 flex flex-col flex-grow gap-4">
-                <div className="w-full aspect-video border border-border bg-surface/50 relative overflow-hidden mb-2">
-                  <img
-                    src="/learnx.png"
-                    alt="LearnX"
-                    className="w-full h-full object-cover opacity-80 group-hover:opacity-100 group-hover:scale-105 transition-all duration-500"
-                  />
-                  <div className="absolute inset-0 bg-primary/10 group-hover:bg-transparent transition-colors"></div>
-                </div>
-                <h3 className="text-xl font-bold text-primary">LearnX</h3>
-                <p className="text-sm text-muted leading-relaxed flex-grow">
-                  {lang === 'en'
-                    ? 'Built for students preparing for agent exams — focused on exam prediction, smart planning, and clear progress tracking.'
-                    : '面向学生的特工考试预测平台，帮助你制定学习计划并清晰追踪进度。'}
-                </p>
-                <a href="https://www.learnx.pro" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 mt-4 text-sm font-bold text-text hover:text-primary transition-colors border border-border px-4 py-2 rounded self-start hover:border-primary/50">
-                  ./run_learnx.sh
-                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                    <line x1="7" y1="17" x2="17" y2="7"></line>
-                    <polyline points="7 7 17 7 17 17"></polyline>
-                  </svg>
-                </a>
-              </div>
-            </div>
-
-            {/* Learnmore_smart's Piano Journey */}
-            <div className="terminal-window group animate-reveal-up delay-200 flex flex-col h-full">
-              <TerminalHeader />
-              <div className="p-6 flex flex-col flex-grow gap-4">
-                <div className="w-full aspect-video border border-border bg-surface/50 relative overflow-hidden mb-2">
-                  <img
-                    src="/ytb.png"
-                    alt="YouTube Channel"
-                    className="w-full h-full object-cover opacity-80 group-hover:opacity-100 group-hover:scale-105 transition-all duration-500"
-                  />
-                  <div className="absolute inset-0 bg-primary/10 group-hover:bg-transparent transition-colors"></div>
-                </div>
-                <h3 className="text-xl font-bold text-primary">Piano_Journey.mp4</h3>
-                <p className="text-sm text-muted leading-relaxed flex-grow">
-                  {lang === 'en'
-                    ? 'A piano channel built for beginners — simple practice routines, first pieces, and step-by-step progress.'
-                    : '面向初学者的钢琴频道：简单的练习方法、入门曲目与循序渐进的进步记录。'}
-                </p>
-                <a href="https://youtube.com/@NoahsPianoJourney?sub_confirmation=1" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 mt-4 text-sm font-bold text-text hover:text-primary transition-colors border border-border px-4 py-2 rounded self-start hover:border-primary/50">
-                  ./play_video.sh
-                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                    <path d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 2A29 29 0 0 0 1 11.75a29 29 0 0 0 .46 5.33 2.78 2.78 0 0 0 1.94 2c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-2 29 29 0 0 0 .46-5.33 29 29 0 0 0-.46-5.33z"></path>
-                    <polygon points="9.75 15.02 15.5 11.75 9.75 8.48 9.75 15.02"></polygon>
-                  </svg>
-                </a>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
       {/* Technical Skills & Background */}
-      <section id="about" className="w-full relative py-24 border-t border-border">
+      <section id="about" className="w-full py-24 md:py-32">
         <div className="max-w-6xl mx-auto w-full px-6 md:px-12">
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
-            <div className="lg:col-span-1 animate-reveal-up terminal-window flex flex-col">
-              <TerminalHeader />
-              <div className="p-6 flex flex-col gap-6">
-                <h2 className="text-xl font-bold text-primary mb-2 flex items-center gap-2">
-                  <span className="text-muted">$</span> {mounted ? t.background : dict.en.background}
-                </h2>
-                <div className="flex flex-col gap-4 text-sm">
-                  <div className="flex flex-col">
-                    <span className="text-muted">location:</span>
-                    <span className="text-text">"Montreal, QC"</span>
-                  </div>
-                  <div className="flex flex-col">
-                    <span className="text-muted">education:</span>
-                    <span className="text-text">"Marianopolis College"</span>
-                  </div>
-                  <div className="flex flex-col">
-                    <span className="text-muted">languages:</span>
-                    <span className="text-text">["English", "French", "Mandarin"]</span>
-                  </div>
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-16">
+            <div className="lg:col-span-1 animate-reveal-up">
+              <h2 className="text-2xl font-bold text-text mb-6">
+                {mounted ? t.background : dict.en.background}
+              </h2>
+              <div className="flex flex-col gap-6">
+                <div>
+                  <h4 className="text-sm uppercase tracking-wider text-muted mb-1">Location</h4>
+                  <p className="text-text">Montreal, QC</p>
+                </div>
+                <div>
+                  <h4 className="text-sm uppercase tracking-wider text-muted mb-1">Education</h4>
+                  <p className="text-text">Marianopolis College</p>
+                </div>
+                <div>
+                  <h4 className="text-sm uppercase tracking-wider text-muted mb-1">Languages</h4>
+                  <p className="text-text">English, French, Mandarin</p>
                 </div>
               </div>
             </div>
 
-            <div className="lg:col-span-2 animate-reveal-up delay-200 terminal-window flex flex-col">
-              <TerminalHeader />
-              <div className="p-6 flex flex-col gap-8">
-                <div>
-                  <h2 className="text-xl font-bold text-primary mb-6 flex items-center gap-2">
-                    <span className="text-muted">$</span> {mounted ? t.techSkills : dict.en.techSkills}
-                  </h2>
-                  <div className="flex flex-wrap gap-2">
-                    {['React', 'Next.js', 'Node.js', 'TypeScript', 'JavaScript', 'HTML5', 'CSS3', 'Tailwind CSS', 'Git', 'Figma'].map((skill) => (
-                      <span key={skill} className="px-3 py-1 bg-surface border border-border text-primary text-xs rounded hover:bg-primary/10 transition-colors cursor-default">
-                        {skill}
-                      </span>
-                    ))}
-                  </div>
+            <div className="lg:col-span-2 animate-reveal-up delay-200 flex flex-col gap-12">
+              <div>
+                <h2 className="text-2xl font-bold text-text mb-6">
+                  {mounted ? t.techSkills : dict.en.techSkills}
+                </h2>
+                <div className="flex flex-wrap gap-3">
+                  {['React', 'Next.js', 'Node.js', 'TypeScript', 'JavaScript', 'HTML5', 'CSS3', 'Tailwind CSS', 'Git', 'Figma'].map((skill) => (
+                    <span key={skill} className="px-4 py-2 bg-surface text-text text-sm rounded-full border border-border/50">
+                      {skill}
+                    </span>
+                  ))}
                 </div>
-                
-                <div>
-                  <h2 className="text-xl font-bold text-primary mb-4 flex items-center gap-2">
-                    <span className="text-muted">$</span> {mounted ? t.interests : dict.en.interests}
-                  </h2>
-                  <p className="text-sm leading-relaxed text-muted">
-                    {lang === 'en' 
-                      ? 'Beyond coding, I am deeply passionate about music, specifically playing the piano. I also enjoy creating content, exploring new technologies, and building products that make a positive impact.'
-                      : '除了编程，我非常热爱音乐，特别是弹钢琴。我也喜欢创作内容、探索新技术，以及构建能产生积极影响的产品。'}
-                  </p>
-                </div>
+              </div>
+              
+              <div>
+                <h2 className="text-2xl font-bold text-text mb-4">
+                  {mounted ? t.interests : dict.en.interests}
+                </h2>
+                <p className="text-lg leading-relaxed text-muted max-w-2xl">
+                  {lang === 'en' 
+                    ? 'Beyond coding, I am deeply passionate about music, specifically playing the piano. I also enjoy creating content, exploring new technologies, and building products that make a positive impact.'
+                    : '除了编程，我非常热爱音乐，特别是弹钢琴。我也喜欢创作内容、探索新技术，以及构建能产生积极影响的产品。'}
+                </p>
               </div>
             </div>
           </div>
@@ -307,116 +256,91 @@ export default function Home() {
       </section>
 
       {/* Project Index */}
-      <section id="projects" className="w-full relative py-24 border-t border-border bg-background/50">
+      <section id="projects" className="w-full py-24 md:py-32 bg-surface border-t border-border/50">
         <div className="max-w-4xl mx-auto w-full px-6 md:px-12">
-          <div className="mb-12 animate-reveal-up">
-            <h2 className="text-2xl md:text-3xl font-bold tracking-tight mb-4 flex items-center gap-3">
-              <span className="text-primary">$</span> {mounted ? t.directory : dict.en.directory}
+          <div className="mb-16 animate-reveal-up">
+            <h2 className="text-3xl md:text-4xl font-bold tracking-tight mb-4">
+              {mounted ? t.directory : dict.en.directory}
             </h2>
-            <p className="text-sm text-muted mb-4">
-              // {mounted ? t.directoryDesc : dict.en.directoryDesc}
+            <p className="text-lg text-muted mb-4">
+              {mounted ? t.directoryDesc : dict.en.directoryDesc}
             </p>
-            <div className="text-xs text-primary/70">
-              total {projects.length}
-            </div>
           </div>
           
-          <div className="terminal-window">
-            <TerminalHeader />
-            <div className="flex flex-col animate-reveal-up delay-200">
-              {projects.map((project, idx) => (
-                <Link 
-                  key={project.id} 
-                  href={project.path}
-                  className="group flex flex-col sm:flex-row sm:items-center justify-between p-4 md:p-6 border-b border-border last:border-b-0 hover:bg-surface/50 transition-colors"
-                >
-                  <div className="flex items-start gap-4">
-                    <span className="text-xs text-muted/50 mt-1 w-6 text-right">
-                      {idx}
-                    </span>
-                    <div>
-                      <div className="flex items-center gap-3">
-                        <span className="text-xs text-muted">-rw-r--r--</span>
-                        <h3 className="text-base font-bold text-text group-hover:text-primary transition-colors">
-                          {project.id}.tsx
-                        </h3>
-                      </div>
-                      <p className="text-xs text-muted mt-2 max-w-lg leading-relaxed">
-                        // {mounted ? project.description[lang] : project.description.en}
-                      </p>
-                    </div>
+          <div className="flex flex-col gap-4 animate-reveal-up delay-200">
+            {projects.map((project) => (
+              <Link 
+                key={project.id} 
+                href={project.path}
+                className="group flex flex-col sm:flex-row sm:items-center justify-between p-6 bg-background rounded-xl border border-border/40 hover:border-primary/30 hover:shadow-md transition-all duration-300"
+              >
+                <div className="flex items-start gap-4">
+                  <div>
+                    <h3 className="text-xl font-bold text-text group-hover:text-primary transition-colors mb-2">
+                      {mounted ? project.name[lang] : project.name.en}
+                    </h3>
+                    <p className="text-muted leading-relaxed">
+                      {mounted ? project.description[lang] : project.description.en}
+                    </p>
                   </div>
-                  
-                  <div className="flex items-center gap-6 mt-4 sm:mt-0 self-start sm:self-auto ml-10 sm:ml-0">
-                    <span className="text-xs text-muted">[{project.year}]</span>
-                    <span className="text-primary opacity-0 group-hover:opacity-100 group-hover:translate-x-1 transition-all">
-                      &rarr;
-                    </span>
-                  </div>
-                </Link>
-              ))}
-            </div>
+                </div>
+                
+                <div className="flex items-center gap-4 mt-4 sm:mt-0 self-start sm:self-auto ml-0">
+                  <span className="text-sm font-medium text-muted bg-surface px-3 py-1 rounded-full">{project.year}</span>
+                  <span className="text-primary opacity-0 group-hover:opacity-100 group-hover:translate-x-1 transition-all">
+                    &rarr;
+                  </span>
+                </div>
+              </Link>
+            ))}
           </div>
         </div>
       </section>
 
       {/* Footer */}
-      <footer className="w-full bg-surface border-t border-border py-8 px-6 md:px-12 mt-auto">
-        <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-6 w-full max-w-6xl mx-auto">
-          <div className="flex flex-col gap-2">
-            <div className="flex items-center gap-3">
-              <span className="font-bold text-lg text-text">Learnmore_smart</span>
-              <span className="text-border">|</span>
-              <span className="text-xs text-muted">{mounted ? t.systemActive : dict.en.systemActive}</span>
-            </div>
-            <div className="text-xs text-muted/60">
-              © 2026 Noah Zixin Zhang {mounted ? t.rights : dict.en.rights}
+      <footer className="w-full py-12 px-6 md:px-12 border-t border-border/40 bg-background">
+        <div className="flex flex-col md:flex-row justify-between items-center gap-8 w-full max-w-6xl mx-auto">
+          <div className="flex flex-col items-center md:items-start gap-2">
+            <span className="font-bold text-xl tracking-tight text-text">Learnmore_smart</span>
+            <div className="text-sm text-muted">
+              © 2026 Noah Zixin Zhang. {mounted ? t.rights : dict.en.rights}
             </div>
           </div>
 
-          {/* Social Links & Language Toggle */}
-          <div className="flex flex-col sm:flex-row items-start sm:items-center gap-6 md:gap-8">
-            <div className="flex items-center gap-4">
-              <a href="mailto:hello@example.com" className="text-muted hover:text-primary transition-colors" aria-label="Email">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                  <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
-                  <polyline points="22,6 12,13 2,6"></polyline>
-                </svg>
-              </a>
-              <a href="https://www.linkedin.com/in/noah-zixin-zhang-656a13367/" target="_blank" rel="noopener noreferrer" className="text-muted hover:text-primary transition-colors" aria-label="LinkedIn">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                  <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path>
-                  <rect x="2" y="9" width="4" height="12"></rect>
-                  <circle cx="4" cy="4" r="2"></circle>
-                </svg>
-              </a>
-              <a href="https://x.com/Learnmore_smart" target="_blank" rel="noopener noreferrer" className="text-muted hover:text-primary transition-colors" aria-label="X (Twitter)">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                  <path d="M4 4l11.733 16h4.267l-11.733 -16z" />
-                  <path d="M4 20l6.768 -6.768m2.46 -2.46l6.772 -6.772" />
-                </svg>
-              </a>
-              <a href="https://youtube.com/@NoahsPianoJourney?sub_confirmation=1" target="_blank" rel="noopener noreferrer" className="text-muted hover:text-primary transition-colors" aria-label="YouTube">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                  <path d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 2A29 29 0 0 0 1 11.75a29 29 0 0 0 .46 5.33 2.78 2.78 0 0 0 1.94 2c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-2 29 29 0 0 0 .46-5.33 29 29 0 0 0-.46-5.33z"></path>
-                  <polygon points="9.75 15.02 15.5 11.75 9.75 8.48 9.75 15.02"></polygon>
-                </svg>
-              </a>
-              <a href="https://www.instagram.com/learnmore_smart/" target="_blank" rel="noopener noreferrer" className="text-muted hover:text-primary transition-colors" aria-label="Instagram">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                  <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
-                  <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
-                  <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
-                </svg>
-              </a>
-            </div>
-
-            <button 
-              onClick={toggleLanguage}
-              className="text-xs font-bold text-primary border border-border px-3 py-1.5 rounded hover:bg-primary/10 transition-all duration-300 uppercase"
-            >
-              $ {mounted ? t.switchLang : dict.en.switchLang}
-            </button>
+          {/* Social Links */}
+          <div className="flex items-center gap-6">
+            <a href="mailto:hello@example.com" className="text-muted hover:text-primary transition-colors" aria-label="Email">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+                <polyline points="22,6 12,13 2,6"></polyline>
+              </svg>
+            </a>
+            <a href="https://www.linkedin.com/in/noah-zixin-zhang-656a13367/" target="_blank" rel="noopener noreferrer" className="text-muted hover:text-primary transition-colors" aria-label="LinkedIn">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path>
+                <rect x="2" y="9" width="4" height="12"></rect>
+                <circle cx="4" cy="4" r="2"></circle>
+              </svg>
+            </a>
+            <a href="https://x.com/Learnmore_smart" target="_blank" rel="noopener noreferrer" className="text-muted hover:text-primary transition-colors" aria-label="X (Twitter)">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <path d="M4 4l11.733 16h4.267l-11.733 -16z" />
+                <path d="M4 20l6.768 -6.768m2.46 -2.46l6.772 -6.772" />
+              </svg>
+            </a>
+            <a href="https://youtube.com/@NoahsPianoJourney?sub_confirmation=1" target="_blank" rel="noopener noreferrer" className="text-muted hover:text-primary transition-colors" aria-label="YouTube">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <path d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 2A29 29 0 0 0 1 11.75a29 29 0 0 0 .46 5.33 2.78 2.78 0 0 0 1.94 2c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-2 29 29 0 0 0 .46-5.33 29 29 0 0 0-.46-5.33z"></path>
+                <polygon points="9.75 15.02 15.5 11.75 9.75 8.48 9.75 15.02"></polygon>
+              </svg>
+            </a>
+            <a href="https://www.instagram.com/learnmore_smart/" target="_blank" rel="noopener noreferrer" className="text-muted hover:text-primary transition-colors" aria-label="Instagram">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+                <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+                <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+              </svg>
+            </a>
           </div>
         </div>
       </footer>

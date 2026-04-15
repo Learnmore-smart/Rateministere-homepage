@@ -1,0 +1,7 @@
+- [x] LearnX image successfully loads using `/LearnX.png` (matching case).
+- [x] YouTube image successfully loads using `/Noah-Piano-Journey.png`.
+- [x] The website uses a bright, light-themed color palette.
+- [x] Terminal UI elements (headers, borders, bash syntax) are completely removed.
+- [x] Typography uses a premium, clean pairing (not exclusively monospace).
+- [x] The hero section is clean, spacious, and impactful without dark backgrounds.
+- [x] Content sections use a cardless, editorial layout.
