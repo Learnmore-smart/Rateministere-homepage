@@ -26,6 +26,11 @@
     {
       "source": "/rateministere/:path*",
       "destination": "https://rateministere.vercel.app/rateministere/:path*"
+    },
+
+    {
+      "source": "/mari-msu-2026/:path*",
+      "destination": "https://chinese-railway.vercel.app/mari-msu-2026/:path*"
     }
   ]
 }

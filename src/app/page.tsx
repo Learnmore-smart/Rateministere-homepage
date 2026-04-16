@@ -24,7 +24,7 @@ const projects: Project[] = [
   { id: 'hidden-china-atlas', name: { en: 'Hidden China Atlas', zh: '隐藏中国地图集' }, description: { en: 'Interactive geographic atlas.', zh: '互动地理图集。' }, path: '/hidden-china-atlas', year: '2026' },
   { id: 'release-panic-room', name: { en: 'Release Panic Room', zh: '发布恐慌室' }, description: { en: 'A last minute stress game.', zh: '一款刺激最后一刻压力的游戏。' }, path: '/release-panic-room', year: '2026' },
   { id: 'rateministere', name: { en: 'RateMinistere', zh: 'RateMinistere' }, description: { en: 'Voting teacher platform.', zh: '教师投票平台' }, path: '/rateministere', year: '2026' },
-  { id: 'caelum', name: { en: 'Caelum', zh: 'Caelum' }, description: { en: 'Windows Note taking app.', zh: 'Windows 笔记应用程序。' }, path: '/caelum', year: '2026' },
+  { id: 'caelum', name: { en: 'Caelum', zh: 'Caelum' }, description: { en: 'Windows Note taking app.', zh: 'Windows 笔记应用程序。' }, path: 'https://github.com/Learnmore-smart/Caelum', year: '2026' },
   { id: 'mari-msu-2026', name: { en: 'Mari MSU 2026', zh: 'Mari MSU 2026' }, description: { en: 'Student Portal Design.', zh: '学生门户网站设计。' }, path: '/mari-msu-2026', year: '2026' },
   { id: 'christmas-2025', name: { en: 'Christmas 2025', zh: '2025年圣诞节' }, description: { en: 'Festive holiday countdowns.', zh: '节日倒计时。' }, path: '/christmas-2025', year: '2025' },
   { id: 'code-share', name: { en: 'Code Share', zh: '代码分享' }, description: { en: 'Invite code share system.', zh: '邀请码分享系统。' }, path: '/code-share', year: '2025' },
@@ -157,8 +157,8 @@ export default function Home() {
 
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-24 md:gap-32">
             {/* Project 1 */}
-            <div className="flex flex-col gap-6">
-              <div className="overflow-hidden bg-background/5 aspect-[16/10] relative group cursor-pointer border border-background/10">
+            <a href="https://www.learnx.pro" target="_blank" rel="noreferrer" className="flex flex-col gap-6 group">
+              <div className="overflow-hidden bg-background/5 aspect-[16/10] relative cursor-pointer border border-background/10">
                 <motion.div style={{ y: yImage1 }} className="absolute inset-[-20%] w-[140%] h-[140%]">
                   <img
                     src="/LearnX.png"
@@ -173,15 +173,15 @@ export default function Home() {
                   <h3 className="text-3xl md:text-5xl uppercase tracking-tight">LearnX</h3>
                   <p className="font-body text-sm md:text-base opacity-70 max-w-sm">{t.learnxDesc}</p>
                 </div>
-                <a href="https://www.learnx.pro" target="_blank" rel="noreferrer" className="p-4 bg-background text-text rounded-full hover:bg-accent hover:text-white transition-colors">
+                <div className="p-4 bg-background text-text rounded-full group-hover:bg-accent group-hover:text-white transition-colors">
                   <ArrowUpRight size={24} />
-                </a>
+                </div>
               </div>
-            </div>
+            </a>
 
             {/* Project 2 */}
-            <div className="flex flex-col gap-6 lg:mt-32">
-              <div className="overflow-hidden bg-background/5 aspect-[16/10] relative group cursor-pointer border border-background/10">
+            <a href="https://youtube.com/@NoahsPianoJourney?sub_confirmation=1" target="_blank" rel="noreferrer" className="flex flex-col gap-6 lg:mt-32 group">
+              <div className="overflow-hidden bg-background/5 aspect-[16/10] relative cursor-pointer border border-background/10">
                 <motion.div style={{ y: yImage2 }} className="absolute inset-[-20%] w-[140%] h-[140%]">
                   <img
                     src="/Noah-Piano-Journey.png"
@@ -196,11 +196,11 @@ export default function Home() {
                   <h3 className="text-3xl md:text-5xl uppercase tracking-tight">Noah&apos;s Piano Journey</h3>
                   <p className="font-body text-sm md:text-base opacity-70 max-w-sm">{t.pianoDesc}</p>
                 </div>
-                <a href="https://youtube.com/@NoahsPianoJourney?sub_confirmation=1" target="_blank" rel="noreferrer" className="p-4 bg-background text-text rounded-full hover:bg-accent hover:text-white transition-colors">
+                <div className="p-4 bg-background text-text rounded-full group-hover:bg-accent group-hover:text-white transition-colors">
                   <ArrowUpRight size={24} />
-                </a>
+                </div>
               </div>
-            </div>
+            </a>
           </div>
         </div>
       </section>
@@ -215,7 +215,12 @@ export default function Home() {
 
           <div className="flex flex-col">
             {projects.map((project, idx) => (
-              <Link href={project.path} key={project.id}>
+              <a
+                href={project.path}
+                key={project.id}
+                target="_blank"
+                rel="noreferrer"
+              >
                 <motion.div
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
@@ -240,7 +245,7 @@ export default function Home() {
                     </div>
                   </div>
                 </motion.div>
-              </Link>
+              </a>
             ))}
           </div>
         </div>
