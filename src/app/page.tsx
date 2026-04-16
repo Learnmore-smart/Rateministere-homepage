@@ -163,10 +163,10 @@ export default function Home() {
                   <img
                     src="/LearnX.png"
                     alt="LearnX"
-                    className="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity duration-700 group-hover:scale-105 ease-out"
+                    className="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-[opacity,transform] duration-900 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-[1.04] transform-gpu"
                   />
                 </motion.div>
-                <div className="absolute inset-0 bg-gradient-to-t from-text/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                <div className="absolute inset-0 bg-gradient-to-t from-text/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-900 ease-[cubic-bezier(0.16,1,0.3,1)]" />
               </div>
               <div className="flex justify-between items-start pt-4 border-t border-background/20">
                 <div className="flex flex-col gap-2">
@@ -186,10 +186,10 @@ export default function Home() {
                   <img
                     src="/Noah-Piano-Journey.png"
                     alt="Noah's Piano Journey"
-                    className="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity duration-700 group-hover:scale-105 ease-out"
+                    className="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-[opacity,transform] duration-900 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-[1.04] transform-gpu"
                   />
                 </motion.div>
-                <div className="absolute inset-0 bg-gradient-to-t from-text/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                <div className="absolute inset-0 bg-gradient-to-t from-text/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-900 ease-[cubic-bezier(0.16,1,0.3,1)]" />
               </div>
               <div className="flex justify-between items-start pt-4 border-t border-background/20">
                 <div className="flex flex-col gap-2">
