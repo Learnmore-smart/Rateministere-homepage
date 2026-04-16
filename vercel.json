@@ -30,7 +30,7 @@
 
     {
       "source": "/mari-msu-2026/:path*",
-      "destination": "https://mari-msu-2026.vercel.app/:path*"
+      "destination": "https://mari-msu-2026.vercel.app/mari-msu-2026/:path*"
     }
   ]
 }
