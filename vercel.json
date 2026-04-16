@@ -27,10 +27,13 @@
       "source": "/rateministere/:path*",
       "destination": "https://rateministere.vercel.app/rateministere/:path*"
     },
-
     {
       "source": "/mari-msu-2026",
       "destination": "https://mari-msu-2026.vercel.app/mari-msu-2026"
+    },
+    {
+      "source": "/mari-msu-2026/:path*",
+      "destination": "https://mari-msu-2026.vercel.app/mari-msu-2026/:path*"
     }
   ]
 }
