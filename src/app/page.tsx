@@ -21,6 +21,7 @@ type Project = {
 
 // --- Data ---
 const projects: Project[] = [
+  { id: 'enforcer', name: { en: 'Enforcer', zh: 'Enforcer' }, description: { en: 'A Windows app built in 24 hours with Kimi Xu, Yu He Wang, Kevin Wang to help students focus on study.', zh: '与 Kimi Xu, Yu He Wang, Kevin Wang 在24小时内构建的 Windows 应用，帮助学生专注学习。' }, path: 'https://www.rateministere.com/Enforcer', year: '2026' },
   { id: 'hidden-china-atlas', name: { en: 'Hidden China Atlas', zh: '隐藏中国地图集' }, description: { en: 'Interactive geographic atlas.', zh: '互动地理图集。' }, path: '/hidden-china-atlas', year: '2026' },
   { id: 'release-panic-room', name: { en: 'Release Panic Room', zh: '发布恐慌室' }, description: { en: 'A last minute stress game.', zh: '一款刺激最后一刻压力的游戏。' }, path: '/release-panic-room', year: '2026' },
   { id: 'rateministere', name: { en: 'RateMinistere', zh: 'RateMinistere' }, description: { en: 'Voting teacher platform.', zh: '教师投票平台' }, path: '/rateministere', year: '2026' },

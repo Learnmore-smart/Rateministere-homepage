@@ -34,6 +34,14 @@
     {
       "source": "/mari-msu-2026/:path*",
       "destination": "https://mari-msu-2026.vercel.app/mari-msu-2026/:path*"
+    },
+    {
+      "source": "/Enforcer",
+      "destination": "https://marihacks-ix-2026-homepage.vercel.app/Enforcer"
+    },
+    {
+      "source": "/Enforcer/:path*",
+      "destination": "https://marihacks-ix-2026-homepage.vercel.app/Enforcer/:path*"
     }
   ]
 }
