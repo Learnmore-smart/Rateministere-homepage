@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect, useMemo, useRef, useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { motion, useScroll, useSpring, useTransform } from "framer-motion";
@@ -155,10 +155,8 @@ const isExternalLink = (href: string) => /^https?:\/\//.test(href);
 
 export default function Home() {
   const [lang, setLang] = useState<"en" | "zh">("en");
-  const containerRef = useRef<HTMLDivElement>(null);
 
   const { scrollYProgress } = useScroll({
-    target: containerRef,
     offset: ["start start", "end end"],
   });
 
@@ -180,7 +178,7 @@ export default function Home() {
   const toggleLanguage = () => setLang((prev) => (prev === "en" ? "zh" : "en"));
 
   return (
-    <div ref={containerRef} className="relative min-h-screen bg-background text-text">
+    <div className="relative min-h-screen bg-background text-text">
       <div
         aria-hidden
         className="pointer-events-none absolute inset-0 -z-10 bg-[radial-gradient(1200px_circle_at_20%_10%,rgba(11,95,255,0.10),transparent_55%),radial-gradient(900px_circle_at_85%_35%,rgba(16,17,20,0.06),transparent_55%)]"
@@ -347,6 +345,7 @@ export default function Home() {
                       src="/Noah-Piano-Journey.png"
                       alt="Noah's Piano Journey"
                       fill
+                      priority
                       sizes="(min-width: 1024px) 45vw, 100vw"
                       className="object-cover transition-transform duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-[1.03]"
                     />
