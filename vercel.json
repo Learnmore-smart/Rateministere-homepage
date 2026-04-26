@@ -2,6 +2,15 @@
   "$schema": "https://openapi.vercel.sh/vercel.json",
   "rewrites": [
     {
+      "source": "/waste-your-tokens",
+      "destination": "https://waste-your-tokens.vercel.app/waste-your-tokens"
+    },
+    {
+      "source": "/waste-your-tokens/:path*",
+      "destination": "https://waste-your-tokens.vercel.app/waste-your-tokens/:path*"
+    },
+
+    {
       "source": "/hidden-china-atlas",
       "destination": "https://hidden-china-atlas.vercel.app/hidden-china-atlas"
     },
