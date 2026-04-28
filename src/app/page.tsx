@@ -466,7 +466,7 @@ export default function Home() {
                     YouTube
                   </a>
                   <a
-                    href="mailto:hello@example.com"
+                    href="mailto:noahzh52@gmail.com"
                     className="inline-flex items-center gap-2 rounded-full border border-border bg-background px-4 py-2 font-body text-[11px] uppercase tracking-[0.26em] transition-colors hover:text-text"
                   >
                     <Mail size={16} />
@@ -501,7 +501,7 @@ export default function Home() {
 
                 <div className="mt-12 flex flex-col gap-3 border-t border-border pt-6 md:flex-row md:items-center md:justify-between">
                   <a
-                    href="mailto:hello@example.com"
+                    href="mailto:noahzh52@gmail.com"
                     className="inline-flex items-center gap-2 font-display text-2xl tracking-tight transition-colors hover:text-accent"
                   >
                     {t.cta}
