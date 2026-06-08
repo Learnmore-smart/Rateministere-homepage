@@ -59,6 +59,14 @@
     {
       "source": "/inventory-checker/:path*",
       "destination": "https://inventory-checker-sage.vercel.app/inventory-checker/:path*"
+    },
+    {
+      "source": "/wechat-read-stats",
+      "destination": "https://wechat-read-dashboard.vercel.app/wechat-read-stats"
+    },
+    {
+      "source": "/wechat-read-stats/:path*",
+      "destination": "https://wechat-read-dashboard.vercel.app/wechat-read-stats/:path*"
     }
   ]
 }

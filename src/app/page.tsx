@@ -4,7 +4,7 @@ import React, { useEffect, useMemo, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { motion, useScroll, useSpring, useTransform } from "framer-motion";
-import { ArrowUpRight, Github, Instagram, Mail, Twitter, Youtube } from "lucide-react";
+import { ArrowUpRight, Github, Globe, Instagram, Mail, Twitter, Youtube } from "lucide-react";
 
 type LocalizedString = {
   en: string;
@@ -20,6 +20,16 @@ type Project = {
 };
 
 const projects: Project[] = [
+  {
+    id: "wechat-read-dashboard",
+    name: { en: "WeChat Read Dashboard", zh: "微信读书仪表盘" },
+    description: {
+      en: "Personal reading statistics and visualization dashboard.",
+      zh: "微信读书数据 analysis 与可视化仪表盘。",
+    },
+    path: "/wechat-read-stats",
+    year: "2026",
+  },
   {
     id: "waste-your-tokens",
     name: { en: "Waste Your Tokens", zh: "Waste Your Tokens" },
@@ -76,39 +86,59 @@ const projects: Project[] = [
     year: "2026",
   },
   {
-    id: "christmas-2025",
-    name: { en: "Christmas 2025", zh: "2025年圣诞节" },
-    description: { en: "Festive holiday countdowns.", zh: "节日倒计时。" },
-    path: "/christmas-2025",
+    id: "zhich-pvp",
+    name: { en: "Zhich PvP", zh: "Zhich PvP" },
+    description: { en: "Multiplayer arena statistics.", zh: "多人竞技场统计。" },
+    path: "https://github.com/Learnmore-smart/zhich-pvp-auto_aim_bot",
     year: "2025",
   },
   {
     id: "code-share",
     name: { en: "Code Share", zh: "代码分享" },
     description: { en: "Invite code share system.", zh: "邀请码分享系统。" },
-    path: "/code-share",
+    path: "https://github.com/Learnmore-smart/Trae-code-share",
+    year: "2025",
+  },
+  {
+    id: "discord-fish",
+    name: { en: "Discord Fishing Script", zh: "Discord 钓鱼脚本" },
+    description: {
+      en: "Automation script for Discord fishing games.",
+      zh: "Discord 钓鱼游戏的自动化脚本。",
+    },
+    path: "https://github.com/Learnmore-smart/Discord_fish",
+    year: "2025",
+  },
+];
+
+const sideProjects: Project[] = [
+  {
+    id: "2d-shooter",
+    name: { en: "2D Shooter", zh: "2D射击游戏" },
+    description: { en: "2D simple shooting game.", zh: "2D简单射击游戏。" },
+    path: "https://github.com/Learnmore-smart/2D-shooter",
+    year: "2026",
+  },
+  {
+    id: "christmas-2025-cyberpunk",
+    name: { en: "Christmas 2025 Cyberpunk", zh: "2025年圣诞节" },
+    description: { en: "Festive holiday countdown.", zh: "节日倒计时。" },
+    path: "https://github.com/Learnmore-smart/7-Trae-opens-Christmas-2025-cyberpunk",
+    year: "2025",
+  },
+  {
+    id: "christmas-2025-snow",
+    name: { en: "Christmas 2025 Snow", zh: "2025 圣诞雪景" },
+    description: { en: "Interactive Christmas snow effect.", zh: "2025圣诞雪景效果。" },
+    path: "https://github.com/Learnmore-smart/6-Trae-opens-Christmas-2025-snow",
     year: "2025",
   },
   {
     id: "academic-tutoring",
     name: { en: "Academic Tutoring", zh: "学术辅导" },
     description: { en: "A landing page for tutors.", zh: "连接导师的landing page。" },
-    path: "/academic-tutoring",
+    path: "https://github.com/Learnmore-smart/TUTORING-LANDING-PAGE",
     year: "2025",
-  },
-  {
-    id: "zhich-pvp",
-    name: { en: "Zhich PvP", zh: "Zhich PvP" },
-    description: { en: "Multiplayer arena statistics.", zh: "多人竞技场统计。" },
-    path: "/zhich-pvp",
-    year: "2026",
-  },
-  {
-    id: "2d-shooter",
-    name: { en: "2D Shooter", zh: "2D射击游戏" },
-    description: { en: "2D simple shooting game.", zh: "2D简单射击游戏。" },
-    path: "/2d-shooter",
-    year: "2026",
   },
 ];
 
@@ -131,6 +161,8 @@ const dict = {
       "A piano channel built for beginners — simple practice routines, first pieces, and step-by-step progress.",
     bio: "Currently studying at Marianopolis College in Montreal. Fluent in English, French, Mandarin; conversational in Spanish.",
     cta: "Say hello",
+    sideProjectsTitle: "Side Projects",
+    sideProjectsDesc: "Experimental works, scripts, and smaller packages.",
   },
   zh: {
     role: "创意开发者",
@@ -148,6 +180,8 @@ const dict = {
     pianoDesc: "面向初学者的钢琴频道：简单的练习方法、入门曲目与循序渐进的进步记录。",
     bio: "目前在蒙特利尔 Marianopolis College 就读。精通英语、法语、普通话，西班牙语可进行日常交流。",
     cta: "联系我",
+    sideProjectsTitle: "其他项目",
+    sideProjectsDesc: "趣味尝试、自动化脚本和小型练习项目。",
   },
 };
 
@@ -377,14 +411,27 @@ export default function Home() {
             </div>
 
             <div className="mt-6 divide-y divide-border overflow-hidden rounded-3xl border border-border bg-surface">
-              {projects.map((project, idx) => {
-                const content = (
+              {projects.map((project, idx) => (
+                <a
+                  key={project.id}
+                  href={project.path}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="block"
+                >
                   <div className="group flex flex-col gap-3 px-5 py-5 transition-colors hover:bg-background md:flex-row md:items-center md:justify-between md:gap-10 md:px-6">
                     <div className="flex items-center gap-4 md:gap-6">
                       <span className="font-body text-[11px] uppercase tracking-[0.26em] text-muted">
                         {(idx + 1).toString().padStart(2, "0")}
                       </span>
-                      <div className="font-display text-lg tracking-tight md:text-xl">{project.name[lang]}</div>
+                      <div className="font-display text-lg tracking-tight md:text-xl flex items-center gap-2">
+                        <span>{project.name[lang]}</span>
+                        {project.path.includes("github.com") ? (
+                          <Github size={14} className="text-muted/50 group-hover:text-accent transition-colors" />
+                        ) : (
+                          <Globe size={14} className="text-muted/50 group-hover:text-accent transition-colors" />
+                        )}
+                      </div>
                     </div>
 
                     <div className="flex items-center justify-between gap-6 md:w-[56%] md:justify-end md:gap-10">
@@ -397,28 +444,57 @@ export default function Home() {
                       </div>
                     </div>
                   </div>
-                );
+                </a>
+              ))}
+            </div>
 
-                if (isExternalLink(project.path)) {
-                  return (
-                    <a
-                      key={project.id}
-                      href={project.path}
-                      target="_blank"
-                      rel="noreferrer"
-                      className="block"
-                    >
-                      {content}
-                    </a>
-                  );
-                }
+            {/* Side Projects Section */}
+            <div className="mt-20 flex items-baseline justify-between gap-6 border-b border-border pb-6">
+              <div>
+                <h2 className="font-display text-2xl tracking-tight md:text-3xl">{t.sideProjectsTitle}</h2>
+                <p className="mt-2 font-body text-xs text-muted">{t.sideProjectsDesc}</p>
+              </div>
+              <span className="font-body text-[11px] uppercase tracking-[0.26em] text-muted">
+                {sideProjects.length} entries
+              </span>
+            </div>
 
-                return (
-                  <Link key={project.id} href={project.path} className="block">
-                    {content}
-                  </Link>
-                );
-              })}
+            <div className="mt-6 divide-y divide-border overflow-hidden rounded-3xl border border-border bg-surface">
+              {sideProjects.map((project, idx) => (
+                <a
+                  key={project.id}
+                  href={project.path}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="block"
+                >
+                  <div className="group flex flex-col gap-3 px-5 py-5 transition-colors hover:bg-background md:flex-row md:items-center md:justify-between md:gap-10 md:px-6">
+                    <div className="flex items-center gap-4 md:gap-6">
+                      <span className="font-body text-[11px] uppercase tracking-[0.26em] text-muted">
+                        {(idx + 1).toString().padStart(2, "0")}
+                      </span>
+                      <div className="font-display text-lg tracking-tight md:text-xl flex items-center gap-2">
+                        <span>{project.name[lang]}</span>
+                        {project.path.includes("github.com") ? (
+                          <Github size={14} className="text-muted/50 group-hover:text-accent transition-colors" />
+                        ) : (
+                          <Globe size={14} className="text-muted/50 group-hover:text-accent transition-colors" />
+                        )}
+                      </div>
+                    </div>
+
+                    <div className="flex items-center justify-between gap-6 md:w-[56%] md:justify-end md:gap-10">
+                      <p className="max-w-[42ch] font-body text-sm leading-relaxed text-muted">{project.description[lang]}</p>
+                      <div className="flex items-center gap-3">
+                        <span className="font-body text-[11px] uppercase tracking-[0.26em] text-muted">
+                          {project.year}
+                        </span>
+                        <ArrowUpRight className="opacity-0 transition-opacity group-hover:opacity-100" size={18} />
+                      </div>
+                    </div>
+                  </div>
+                </a>
+              ))}
             </div>
           </div>
         </section>
