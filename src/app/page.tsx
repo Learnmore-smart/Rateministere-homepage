@@ -1,10 +1,10 @@
 "use client";
 
-import React, { useEffect, useMemo, useState } from "react";
+import React, { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { motion, useScroll, useSpring, useTransform } from "framer-motion";
-import { ArrowUpRight, Award, Facebook, Github, Globe, Instagram, Mail, Youtube } from "lucide-react";
+import { ArrowUpRight, Award, ChevronDown, Facebook, Github, Globe, Instagram, Mail, Youtube } from "lucide-react";
 
 const XIcon = ({ size = 16 }: { size?: number }) => (
   <svg width={size} height={size} viewBox="0 0 24 24" fill="currentColor" aria-hidden>
@@ -26,9 +26,13 @@ const XiaohongshuIcon = ({ size = 16 }: { size?: number }) => (
 
 import en from "@/i18n/en.json";
 import zh from "@/i18n/zh.json";
+import fr from "@/i18n/fr.json";
 
-const locales = { en, zh } as const;
+const locales = { en, zh, fr } as const;
 type Lang = keyof typeof locales;
+
+const langLabels: Record<Lang, string> = { en: "EN", zh: "中文", fr: "FR" };
+const langOrder: Lang[] = ["en", "zh", "fr"];
 
 type ProjectMeta = {
   id: string;
@@ -72,8 +76,10 @@ const recognitions: RecognitionMeta[] = [
 export default function Home() {
   const [lang, setLang] = useState<Lang>("en");
 
+  const workRef = useRef<HTMLElement>(null);
   const { scrollYProgress } = useScroll({
-    offset: ["start start", "end end"],
+    target: workRef,
+    offset: ["start end", "end start"],
   });
 
   const smoothProgress = useSpring(scrollYProgress, {
@@ -82,16 +88,36 @@ export default function Home() {
     mass: 0.6,
   });
 
-  const yImage1 = useTransform(smoothProgress, [0, 1], ["0%", "10%"]);
-  const yImage2 = useTransform(smoothProgress, [0, 1], ["0%", "-10%"]);
+  const yImage1 = useTransform(smoothProgress, [0, 1], ["-8%", "8%"]);
+  const yImage2 = useTransform(smoothProgress, [0, 1], ["8%", "-8%"]);
+
+  const [langOpen, setLangOpen] = useState(false);
+  const langRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    const userLang = navigator.language;
-    setLang(userLang.toLowerCase().includes("zh") ? "zh" : "en");
+    const userLang = navigator.language.toLowerCase();
+    if (userLang.includes("zh")) setLang("zh");
+    else if (userLang.includes("fr")) setLang("fr");
+    else setLang("en");
   }, []);
 
   const t = useMemo(() => locales[lang], [lang]);
-  const toggleLanguage = () => setLang((prev) => (prev === "en" ? "zh" : "en"));
+
+  // Close dropdown on outside click
+  useEffect(() => {
+    const handler = (e: MouseEvent) => {
+      if (langRef.current && !langRef.current.contains(e.target as Node)) {
+        setLangOpen(false);
+      }
+    };
+    document.addEventListener("mousedown", handler);
+    return () => document.removeEventListener("mousedown", handler);
+  }, []);
+
+  const selectLang = useCallback((l: Lang) => {
+    setLang(l);
+    setLangOpen(false);
+  }, []);
 
   return (
     <div className="relative min-h-screen bg-background text-text">
@@ -116,13 +142,47 @@ export default function Home() {
                 {t.hero.ongoing}
               </span>
 
-              <button
-                type="button"
-                onClick={toggleLanguage}
-                className="rounded-full border border-border bg-surface px-3 py-1 font-body text-[11px] uppercase tracking-[0.26em] text-muted transition-colors hover:text-text"
-              >
-                {t.header.switchLang}
-              </button>
+              <div ref={langRef} className="relative">
+                <button
+                  type="button"
+                  onClick={() => setLangOpen((v) => !v)}
+                  className="flex items-center gap-1.5 rounded-full border border-border bg-surface px-3 py-1 font-body text-[11px] uppercase tracking-[0.26em] text-muted transition-colors hover:text-text"
+                >
+                  {langLabels[lang]}
+                  <ChevronDown
+                    size={12}
+                    className={`transition-transform duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] ${
+                      langOpen ? "rotate-180" : ""
+                    }`}
+                  />
+                </button>
+
+                <div
+                  className={`lang-dropdown absolute right-0 top-[calc(100%+8px)] min-w-[120px] overflow-hidden rounded-xl border border-border bg-surface/90 shadow-lg shadow-black/[0.06] backdrop-blur-xl ${
+                    langOpen ? "lang-dropdown--open" : ""
+                  }`}
+                >
+                  {langOrder.map((l) => (
+                    <button
+                      key={l}
+                      type="button"
+                      onClick={() => selectLang(l)}
+                      className={`flex w-full items-center gap-2 px-4 py-2.5 font-body text-[11px] uppercase tracking-[0.26em] transition-colors duration-150 hover:bg-accent/8 hover:text-text ${
+                        l === lang ? "text-accent" : "text-muted"
+                      }`}
+                    >
+                      <span
+                        className={`inline-block h-1.5 w-1.5 rounded-full transition-all duration-300 ${
+                          l === lang
+                            ? "scale-100 bg-accent opacity-100"
+                            : "scale-0 bg-transparent opacity-0"
+                        }`}
+                      />
+                      {langLabels[l]}
+                    </button>
+                  ))}
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -182,16 +242,6 @@ export default function Home() {
 
                   <p className="mt-6 font-body text-sm leading-relaxed text-muted">{t.background.bio}</p>
 
-                  <div className="mt-6 space-y-3 border-l-2 border-accent/20 pl-4">
-                    <p className="font-body text-xs leading-relaxed text-muted italic">
-                      &ldquo;{t.background.quote}&rdquo;
-                    </p>
-                    <p className="font-body text-xs leading-relaxed text-muted italic">
-                      &ldquo;{t.background.walterMitty}&rdquo;
-                      <span className="ml-1 text-muted/50">— {t.background.walterMittySource}</span>
-                    </p>
-                  </div>
-
                   <div className="mt-10 grid grid-cols-2 gap-3">
                     <div className="rounded-2xl border border-border bg-background px-4 py-3">
                       <div className="font-body text-[11px] uppercase tracking-[0.26em] text-muted">{t.background.cards.focusLabel}</div>
@@ -216,7 +266,7 @@ export default function Home() {
           </div>
         </section>
 
-        <section id="work" className="py-20 md:py-28">
+        <section id="work" ref={workRef} className="py-20 md:py-28">
           <div className="mx-auto max-w-screen-2xl px-6 md:px-12">
             <div className="flex items-baseline justify-between gap-6 border-b border-border pb-6">
               <h2 className="font-display text-2xl tracking-tight md:text-3xl">{t.featured.title}</h2>
@@ -233,14 +283,14 @@ export default function Home() {
                 className="group rounded-3xl border border-border bg-surface p-5 md:p-6"
               >
                 <div className="relative aspect-[16/10] overflow-hidden rounded-2xl border border-border bg-background">
-                  <motion.div style={{ y: yImage1 }} className="absolute inset-0">
+                  <motion.div style={{ y: yImage1 }} className="absolute -top-[10%] -bottom-[10%] inset-x-0">
                     <Image
                       src="/LearnX.png"
                       alt="LearnX"
                       fill
                       priority
                       sizes="(min-width: 1024px) 45vw, 100vw"
-                      className="object-cover transition-transform duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-[1.03]"
+                      className="object-cover object-top transition-transform duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-[1.03]"
                     />
                   </motion.div>
                 </div>
@@ -266,14 +316,14 @@ export default function Home() {
                 className="group rounded-3xl border border-border bg-surface p-5 md:p-6"
               >
                 <div className="relative aspect-[16/10] overflow-hidden rounded-2xl border border-border bg-background">
-                  <motion.div style={{ y: yImage2 }} className="absolute inset-0">
+                  <motion.div style={{ y: yImage2 }} className="absolute -top-[10%] -bottom-[10%] inset-x-0">
                     <Image
                       src="/Noah-Piano-Journey.png"
                       alt="Noah's Piano Journey"
                       fill
                       priority
                       sizes="(min-width: 1024px) 45vw, 100vw"
-                      className="object-cover transition-transform duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-[1.03]"
+                      className="object-cover object-top transition-transform duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-[1.03]"
                     />
                   </motion.div>
                 </div>
@@ -536,18 +586,23 @@ export default function Home() {
                   ))}
                 </div>
 
-                <div className="mt-12 flex flex-col gap-3 border-t border-border pt-6 md:flex-row md:items-center md:justify-between">
-                  <a
-                    href="mailto:noahzh52@gmail.com"
-                    className="inline-flex items-center gap-2 font-display text-2xl tracking-tight transition-colors hover:text-accent"
-                  >
-                    {t.footer.cta}
-                    <ArrowUpRight size={18} />
-                  </a>
-                  <div className="font-body text-[11px] uppercase tracking-[0.26em] text-muted">
-                    {t.footer.copyright}
-                  </div>
-                </div>
+              </div>
+            </div>
+
+            <div className="mt-12 flex flex-col gap-6 border-t border-border pt-6 md:flex-row md:items-center md:justify-between">
+              <a
+                href="mailto:noahzh52@gmail.com"
+                className="inline-flex items-center gap-2 font-display text-2xl tracking-tight transition-colors hover:text-accent whitespace-nowrap"
+              >
+                {t.footer.cta}
+                <ArrowUpRight size={18} />
+              </a>
+              <div className="flex flex-col gap-1 items-center md:items-center text-muted font-body text-xs italic text-center">
+                <p>&ldquo;{t.background.quote}&rdquo;</p>
+                <p>&ldquo;{t.background.walterMitty}&rdquo;</p>
+              </div>
+              <div className="font-body text-[11px] uppercase tracking-[0.26em] text-muted whitespace-nowrap">
+                {t.footer.copyright}
               </div>
             </div>
           </div>

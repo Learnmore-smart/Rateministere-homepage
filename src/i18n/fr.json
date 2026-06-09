@@ -1,0 +1,148 @@
+{
+  "header": {
+    "name": "Noah Zixin Zhang",
+    "portfolio": "Portfolio",
+    "switchLang": "FR"
+  },
+  "hero": {
+    "role": "Développeur Créatif",
+    "location": "Montréal, QC",
+    "ongoing": "Disponible",
+    "description": "Je conçois des outils, des plateformes et des expériences interactives avec précision. Axé sur la clarté, le mouvement et les systèmes qui paraissent naturels.",
+    "explore": "Voir les projets",
+    "directory": "Archives"
+  },
+  "background": {
+    "title": "Parcours",
+    "year": "2026",
+    "bio": "Actuellement étudiant au Collège Marianopolis à Montréal. Maîtrise l'anglais, le français et le mandarin ; espagnol conversationnel.",
+    "quote": "Tu peux abandonner à tout moment, alors pourquoi maintenant ?",
+    "walterMitty": "Un jour, je trouverai mon négatif n°25",
+    "walterMittySource": "La Vie rêvée de Walter Mitty",
+    "cards": {
+      "focusLabel": "Focus",
+      "focusValue": "Interfaces",
+      "strengthLabel": "Force",
+      "strengthValue": "Motion",
+      "modeLabel": "Type",
+      "modeValue": "INTJ",
+      "detailLabel": "Détail",
+      "detailValue": "Systèmes"
+    }
+  },
+  "featured": {
+    "title": "Sélection",
+    "subtitle": "Deux projets phares",
+    "learnx": {
+      "label": "LearnX",
+      "heading": "Préparation aux examens",
+      "description": "Plateforme de préparation aux examens avec génération de sprints. Divise vos fichiers en unités pour apprendre avec la répétition espacée et des techniques avancées."
+    },
+    "piano": {
+      "label": "YouTube",
+      "heading": "Noah's Piano Journey",
+      "description": "Une chaîne piano pour débutants — exercices simples, premiers morceaux et progression étape par étape."
+    }
+  },
+  "archive": {
+    "title": "Archives",
+    "entries": "entrées"
+  },
+  "sideProjects": {
+    "title": "Projets Annexes",
+    "description": "Expérimentations, scripts et petits projets.",
+    "entries": "entrées"
+  },
+  "recognition": {
+    "title": "Distinctions",
+    "badge": "Trae"
+  },
+  "footer": {
+    "socials": "Réseau",
+    "capabilities": "Compétences",
+    "cta": "Me contacter",
+    "copyright": "© 2026 Noah Zixin Zhang"
+  },
+  "projects": {
+    "wechat-read-dashboard": {
+      "name": "Tableau de bord WeChat Read",
+      "description": "Statistiques de lecture et tableau de bord de visualisation."
+    },
+    "waste-your-tokens": {
+      "name": "Waste Your Tokens",
+      "description": "Un site web pour gaspiller vos jetons."
+    },
+    "enforcer": {
+      "name": "Enforcer",
+      "description": "Application Windows créée en 24h avec Kimi Xu, Yu He Wang et Kevin Wang pour aider les étudiants à se concentrer."
+    },
+    "hidden-china-atlas": {
+      "name": "Atlas Caché de la Chine",
+      "description": "Atlas géographique interactif."
+    },
+    "release-panic-room": {
+      "name": "Release Panic Room",
+      "description": "Un jeu de stress de dernière minute."
+    },
+    "rateministere": {
+      "name": "RateMinistere",
+      "description": "Plateforme de vote pour enseignants."
+    },
+    "caelum": {
+      "name": "Caelum",
+      "description": "Application de prise de notes Windows."
+    },
+    "mari-msu-2026": {
+      "name": "Mari MSU 2026",
+      "description": "Design du portail étudiant."
+    },
+    "zhich-pvp": {
+      "name": "Zhich PvP",
+      "description": "Statistiques d'arène multijoueur."
+    },
+    "code-share": {
+      "name": "Code Share",
+      "description": "Système de partage de codes d'invitation."
+    },
+    "discord-fish": {
+      "name": "Script Discord Fishing",
+      "description": "Script d'automatisation pour les jeux de pêche Discord."
+    }
+  },
+  "sideProjectItems": {
+    "2d-shooter": {
+      "name": "Jeu de tir 2D",
+      "description": "Jeu de tir 2D simple."
+    },
+    "christmas-2025-cyberpunk": {
+      "name": "Noël 2025 Cyberpunk",
+      "description": "Compte à rebours festif."
+    },
+    "christmas-2025-snow": {
+      "name": "Noël 2025 Neige",
+      "description": "Effet de neige de Noël interactif."
+    },
+    "academic-tutoring": {
+      "name": "Tutorat Académique",
+      "description": "Page d'accueil pour tuteurs."
+    }
+  },
+  "recognitionItems": {
+    "trae-annual-contributor": {
+      "title": "Contributeur Annuel Trae 2025",
+      "detail": "Reconnaissance annuelle de contribution."
+    },
+    "trae-vol3-quality": {
+      "title": "Prix Partage de Qualité",
+      "detail": "TRAE Tips Store Vol.3 — Astuces MTC."
+    },
+    "trae-vol4-top": {
+      "title": "Prix Top Astuces Pratiques",
+      "detail": "TRAE Tips Store Vol.4."
+    },
+    "trae-community-star": {
+      "title": "Étoile Communautaire",
+      "detail": "Oct – Déc 2025, Fév – Mars 2026."
+    }
+  }
+}
