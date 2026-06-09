@@ -1,0 +1,148 @@
+{
+  "header": {
+    "name": "Noah Zixin Zhang",
+    "portfolio": "Portfolio",
+    "switchLang": "ZH"
+  },
+  "hero": {
+    "role": "Creative Developer",
+    "location": "Montreal, QC",
+    "ongoing": "Available",
+    "description": "I build tools, platforms, and interactive experiences crafted with precision. Focused on clarity, motion, and systems that feel effortless.",
+    "explore": "View work",
+    "directory": "Archive"
+  },
+  "background": {
+    "title": "Background",
+    "year": "2026",
+    "bio": "Currently studying at Marianopolis College in Montreal. Fluent in English, French, Mandarin; conversational in Spanish.",
+    "quote": "You can give up at any time, so why now?",
+    "walterMitty": "One day, I'll find my negative No.25",
+    "walterMittySource": "The Secret Life of Walter Mitty",
+    "cards": {
+      "focusLabel": "Focus",
+      "focusValue": "Interfaces",
+      "strengthLabel": "Strength",
+      "strengthValue": "Motion",
+      "modeLabel": "Type",
+      "modeValue": "INTJ",
+      "detailLabel": "Detail",
+      "detailValue": "Systems"
+    }
+  },
+  "featured": {
+    "title": "Selected",
+    "subtitle": "Two highlights",
+    "learnx": {
+      "label": "LearnX",
+      "heading": "Study planning",
+      "description": "Exam prediction, smart planning, and clear progress tracking for students."
+    },
+    "piano": {
+      "label": "YouTube",
+      "heading": "Noah's Piano Journey",
+      "description": "A piano channel built for beginners — simple practice routines, first pieces, and step-by-step progress."
+    }
+  },
+  "archive": {
+    "title": "Archive",
+    "entries": "entries"
+  },
+  "sideProjects": {
+    "title": "Side Projects",
+    "description": "Experimental works, scripts, and smaller packages.",
+    "entries": "entries"
+  },
+  "recognition": {
+    "title": "Recognition",
+    "badge": "Trae"
+  },
+  "footer": {
+    "socials": "Network",
+    "capabilities": "Capabilities",
+    "cta": "Say hello",
+    "copyright": "© 2026 Noah Zixin Zhang"
+  },
+  "projects": {
+    "wechat-read-dashboard": {
+      "name": "WeChat Read Dashboard",
+      "description": "Personal reading statistics and visualization dashboard."
+    },
+    "waste-your-tokens": {
+      "name": "Waste Your Tokens",
+      "description": "A website to help you waste tokens."
+    },
+    "enforcer": {
+      "name": "Enforcer",
+      "description": "A Windows app built in 24 hours with Kimi Xu, Yu He Wang, Kevin Wang to help students focus on study."
+    },
+    "hidden-china-atlas": {
+      "name": "Hidden China Atlas",
+      "description": "Interactive geographic atlas."
+    },
+    "release-panic-room": {
+      "name": "Release Panic Room",
+      "description": "A last minute stress game."
+    },
+    "rateministere": {
+      "name": "RateMinistere",
+      "description": "Voting teacher platform."
+    },
+    "caelum": {
+      "name": "Caelum",
+      "description": "Windows note taking app."
+    },
+    "mari-msu-2026": {
+      "name": "Mari MSU 2026",
+      "description": "Student portal design."
+    },
+    "zhich-pvp": {
+      "name": "Zhich PvP",
+      "description": "Multiplayer arena statistics."
+    },
+    "code-share": {
+      "name": "Code Share",
+      "description": "Invite code share system."
+    },
+    "discord-fish": {
+      "name": "Discord Fishing Script",
+      "description": "Automation script for Discord fishing games."
+    }
+  },
+  "sideProjectItems": {
+    "2d-shooter": {
+      "name": "2D Shooter",
+      "description": "2D simple shooting game."
+    },
+    "christmas-2025-cyberpunk": {
+      "name": "Christmas 2025 Cyberpunk",
+      "description": "Festive holiday countdown."
+    },
+    "christmas-2025-snow": {
+      "name": "Christmas 2025 Snow",
+      "description": "Interactive Christmas snow effect."
+    },
+    "academic-tutoring": {
+      "name": "Academic Tutoring",
+      "description": "A landing page for tutors."
+    }
+  },
+  "recognitionItems": {
+    "trae-annual-contributor": {
+      "title": "Trae 2025 Annual Contributor",
+      "detail": "Annual fellowship recognition."
+    },
+    "trae-vol3-quality": {
+      "title": "Quality Share Award",
+      "detail": "TRAE Tips Store Vol.3 — MTC usage tips."
+    },
+    "trae-vol4-top": {
+      "title": "Top Practical Tips Award",
+      "detail": "TRAE Tips Store Vol.4."
+    },
+    "trae-community-star": {
+      "title": "Community Star",
+      "detail": "Oct – Dec 2025, Feb – Mar 2026."
+    }
+  }
+}
