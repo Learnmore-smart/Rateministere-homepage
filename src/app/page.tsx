@@ -38,21 +38,22 @@ type ProjectMeta = {
   id: string;
   path: string;
   year: string;
+  github?: string;
 };
 
 const projects: ProjectMeta[] = [
-  { id: "wechat-read-dashboard", path: "/wechat-read-stats", year: "2026" },
-  { id: "quote-cloud", path: "/quote-cloud", year: "2026" },
-  { id: "waste-your-tokens", path: "/waste-your-tokens", year: "2026" },
-  { id: "enforcer", path: "https://www.rateministere.com/Enforcer", year: "2026" },
-  { id: "hidden-china-atlas", path: "/hidden-china-atlas", year: "2026" },
-  { id: "release-panic-room", path: "/release-panic-room", year: "2026" },
-  { id: "rateministere", path: "/rateministere", year: "2026" },
-  { id: "caelum", path: "https://github.com/Learnmore-smart/Caelum", year: "2026" },
-  { id: "mari-msu-2026", path: "/mari-msu-2026", year: "2026" },
-  { id: "zhich-pvp", path: "https://github.com/Learnmore-smart/zhich-pvp-auto_aim_bot", year: "2025" },
-  { id: "code-share", path: "https://github.com/Learnmore-smart/Trae-code-share", year: "2025" },
-  { id: "discord-fish", path: "https://github.com/Learnmore-smart/Discord_fish", year: "2025" },
+  { id: "wechat-read-dashboard", path: "/wechat-read-stats", year: "2026", github: "https://github.com/Learnmore-smart/Wechat-read-dashboard" },
+  { id: "quote-cloud", path: "/quote-cloud", year: "2026", github: "https://github.com/Learnmore-smart/Quote-Cloud" },
+  { id: "waste-your-tokens", path: "/waste-your-tokens", year: "2026", github: "https://github.com/Learnmore-smart/Waste-your-tokens" },
+  { id: "enforcer", path: "https://www.rateministere.com/Enforcer", year: "2026", github: "https://github.com/Learnmore-smart/Marihacks-IX-2026" },
+  { id: "hidden-china-atlas", path: "/hidden-china-atlas", year: "2026", github: "https://github.com/Learnmore-smart/Hidden-China-Atlas" },
+  { id: "release-panic-room", path: "/release-panic-room", year: "2026", github: "https://github.com/Learnmore-smart/Release-Panic-Room" },
+  { id: "rateministere", path: "/rateministere", year: "2026", github: "https://github.com/Learnmore-smart/RateMinistere" },
+  { id: "caelum", path: "https://github.com/Learnmore-smart/Caelum", year: "2026", github: "https://github.com/Learnmore-smart/Caelum" },
+  { id: "mari-msu-2026", path: "/mari-msu-2026", year: "2026", github: "https://github.com/Learnmore-smart/Mari-MSU-2026" },
+  { id: "zhich-pvp", path: "https://github.com/Learnmore-smart/zhich-pvp-auto_aim_bot", year: "2025", github: "https://github.com/Learnmore-smart/zhich-pvp-auto_aim_bot" },
+  { id: "code-share", path: "https://github.com/Learnmore-smart/Trae-code-share", year: "2025", github: "https://github.com/Learnmore-smart/Trae-code-share" },
+  { id: "discord-fish", path: "https://github.com/Learnmore-smart/Discord_fish", year: "2025", github: "https://github.com/Learnmore-smart/Discord_fish" },
 ];
 
 const sideProjects: ProjectMeta[] = [
@@ -356,13 +357,12 @@ export default function Home() {
             <div className="mt-6 divide-y divide-border overflow-hidden rounded-3xl border border-border bg-surface">
               {projects.map((project, idx) => {
                 const pt = t.projects[project.id as keyof typeof t.projects];
+                const hasWebsite = !project.path.includes("github.com");
                 return (
-                  <a
+                  <div
                     key={project.id}
-                    href={project.path}
-                    target="_blank"
-                    rel="noreferrer"
-                    className="block"
+                    onClick={() => window.open(project.path, "_blank")}
+                    className="block cursor-pointer"
                   >
                     <div className="group flex flex-col gap-3 px-5 py-5 transition-colors hover:bg-background md:flex-row md:items-center md:justify-between md:gap-10 md:px-6">
                       <div className="flex items-center gap-4 md:gap-6">
@@ -371,10 +371,24 @@ export default function Home() {
                         </span>
                         <div className="font-display text-lg tracking-tight md:text-xl flex items-center gap-2">
                           <span>{pt.name}</span>
-                          {project.path.includes("github.com") ? (
-                            <Github size={14} className="text-muted/50 group-hover:text-accent transition-colors" />
+                          {hasWebsite ? (
+                            <div className="flex items-center gap-3">
+                              <Globe size={14} className="text-muted/50 hover:text-accent transition-colors" title="Visit Website" />
+                              {project.github && (
+                                <a
+                                  href={project.github}
+                                  target="_blank"
+                                  rel="noreferrer"
+                                  onClick={(e) => e.stopPropagation()}
+                                  className="p-1 hover:bg-muted rounded-full transition-colors"
+                                  title="View GitHub Repository"
+                                >
+                                  <Github size={14} className="text-muted/50 hover:text-accent transition-colors" />
+                                </a>
+                              )}
+                            </div>
                           ) : (
-                            <Globe size={14} className="text-muted/50 group-hover:text-accent transition-colors" />
+                            <Github size={14} className="text-muted/50 hover:text-accent transition-colors" title="View GitHub Repository" />
                           )}
                         </div>
                       </div>
@@ -389,7 +403,7 @@ export default function Home() {
                         </div>
                       </div>
                     </div>
-                  </a>
+                  </div>
                 );
               })}
             </div>
