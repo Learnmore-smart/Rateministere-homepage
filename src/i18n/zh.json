@@ -68,6 +68,10 @@
       "name": "微信读书仪表盘",
       "description": "微信读书数据分析与可视化仪表盘。"
     },
+    "quote-cloud": {
+      "name": "Quote Cloud",
+      "description": "精选语录的互动云图。"
+    },
     "waste-your-tokens": {
       "name": "Waste Your Tokens",
       "description": "一个帮你浪费词元的网站。"
@@ -142,7 +146,7 @@
     },
     "trae-community-star": {
       "title": "社群活力之星",
-      "detail": "2025 年 10–12 月，2026 年 2–3 月。"
+      "detail": "2025 年 10–12 月，2026 年 2–3 月、5 月。"
     }
   }
 }

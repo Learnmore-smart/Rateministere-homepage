@@ -42,6 +42,7 @@ type ProjectMeta = {
 
 const projects: ProjectMeta[] = [
   { id: "wechat-read-dashboard", path: "/wechat-read-stats", year: "2026" },
+  { id: "quote-cloud", path: "/quote-cloud", year: "2026" },
   { id: "waste-your-tokens", path: "/waste-your-tokens", year: "2026" },
   { id: "enforcer", path: "https://www.rateministere.com/Enforcer", year: "2026" },
   { id: "hidden-china-atlas", path: "/hidden-china-atlas", year: "2026" },

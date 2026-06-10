@@ -68,6 +68,10 @@
       "name": "Tableau de bord WeChat Read",
       "description": "Statistiques de lecture et tableau de bord de visualisation."
     },
+    "quote-cloud": {
+      "name": "Quote Cloud",
+      "description": "Un nuage interactif de citations sélectionnées."
+    },
     "waste-your-tokens": {
       "name": "Waste Your Tokens",
       "description": "Un site web pour gaspiller vos jetons."
@@ -142,7 +146,7 @@
     },
     "trae-community-star": {
       "title": "Étoile Communautaire",
-      "detail": "Oct – Déc 2025, Fév – Mars 2026."
+      "detail": "Oct – Déc 2025, Fév – Mars, Mai 2026."
     }
   }
 }

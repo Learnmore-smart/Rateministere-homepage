@@ -67,6 +67,14 @@
     {
       "source": "/wechat-read-stats/:path*",
       "destination": "https://wechat-read-dashboard.vercel.app/wechat-read-stats/:path*"
+    },
+    {
+      "source": "/quote-cloud",
+      "destination": "https://quote-cloud-one.vercel.app/quote-cloud"
+    },
+    {
+      "source": "/quote-cloud/:path*",
+      "destination": "https://quote-cloud-one.vercel.app/quote-cloud/:path*"
     }
   ]
 }
