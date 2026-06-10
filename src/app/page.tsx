@@ -382,10 +382,10 @@ export default function Home() {
                                   target="_blank"
                                   rel="noreferrer"
                                   onClick={(e) => e.stopPropagation()}
-                                  className="p-1 hover:bg-muted rounded-full transition-colors"
+                                  className="text-muted/50 hover:text-accent transition-colors flex items-center"
                                   title="View GitHub Repository"
                                 >
-                                  <Github size={14} className="text-muted/50 hover:text-accent transition-colors" />
+                                  <Github size={14} />
                                 </a>
                               )}
                             </div>
