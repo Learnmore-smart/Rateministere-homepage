@@ -373,7 +373,9 @@ export default function Home() {
                           <span>{pt.name}</span>
                           {hasWebsite ? (
                             <div className="flex items-center gap-3">
-                              <Globe size={14} className="text-muted/50 hover:text-accent transition-colors" title="Visit Website" />
+                              <span title="Visit Website" className="flex items-center">
+                                <Globe size={14} className="text-muted/50 hover:text-accent transition-colors" />
+                              </span>
                               {project.github && (
                                 <a
                                   href={project.github}
@@ -388,7 +390,9 @@ export default function Home() {
                               )}
                             </div>
                           ) : (
-                            <Github size={14} className="text-muted/50 hover:text-accent transition-colors" title="View GitHub Repository" />
+                            <span title="View GitHub Repository" className="flex items-center">
+                              <Github size={14} className="text-muted/50 hover:text-accent transition-colors" />
+                            </span>
                           )}
                         </div>
                       </div>
