@@ -44,6 +44,20 @@
       "description": "A piano channel built for beginners — simple practice routines, first pieces, and step-by-step progress."
     }
   },
+  "recent": {
+    "title": "Recent",
+    "subtitle": "Latest work",
+    "traeContest": {
+      "label": "TRAE Contest",
+      "heading": "2026 Creativity Contest Ranking",
+      "description": "Independent AI-powered ranking board for the TRAE 2026 Creativity Contest. Scrapes public posts, matches projects across stages, and generates simulated scores with free models."
+    },
+    "spinshare": {
+      "label": "SpinShare",
+      "heading": "AI IDE Ad Exchange",
+      "description": "Ad exchange platform for AI IDE extensions. Connects developers and advertisers with context-aware ad placements inside coding assistants."
+    }
+  },
   "archive": {
     "title": "Archive",
     "entries": "entries"

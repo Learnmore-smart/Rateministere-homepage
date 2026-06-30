@@ -44,6 +44,20 @@
       "description": "Une chaîne piano pour débutants — exercices simples, premiers morceaux et progression étape par étape."
     }
   },
+  "recent": {
+    "title": "Récents",
+    "subtitle": "Derniers projets",
+    "traeContest": {
+      "label": "Concours TRAE",
+      "heading": "Classement 2026 du concours de créativité",
+      "description": "Classement indépendant propulsé par l'IA pour le concours de créativité TRAE 2026. Récupère les publications publiques, fait correspondre les projets entre étapes et génère des scores simulés avec des modèles gratuits."
+    },
+    "spinshare": {
+      "label": "SpinShare",
+      "heading": "Échange publicitaire IA IDE",
+      "description": "Plateforme d'échange publicitaire pour les extensions d'IDE IA. Connecte les développeurs et les annonceurs avec des placements publicitaires contextuels dans les assistants de codage."
+    }
+  },
   "archive": {
     "title": "Archives",
     "entries": "entrées"

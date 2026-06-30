@@ -345,6 +345,75 @@ export default function Home() {
           </div>
         </section>
 
+        <section className="py-20 md:py-28">
+          <div className="mx-auto max-w-screen-2xl px-6 md:px-12">
+            <div className="flex items-baseline justify-between gap-6 border-b border-border pb-6">
+              <h2 className="font-display text-2xl tracking-tight md:text-3xl">{t.recent.title}</h2>
+              <span className="font-body text-[11px] uppercase tracking-[0.26em] text-muted">{t.recent.subtitle}</span>
+            </div>
+
+            <div className="mt-10 grid grid-cols-1 gap-12 lg:grid-cols-2 lg:gap-10">
+              <motion.a
+                href="/trae-contest-2026"
+                whileHover={{ y: -4 }}
+                transition={{ duration: 0.25 }}
+                className="group rounded-3xl border border-border bg-surface p-5 md:p-6"
+              >
+                <div className="relative aspect-[16/10] overflow-hidden rounded-2xl border border-border bg-background">
+                  <Image
+                    src="/trae-contest-ranking.png"
+                    alt="TRAE 2026 Contest Ranking"
+                    fill
+                    sizes="(min-width: 1024px) 45vw, 100vw"
+                    className="object-cover object-top transition-transform duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-[1.03]"
+                  />
+                </div>
+
+                <div className="mt-6 flex items-start justify-between gap-6">
+                  <div>
+                    <div className="font-body text-[11px] uppercase tracking-[0.26em] text-muted">{t.recent.traeContest.label}</div>
+                    <div className="mt-2 font-display text-xl tracking-tight md:text-2xl">{t.recent.traeContest.heading}</div>
+                    <p className="mt-3 max-w-md font-body text-sm leading-relaxed text-muted">{t.recent.traeContest.description}</p>
+                  </div>
+                  <div className="flex h-10 w-10 items-center justify-center rounded-full border border-border bg-background text-text transition-colors group-hover:border-transparent group-hover:bg-accent group-hover:text-white">
+                    <ArrowUpRight size={18} />
+                  </div>
+                </div>
+              </motion.a>
+
+              <motion.a
+                href="https://spinshare.dev"
+                target="_blank"
+                rel="noreferrer"
+                whileHover={{ y: -4 }}
+                transition={{ duration: 0.25 }}
+                className="group rounded-3xl border border-border bg-surface p-5 md:p-6"
+              >
+                <div className="relative aspect-[16/10] overflow-hidden rounded-2xl border border-border bg-background">
+                  <Image
+                    src="/spinshare-OG.png"
+                    alt="SpinShare"
+                    fill
+                    sizes="(min-width: 1024px) 45vw, 100vw"
+                    className="object-cover object-top transition-transform duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-[1.03]"
+                  />
+                </div>
+
+                <div className="mt-6 flex items-start justify-between gap-6">
+                  <div>
+                    <div className="font-body text-[11px] uppercase tracking-[0.26em] text-muted">{t.recent.spinshare.label}</div>
+                    <div className="mt-2 font-display text-xl tracking-tight md:text-2xl">{t.recent.spinshare.heading}</div>
+                    <p className="mt-3 max-w-md font-body text-sm leading-relaxed text-muted">{t.recent.spinshare.description}</p>
+                  </div>
+                  <div className="flex h-10 w-10 items-center justify-center rounded-full border border-border bg-background text-text transition-colors group-hover:border-transparent group-hover:bg-accent group-hover:text-white">
+                    <ArrowUpRight size={18} />
+                  </div>
+                </div>
+              </motion.a>
+            </div>
+          </div>
+        </section>
+
         <section id="archive" className="py-20 md:py-28">
           <div className="mx-auto max-w-screen-2xl px-6 md:px-12">
             <div className="flex items-baseline justify-between gap-6 border-b border-border pb-6">

@@ -75,6 +75,14 @@
     {
       "source": "/quote-cloud/:path*",
       "destination": "https://quote-cloud-one.vercel.app/quote-cloud/:path*"
+    },
+    {
+      "source": "/trae-contest-2026",
+      "destination": "https://trae-contest-ranking-2026.vercel.app/trae-contest-2026"
+    },
+    {
+      "source": "/trae-contest-2026/:path*",
+      "destination": "https://trae-contest-ranking-2026.vercel.app/trae-contest-2026/:path*"
     }
   ]
 }

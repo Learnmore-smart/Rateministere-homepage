@@ -44,6 +44,20 @@
       "description": "面向初学者的钢琴频道：简单的练习方法、入门曲目与循序渐进的进步记录。"
     }
   },
+  "recent": {
+    "title": "近期项目",
+    "subtitle": "最新作品",
+    "traeContest": {
+      "label": "TRAE 大赛",
+      "heading": "2026 创造力大赛评分榜",
+      "description": "TRAE 2026 创造力大赛的第三方 AI 评分台。抓取公开帖子，跨阶段匹配同一作品，用免费模型生成模拟评分。"
+    },
+    "spinshare": {
+      "label": "SpinShare",
+      "heading": "AI IDE 广告交易平台",
+      "description": "面向 AI IDE 扩展的广告交易平台。连接开发者与广告主，在编码助手内实现上下文感知的广告投放。"
+    }
+  },
   "archive": {
     "title": "归档",
     "entries": "个项目"
