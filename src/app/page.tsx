@@ -354,7 +354,9 @@ export default function Home() {
 
             <div className="mt-10 grid grid-cols-1 gap-12 lg:grid-cols-2 lg:gap-10">
               <motion.a
-                href="/trae-contest-2026"
+                href="https://www.rateministere.com/trae-contest-2026"
+                target="_blank"
+                rel="noreferrer"
                 whileHover={{ y: -4 }}
                 transition={{ duration: 0.25 }}
                 className="group rounded-3xl border border-border bg-surface p-5 md:p-6"
