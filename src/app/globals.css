@@ -65,3 +65,31 @@ h1, h2, h3, h4, h5, h6 {
   transform: translateY(0) scale(1);
   pointer-events: auto;
 }
+
+/* ── Z-axis Background Stage Recede ───────────────── */
+#background-stage {
+  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: transform;
+}
+
+body.showcase-open #background-stage {
+  transform: scale(0.95);
+  pointer-events: none;
+}
+
+/* ── Scroll Lock Gutter (No Layout Jump) ──────────── */
+html {
+  scrollbar-gutter: stable;
+}
+
+/* ── Custom Cursor Scoping ────────────────────────── */
+@media (hover: hover) and (pointer: fine) {
+  #work,
+  #work button,
+  #work a,
+  #work div,
+  #work span {
+    cursor: none !important;
+  }
+}
+
