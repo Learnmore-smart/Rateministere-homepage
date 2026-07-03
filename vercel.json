@@ -2,6 +2,14 @@
   "$schema": "https://openapi.vercel.sh/vercel.json",
   "rewrites": [
     {
+      "source": "/trae-echoes",
+      "destination": "https://trae-echoes.vercel.app/trae-echoes"
+    },
+    {
+      "source": "/trae-echoes/:path*",
+      "destination": "https://trae-echoes.vercel.app/trae-echoes/:path*"
+    },
+    {
       "source": "/waste-your-tokens",
       "destination": "https://waste-your-tokens.vercel.app/waste-your-tokens"
     },

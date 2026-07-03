@@ -24,6 +24,7 @@ interface ProjectMeta {
 const projects: ProjectMeta[] = [
   { id: "wechat-read-dashboard", path: "/wechat-read-stats", year: "2026", github: "https://github.com/Learnmore-smart/Wechat-read-dashboard" },
   { id: "quote-cloud", path: "/quote-cloud", year: "2026", github: "https://github.com/Learnmore-smart/Quote-Cloud" },
+  { id: "trae-echoes", path: "/trae-echoes", year: "2026", github: "https://github.com/Learnmore-smart/Trae-Echoes-2026_contest" },
   { id: "waste-your-tokens", path: "/waste-your-tokens", year: "2026", github: "https://github.com/Learnmore-smart/Waste-your-tokens" },
   { id: "enforcer", path: "https://www.rateministere.com/Enforcer", year: "2026", github: "https://github.com/Learnmore-smart/Marihacks-IX-2026" },
   { id: "hidden-china-atlas", path: "/hidden-china-atlas", year: "2026", github: "https://github.com/Learnmore-smart/Hidden-China-Atlas" },

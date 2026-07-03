@@ -3,7 +3,7 @@
 import React, { useState, useRef, useEffect, useCallback } from "react";
 import { createPortal } from "react-dom";
 import Image from "next/image";
-import { motion, AnimatePresence, useMotionValue, useSpring } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import { ArrowUpRight, X, Monitor, Smartphone, ExternalLink, Play, RotateCcw, Volume2, VolumeX, Youtube } from "lucide-react";
 import { useLang, TranslationType } from "./LanguageContext";
 
@@ -82,29 +82,9 @@ export default function FeaturedGrid() {
   // Refs for tracking DOM elements
   const cardRefs = useRef<Record<string, HTMLButtonElement | null>>({});
 
-  // Cursor States
-  const containerRef = useRef<HTMLElement>(null);
-  const [cursorMode, setCursorMode] = useState<"idle" | "expand" | "play" | "close">("idle");
-  const [isCursorVisible, setIsCursorVisible] = useState(false);
-  const [isTouchDevice, setIsTouchDevice] = useState(true);
-
-  // Motion values for smooth trailing custom cursor
-  const mouseX = useMotionValue(-100);
-  const mouseY = useMotionValue(-100);
-  const cursorX = useSpring(mouseX, { stiffness: 350, damping: 28 });
-  const cursorY = useSpring(mouseY, { stiffness: 350, damping: 28 });
-
-  // Check for touch device on mount
+  // Mount State check
   useEffect(() => {
-    setTimeout(() => {
-      setMounted(true);
-    }, 0);
-    const checkTouch = () => {
-      setIsTouchDevice(!window.matchMedia("(hover: hover)").matches);
-    };
-    checkTouch();
-    window.addEventListener("resize", checkTouch);
-    return () => window.removeEventListener("resize", checkTouch);
+    setMounted(true);
   }, []);
 
   // Update transform origin dynamically relative to window scroll for background stage scaling
@@ -120,31 +100,6 @@ export default function FeaturedGrid() {
       document.body.classList.remove("showcase-open");
     }
   }, [activeItem]);
-
-  // Handle pointer movements within the featured section
-  const handlePointerMove = useCallback((e: React.PointerEvent) => {
-    if (isTouchDevice) return;
-
-    mouseX.set(e.clientX);
-    mouseY.set(e.clientY);
-    
-    // Determine cursor shape based on what is hovered
-    const target = (e.target as HTMLElement).closest("[data-cursor]");
-    if (target) {
-      const cursorVal = target.getAttribute("data-cursor") as "expand" | "play" | "close";
-      setCursorMode(cursorVal);
-    } else {
-      setCursorMode("idle");
-    }
-  }, [isTouchDevice, mouseX, mouseY]);
-
-  const handlePointerEnter = () => {
-    if (!isTouchDevice) setIsCursorVisible(true);
-  };
-
-  const handlePointerLeave = () => {
-    setIsCursorVisible(false);
-  };
 
   // morph animation trigger
   const handleItemClick = useCallback((item: BentoItem) => {
@@ -180,11 +135,7 @@ export default function FeaturedGrid() {
   return (
     <section 
       id="work" 
-      ref={containerRef}
       className="relative py-20 md:py-28 select-none"
-      onPointerMove={handlePointerMove}
-      onPointerEnter={handlePointerEnter}
-      onPointerLeave={handlePointerLeave}
       style={{ contentVisibility: "auto" }}
     >
       <div className="mx-auto max-w-screen-2xl px-6 md:px-12">
@@ -284,44 +235,7 @@ export default function FeaturedGrid() {
         document.body
       )}
 
-      {/* Scoped Custom Morphing Cursor */}
-      {mounted && !isTouchDevice && isCursorVisible && createPortal(
-        <motion.div
-          style={{
-            position: "fixed",
-            left: cursorX,
-            top: cursorY,
-            x: "-50%",
-            y: "-50%",
-            zIndex: 99999,
-            pointerEvents: "none",
-          }}
-          animate={{
-            width: cursorMode !== "idle" ? 104 : 14,
-            height: cursorMode !== "idle" ? 36 : 14,
-            borderRadius: cursorMode !== "idle" ? "20px" : "50%",
-            backgroundColor: cursorMode === "close" ? "rgba(255, 95, 86, 0.9)" : "var(--color-accent)",
-          }}
-          transition={{ type: "spring", stiffness: 400, damping: 30 }}
-          className="hidden md:flex items-center justify-center text-white overflow-hidden shadow-lg border border-white/10"
-        >
-          <AnimatePresence mode="wait">
-            {cursorMode !== "idle" && (
-              <motion.span
-                key={cursorMode}
-                initial={{ opacity: 0, scale: 0.8 }}
-                animate={{ opacity: 1, scale: 1 }}
-                exit={{ opacity: 0, scale: 0.8 }}
-                transition={{ duration: 0.12 }}
-                className="font-body text-[9px] uppercase tracking-[0.16em] font-semibold whitespace-nowrap text-center text-white"
-              >
-                {cursorMode === "play" ? "Play Demo" : cursorMode === "close" ? "Close" : "Expand"}
-              </motion.span>
-            )}
-          </AnimatePresence>
-        </motion.div>,
-        document.body
-      )}
+
     </section>
   );
 }
@@ -569,8 +483,14 @@ function ShowcaseModal({
                 <span className="font-body text-[10px] uppercase tracking-[0.26em] text-muted">
                   {item.getLabel(t)}
                 </span>
-                <h4 className="font-display text-base tracking-tight text-text">
-                  {item.getTitle(t)}
+                <h4 className="font-display text-base tracking-tight text-text flex items-center flex-wrap gap-2 justify-center sm:justify-start">
+                  <span>{item.getTitle(t)}</span>
+                  {item.id === "piano" && (
+                    <span className="inline-flex items-center gap-1.5 rounded-full bg-[#ff0000]/10 px-2.5 py-0.5 font-body text-[9px] font-bold uppercase tracking-wider text-[#ff0000] select-none">
+                      <span className="h-1 w-1 rounded-full bg-[#ff0000] animate-pulse" />
+                      {((t.featured.piano as any).shortViews) || "3M+ Views"}
+                    </span>
+                  )}
                 </h4>
               </div>
 

@@ -5,10 +5,12 @@ import Hero from "@/components/Hero";
 import FeaturedGrid from "@/components/FeaturedGrid";
 import ArchiveSection from "@/components/ArchiveSection";
 import Footer from "@/components/Footer";
+import CustomCursor from "@/components/CustomCursor";
 
 export default function Home() {
   return (
     <LanguageProvider>
+      <CustomCursor />
       <div className="relative min-h-screen bg-background text-text">
         {/* Decorative background grid/gradients */}
         <div

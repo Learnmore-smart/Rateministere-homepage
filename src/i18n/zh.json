@@ -41,7 +41,8 @@
     "piano": {
       "label": "YouTube",
       "heading": "Noah's Piano Journey",
-      "description": "面向初学者的钢琴频道：提供简单的练习方法、入门曲目与循序渐进的进步记录。（YouTube 频道播放量突破 1000 万，单支热门视频播放量超 300 万）"
+      "description": "面向初学者的钢琴频道：提供简单的练习方法、入门曲目与循序渐进的进步记录。（YouTube 频道播放量突破 1000 万，单支热门视频播放量超 300 万）",
+      "shortViews": "该 Short 视频播放量已突破 300 万"
     }
   },
   "recent": {
@@ -91,6 +92,10 @@
     "quote-cloud": {
       "name": "Quote Cloud",
       "description": "精选语录的互动云图。"
+    },
+    "trae-echoes": {
+      "name": "声墨陪伴",
+      "description": "声音化山水，墨色记心情。用声音描绘山水，以墨色记录情绪的交互式 3D 心情应用。"
     },
     "waste-your-tokens": {
       "name": "Waste Your Tokens",

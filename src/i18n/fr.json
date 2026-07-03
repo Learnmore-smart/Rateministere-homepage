@@ -41,7 +41,8 @@
     "piano": {
       "label": "YouTube",
       "heading": "Noah's Piano Journey",
-      "description": "Une chaîne de piano conçue pour les débutants — routines d'entraînement simples, premiers morceaux et progression étape par étape. (Plus de 10 millions de vues sur YouTube, avec un Short viral à 3M+ vues)"
+      "description": "Une chaîne de piano conçue pour les débutants — routines d'entraînement simples, premiers morceaux et progression étape par étape. (Plus de 10 millions de vues sur YouTube, avec un Short viral à 3M+ vues)",
+      "shortViews": "Ce Short a plus de 3 millions de vues"
     }
   },
   "recent": {
@@ -91,6 +92,10 @@
     "quote-cloud": {
       "name": "Quote Cloud",
       "description": "Un nuage interactif de citations sélectionnées."
+    },
+    "trae-echoes": {
+      "name": "Échos d'Encre Vocale",
+      "description": "Transformez la voix en paysage, l'encre en mémoire. Une application d'humeur 3D interactive qui peint des montagnes avec le son et capture les émotions à l'encre."
     },
     "waste-your-tokens": {
       "name": "Waste Your Tokens",
