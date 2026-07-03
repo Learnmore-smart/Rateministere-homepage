@@ -94,7 +94,7 @@ export default function ArchiveSection() {
   }, [t, activeProject.id]);
 
   return (
-    <section id="archive" className="py-20 md:py-28">
+    <section id="archive" className="pt-20 pb-0 md:pt-28 md:pb-0">
       <div className="mx-auto max-w-screen-2xl px-6 md:px-12">
         <div className="flex items-baseline justify-between gap-6 border-b border-border pb-6">
           <h2 className="font-display text-2xl tracking-tight md:text-3xl">{t.archive.title}</h2>
