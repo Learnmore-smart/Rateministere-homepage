@@ -84,5 +84,25 @@
       "source": "/trae-contest-2026/:path*",
       "destination": "https://trae-contest-2026-666870202581.asia-east1.run.app/trae-contest-2026/:path*"
     }
+  ],
+  "headers": [
+    {
+      "source": "/trae-contest-2026",
+      "headers": [
+        {
+          "key": "x-vercel-enable-rewrite-caching",
+          "value": "0"
+        }
+      ]
+    },
+    {
+      "source": "/trae-contest-2026/:path*",
+      "headers": [
+        {
+          "key": "x-vercel-enable-rewrite-caching",
+          "value": "0"
+        }
+      ]
+    }
   ]
 }
