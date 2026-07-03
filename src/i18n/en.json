@@ -60,7 +60,13 @@
   },
   "archive": {
     "title": "Archive",
-    "entries": "entries"
+    "entries": "entries",
+    "clickToInteract": "Click to Interact",
+    "desktopView": "Desktop",
+    "mobileView": "Mobile",
+    "openInNewTab": "Open in New Tab",
+    "viewGithub": "GitHub Repo",
+    "interactInstructions": "Click anywhere on the preview to start interacting with the app."
   },
   "sideProjects": {
     "title": "Side Projects",

@@ -60,7 +60,13 @@
   },
   "archive": {
     "title": "Archives",
-    "entries": "entrées"
+    "entries": "entrées",
+    "clickToInteract": "Cliquer pour interagir",
+    "desktopView": "Ordinateur",
+    "mobileView": "Mobile",
+    "openInNewTab": "Ouvrir dans un nouvel onglet",
+    "viewGithub": "Dépôt GitHub",
+    "interactInstructions": "Cliquez n'importe où sur l'aperçu pour commencer à interagir."
   },
   "sideProjects": {
     "title": "Projets Annexes",

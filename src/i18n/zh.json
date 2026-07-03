@@ -60,7 +60,13 @@
   },
   "archive": {
     "title": "归档",
-    "entries": "个项目"
+    "entries": "个项目",
+    "clickToInteract": "点击以进行交互",
+    "desktopView": "电脑端",
+    "mobileView": "手机端",
+    "openInNewTab": "在新标签页打开",
+    "viewGithub": "GitHub 仓库",
+    "interactInstructions": "点击预览区域即可直接与应用进行实时交互。"
   },
   "sideProjects": {
     "title": "其他项目",
