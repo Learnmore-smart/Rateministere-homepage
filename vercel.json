@@ -3,11 +3,11 @@
   "rewrites": [
     {
       "source": "/trae-echoes",
-      "destination": "https://trae-echoes.vercel.app/trae-echoes"
+      "destination": "https://trae-echoes-2026-contest.vercel.app"
     },
     {
       "source": "/trae-echoes/:path*",
-      "destination": "https://trae-echoes.vercel.app/trae-echoes/:path*"
+      "destination": "https://trae-echoes-2026-contest.vercel.app/:path*"
     },
     {
       "source": "/waste-your-tokens",
