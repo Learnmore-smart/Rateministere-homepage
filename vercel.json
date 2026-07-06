@@ -61,14 +61,6 @@
       "destination": "https://marihacks-ix-2026-homepage.vercel.app/Enforcer/:path*"
     },
     {
-      "source": "/inventory-checker",
-      "destination": "https://inventory-checker-sage.vercel.app/inventory-checker"
-    },
-    {
-      "source": "/inventory-checker/:path*",
-      "destination": "https://inventory-checker-sage.vercel.app/inventory-checker/:path*"
-    },
-    {
       "source": "/wechat-read-stats",
       "destination": "https://wechat-read-dashboard.vercel.app/wechat-read-stats"
     },
