@@ -83,6 +83,14 @@
     {
       "source": "/trae-contest-2026/:path*",
       "destination": "https://trae-contest-2026-666870202581.asia-east1.run.app/trae-contest-2026/:path*"
+    },
+    {
+      "source": "/inventory-register",
+      "destination": "https://inventory-register-539015434556.europe-west1.run.app/inventory-register"
+    },
+    {
+      "source": "/inventory-register/:path*",
+      "destination": "https://inventory-register-539015434556.europe-west1.run.app/inventory-register/:path*"
     }
   ],
   "headers": [
@@ -97,6 +105,24 @@
     },
     {
       "source": "/trae-contest-2026/:path*",
+      "headers": [
+        {
+          "key": "x-vercel-enable-rewrite-caching",
+          "value": "0"
+        }
+      ]
+    },
+    {
+      "source": "/inventory-register",
+      "headers": [
+        {
+          "key": "x-vercel-enable-rewrite-caching",
+          "value": "0"
+        }
+      ]
+    },
+    {
+      "source": "/inventory-register/:path*",
       "headers": [
         {
           "key": "x-vercel-enable-rewrite-caching",
