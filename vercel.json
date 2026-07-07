@@ -86,11 +86,11 @@
     },
     {
       "source": "/inventory-register",
-      "destination": "https://inventory-register-539015434556.europe-west1.run.app/inventory-register"
+      "destination": "https://inventory-register-539015434556.us-central1.run.app/inventory-register"
     },
     {
       "source": "/inventory-register/:path*",
-      "destination": "https://inventory-register-539015434556.europe-west1.run.app/inventory-register/:path*"
+      "destination": "https://inventory-register-539015434556.us-central1.run.app/inventory-register/:path*"
     }
   ],
   "headers": [
