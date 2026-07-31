@@ -26,3 +26,19 @@ test("/trae-echoes nested paths strip the public prefix upstream", () => {
     destination: "https://trae-echoes-2026-contest.vercel.app/:path*",
   });
 });
+
+test("/trae-contest-2026 proxies to the azure Vercel deployment", () => {
+  assert.deepEqual(findRewrite("/trae-contest-2026"), {
+    source: "/trae-contest-2026",
+    destination:
+      "https://trae-2026-contest-rankings-azure.vercel.app/trae-contest-2026",
+  });
+});
+
+test("/trae-contest-2026 nested paths keep the public basePath upstream", () => {
+  assert.deepEqual(findRewrite("/trae-contest-2026/:path*"), {
+    source: "/trae-contest-2026/:path*",
+    destination:
+      "https://trae-2026-contest-rankings-azure.vercel.app/trae-contest-2026/:path*",
+  });
+});

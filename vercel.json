@@ -78,11 +78,11 @@
     },
     {
       "source": "/trae-contest-2026",
-      "destination": "https://trae-2026-contest-rankings-494660453737.asia-east1.run.app/trae-contest-2026"
+      "destination": "https://trae-2026-contest-rankings-azure.vercel.app/trae-contest-2026"
     },
     {
       "source": "/trae-contest-2026/:path*",
-      "destination": "https://trae-2026-contest-rankings-494660453737.asia-east1.run.app/trae-contest-2026/:path*"
+      "destination": "https://trae-2026-contest-rankings-azure.vercel.app/trae-contest-2026/:path*"
     },
     {
       "source": "/inventory-register",
