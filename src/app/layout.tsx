@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Bricolage_Grotesque, JetBrains_Mono } from "next/font/google";
+import { Bricolage_Grotesque, JetBrains_Mono, Fraunces, Space_Grotesk, Silkscreen } from "next/font/google";
 import Script from "next/script";
 import "./globals.css";
 
@@ -11,6 +11,26 @@ const bricolage = Bricolage_Grotesque({
 
 const jetbrains = JetBrains_Mono({
   variable: "--font-body",
+  subsets: ["latin"],
+  display: "swap",
+});
+
+const fraunces = Fraunces({
+  variable: "--font-fraunces",
+  subsets: ["latin"],
+  style: ["normal", "italic"],
+  display: "swap",
+});
+
+const spaceGrotesk = Space_Grotesk({
+  variable: "--font-space",
+  subsets: ["latin"],
+  display: "swap",
+});
+
+const silkscreen = Silkscreen({
+  variable: "--font-silk",
+  weight: ["400", "700"],
   subsets: ["latin"],
   display: "swap",
 });
@@ -48,7 +68,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${bricolage.variable} ${jetbrains.variable} h-full antialiased scroll-smooth`}
+      className={`${bricolage.variable} ${jetbrains.variable} ${fraunces.variable} ${spaceGrotesk.variable} ${silkscreen.variable} h-full antialiased scroll-smooth`}
     >
       <head>
         {/* Google tag (gtag.js) */}

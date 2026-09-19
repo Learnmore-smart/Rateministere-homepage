@@ -48,15 +48,15 @@
   "recent": {
     "title": "Récents",
     "subtitle": "Derniers projets",
-    "traeContest": {
-      "label": "Concours TRAE",
-      "heading": "Classement 2026 du concours de créativité",
-      "description": "Classement indépendant propulsé par l'IA pour le concours de créativité TRAE 2026. Récupère les publications publiques, fait correspondre les projets entre étapes et génère des scores simulés avec des modèles gratuits."
+    "opennotes": {
+      "label": "OpenNotes",
+      "heading": "Ouvrez un PDF. Laissez une trace.",
+      "description": "Un espace de travail calme et axé sur le stylet pour l'annotation de PDF sur Windows. Écrivez avec des outils naturels et conservez chaque note."
     },
-    "spinshare": {
-      "label": "SpinShare",
-      "heading": "Échange publicitaire IA IDE",
-      "description": "Plateforme d'échange publicitaire pour les extensions d'IDE IA. Connecte les développeurs et les annonceurs avec des placements publicitaires contextuels dans les assistants de codage."
+    "overtake": {
+      "label": "Overtake.bid",
+      "heading": "Classement hebdomadaire de produits",
+      "description": "Référencez votre produit gratuitement sur Overtake.bid. Enchérissez pour monter — 75 % des fonds financent la promotion du Top 10."
     }
   },
   "archive": {
@@ -85,6 +85,10 @@
     "copyright": "© 2026 Noah Zixin Zhang"
   },
   "projects": {
+    "overtake": {
+      "name": "Overtake.bid",
+      "description": "Tableau de classement hebdomadaire avec promotions financées pour le Top 10."
+    },
     "wechat-read-dashboard": {
       "name": "Tableau de bord WeChat Read",
       "description": "Statistiques de lecture et tableau de bord de visualisation."
@@ -172,6 +176,65 @@
     "trae-community-star": {
       "title": "Étoile Communautaire",
       "detail": "Oct – Déc 2025, Fév – Mars, Mai – Juin 2026."
+    }
+  },
+  "seq": {
+    "gateTag": "NOAH.DAW v2.6",
+    "gateSub": "chaque section est une piste — la tête de lecture ne s'arrête jamais",
+    "gateOpen": "OUVRIR LA SESSION",
+    "gateHint": "glisse les clips pour les déplacer · clique pour ouvrir · glisse les pistes pour réordonner",
+    "arrange": "ARRANGEMENT",
+    "monitorTip": "Monitoring — écouter la session",
+    "langTip": "langue",
+    "themeTip": "thème",
+    "send": "ENVOI",
+    "color": "couleur",
+    "sound": "hauteur",
+    "open": "OUVRIR",
+    "resetTip": "défaut de la piste",
+    "bioTag": "construit en altitude, livre en descente. piano en public, code en production.",
+    "credsTitle": "notes en marge",
+    "stillRecording": "vues · toujours en enregistrement",
+    "subscribe": "S'ABONNER",
+    "eliseTitle": "Für Elise — le tutoriel",
+    "eliseDesc": "pas à pas, sans rien cacher — toute la philosophie de la chaîne en une vidéo.",
+    "shortTitle": "le short qui a voyagé",
+    "shortDesc": "une seule vidéo a dépassé {n} vues — la preuve que la formule débutant fonctionne à grande échelle.",
+    "kitDesc": "la couche fondation — un kit pour passer de zéro à quelque chose de réel, vite. en cours d'échantillonnage dans le prochain projet.",
+    "statusRendering": "statut : rendu…",
+    "secretStatus": "en construction",
+    "secretNote": "c'est secret.",
+    "buildDesc": "un placeholder avec un pouls — la prochaine chose compile toujours quelque part sur ce disque.",
+    "recCite": "citation de la communauté Trae — ",
+    "emailTitle": "ligne directe",
+    "muteTip": "Muet",
+    "soloTip": "Solo",
+    "reorderTip": "glisser pour réordonner",
+    "lockedTip": "verrouillé à la source",
+    "closeTip": "fermer (esc)",
+    "dragTip": "glisse-moi",
+    "timbre": "timbre",
+    "trackNames": {
+      "operator": "DOSSIER",
+      "piano": "VOYAGE_PIANO",
+      "works": "ŒUVRES",
+      "sketches": "CROQUIS",
+      "kit": "KIT",
+      "secret": "██████",
+      "signals": "HONNEURS",
+      "routes": "LIENS",
+      "build": "BUILD.LOG"
+    },
+    "clipLabels": {
+      "creds": "notes",
+      "channel": "chaîne — 10M+ vues",
+      "elise": "für elise — tutoriel",
+      "short": "short viral — 3M+",
+      "email": "courriel",
+      "rec0": "contributeur trae",
+      "rec1": "tips vol.3",
+      "rec2": "tips vol.4",
+      "rec3": "étoile communauté"
     }
   }
 }

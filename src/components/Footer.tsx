@@ -112,7 +112,7 @@ export default function Footer() {
                   Instagram
                 </a>
                 <a
-                  href="https://youtube.com/@NoahsPianoJourney?sub_confirmation=1"
+                  href="https://www.youtube.com/@pianowithnoah?sub_confirmation=1"
                   target="_blank"
                   rel="noreferrer"
                   className="inline-flex items-center gap-2 rounded-full border border-border bg-background px-4 py-2 font-body text-[11px] uppercase tracking-[0.26em] transition-colors hover:text-text cursor-pointer"

@@ -28,6 +28,12 @@ export default function CustomCursor() {
   const [isTouchDevice, setIsTouchDevice] = useState(true);
   const [isClicked, setIsClicked] = useState(false);
 
+  // Flag the body so globals.css only hides the native cursor while this is mounted
+  useEffect(() => {
+    document.body.classList.add("custom-cursor");
+    return () => document.body.classList.remove("custom-cursor");
+  }, []);
+
   const mouseX = useMotionValue(-100);
   const mouseY = useMotionValue(-100);
   const cursorX = useSpring(mouseX, { stiffness: 350, damping: 28 });

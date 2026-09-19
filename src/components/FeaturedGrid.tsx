@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useRef, useEffect, useCallback } from "react";
+import React, { useState, useRef, useEffect, useCallback, useSyncExternalStore } from "react";
 import { createPortal } from "react-dom";
 import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
@@ -41,51 +41,50 @@ const BENTO_ITEMS: BentoItem[] = [
     image: "/Noah-Piano-Journey.png",
     previewType: "video",
     src: "/Videos-demo/Für Elise - Easy piano tutorial (1).mp4",
-    link: "https://youtube.com/@NoahsPianoJourney?sub_confirmation=1",
+    link: "https://www.youtube.com/@pianowithnoah?sub_confirmation=1",
     className: "sm:col-span-2 md:col-span-2 md:row-span-1 min-h-[220px] md:min-h-[240px]",
   },
   {
-    id: "spinshare",
-    getLabel: (t) => t.recent.spinshare.label,
-    getTitle: (t) => t.recent.spinshare.heading,
-    getDescription: (t) => t.recent.spinshare.description,
-    image: "/spinshare-OG.png",
+    id: "opennotes",
+    getLabel: (t) => t.recent.opennotes.label,
+    getTitle: (t) => t.recent.opennotes.heading,
+    getDescription: (t) => t.recent.opennotes.description,
+    image: "/OpenNotes.png",
     previewType: "iframe",
-    src: "https://spinshare.dev",
-    link: "https://spinshare.dev",
+    src: "https://learnmore-smart.github.io/OpenNotes/",
+    link: "https://learnmore-smart.github.io/OpenNotes/",
     className: "sm:col-span-1 md:col-span-1 md:row-span-1 min-h-[220px] md:min-h-[240px]",
   },
   {
-    id: "trae-contest",
-    getLabel: (t) => t.recent.traeContest.label,
-    getTitle: (t) => t.recent.traeContest.heading,
-    getDescription: (t) => t.recent.traeContest.description,
-    image: "/trae-contest-ranking.png",
+    id: "overtake",
+    getLabel: (t) => t.recent.overtake.label,
+    getTitle: (t) => t.recent.overtake.heading,
+    getDescription: (t) => t.recent.overtake.description,
+    image: "/Overtake.png",
     previewType: "iframe",
-    src: "https://www.rateministere.com/trae-contest-2026",
-    link: "https://www.rateministere.com/trae-contest-2026",
+    src: "https://overtake.bid",
+    link: "https://overtake.bid",
     className: "sm:col-span-1 md:col-span-1 md:row-span-1 min-h-[220px] md:min-h-[240px]",
   },
 ];
 
 export default function FeaturedGrid() {
   const { t } = useLang();
-  const [mounted, setMounted] = useState(false);
+  const mounted = useSyncExternalStore(
+    () => () => {},
+    () => true,
+    () => false
+  );
   const [activeItem, setActiveItem] = useState<BentoItem | null>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [previewMode, setPreviewMode] = useState<"desktop" | "mobile">("desktop");
   const [interactActive, setInteractActive] = useState(false);
-  
+
   // Video player specific states
   const [videoMuted, setVideoMuted] = useState(true);
 
   // Refs for tracking DOM elements
   const cardRefs = useRef<Record<string, HTMLButtonElement | null>>({});
-
-  // Mount State check
-  useEffect(() => {
-    setMounted(true);
-  }, []);
 
   // Update transform origin dynamically relative to window scroll for background stage scaling
   useEffect(() => {
@@ -133,8 +132,8 @@ export default function FeaturedGrid() {
   }, [activeItem, handleClose]);
 
   return (
-    <section 
-      id="work" 
+    <section
+      id="work"
       className="relative py-20 md:py-28 select-none"
       style={{ contentVisibility: "auto" }}
     >
@@ -151,7 +150,7 @@ export default function FeaturedGrid() {
           {BENTO_ITEMS.map((item) => {
             const isHero = item.id === "learnx";
             const cursorVal = item.previewType === "video" ? "play" : "expand";
-            
+
             return (
               <motion.button
                 layoutId={`card-container-${item.id}`}
@@ -163,11 +162,9 @@ export default function FeaturedGrid() {
               >
                 {/* Image Wrap (fixed heights prevent layout shifts and Next.js console warnings) */}
                 <div className={`relative w-full overflow-hidden rounded-2xl border border-border bg-background ${
-                  item.id === "learnx" 
-                    ? "h-56 sm:h-64 md:h-[340px]" 
-                    : item.id === "trae-contest"
-                      ? "h-44 sm:h-48 md:h-[140px]"
-                      : "h-44 sm:h-48 md:h-[140px]"
+                  item.id === "learnx"
+                    ? "h-56 sm:h-64 md:h-[340px]"
+                    : "h-44 sm:h-48 md:h-[140px]"
                 }`}>
                   <Image
                     src={item.image}
@@ -177,7 +174,7 @@ export default function FeaturedGrid() {
                     sizes={isHero ? "(min-width: 1024px) 60vw, 100vw" : "(min-width: 768px) 30vw, 100vw"}
                     className="object-cover object-top transition-transform duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-[1.02]"
                   />
-                  
+
                   {/* Play badge / YouTube metrics overlay for Piano channel */}
                   {item.id === "piano" && (
                     <div className="absolute top-3 right-3 z-10 bg-[#ff0000]/95 text-white font-body text-[9px] uppercase tracking-wider font-bold px-2 py-0.5 rounded-full shadow-sm flex items-center gap-1.5 select-none">
@@ -299,11 +296,9 @@ function ShowcaseModal({
           >
             {/* Image Wrap */}
             <div className={`relative w-full overflow-hidden rounded-2xl border border-border bg-background ${
-              item.id === "learnx" 
-                ? "h-56 sm:h-64 md:h-[340px]" 
-                : item.id === "trae-contest"
-                  ? "h-44 sm:h-48 md:h-[140px]"
-                  : "h-44 sm:h-48 md:h-[140px]"
+              item.id === "learnx"
+                ? "h-56 sm:h-64 md:h-[340px]"
+                : "h-44 sm:h-48 md:h-[140px]"
             }`}>
               <Image
                 src={item.image}
@@ -403,7 +398,7 @@ function ShowcaseModal({
 
             {/* Browser Body preview content */}
             <div className="relative flex-grow w-full bg-background overflow-hidden flex flex-col justify-between">
-              
+
               {/* Render Interactive embed depending on project type */}
               {item.previewType === "video" ? (
                 /* Custom Video Player mode */
@@ -488,7 +483,7 @@ function ShowcaseModal({
                   {item.id === "piano" && (
                     <span className="inline-flex items-center gap-1.5 rounded-full bg-[#ff0000]/10 px-2.5 py-0.5 font-body text-[9px] font-bold uppercase tracking-wider text-[#ff0000] select-none">
                       <span className="h-1 w-1 rounded-full bg-[#ff0000] animate-pulse" />
-                      {((t.featured.piano as any).shortViews) || "3M+ Views"}
+                      {(t.featured.piano as { shortViews?: string }).shortViews || "3M+ Views"}
                     </span>
                   )}
                 </h4>
@@ -497,7 +492,7 @@ function ShowcaseModal({
               <div className="flex flex-wrap gap-3">
                 {item.id === "piano" && (
                   <a
-                    href="https://youtube.com/@NoahsPianoJourney?sub_confirmation=1"
+                    href="https://www.youtube.com/@pianowithnoah?sub_confirmation=1"
                     target="_blank"
                     rel="noreferrer"
                     className="inline-flex items-center gap-2 rounded-full border border-border bg-surface px-4 py-2 font-body text-[10px] uppercase tracking-[0.2em] text-text hover:border-text/30 transition-colors cursor-pointer"

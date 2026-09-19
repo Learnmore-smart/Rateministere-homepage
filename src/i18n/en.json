@@ -48,15 +48,15 @@
   "recent": {
     "title": "Recent",
     "subtitle": "Latest work",
-    "traeContest": {
-      "label": "TRAE Contest",
-      "heading": "2026 Creativity Contest Ranking",
-      "description": "Independent AI-powered ranking board for the TRAE 2026 Creativity Contest. Scrapes public posts, matches projects across stages, and generates simulated scores with free models."
+    "opennotes": {
+      "label": "OpenNotes",
+      "heading": "Open a PDF. Leave a trace.",
+      "description": "A quiet, pen-first PDF annotation workspace for Windows. Read with the page in front, write with natural tools, and keep every mark with the document."
     },
-    "spinshare": {
-      "label": "SpinShare",
-      "heading": "AI IDE Ad Exchange",
-      "description": "Ad exchange platform for AI IDE extensions. Connects developers and advertisers with context-aware ad placements inside coding assistants."
+    "overtake": {
+      "label": "Overtake.bid",
+      "heading": "Weekly Product Ranking Board",
+      "description": "List your product free on Overtake.bid. Bid to climb the weekly leaderboard — 75% of paid bids funds public promotion for the Top 10."
     }
   },
   "archive": {
@@ -85,6 +85,10 @@
     "copyright": "© 2026 Noah Zixin Zhang"
   },
   "projects": {
+    "overtake": {
+      "name": "Overtake.bid",
+      "description": "Weekly product ranking board with community-funded Top 10 promotions."
+    },
     "wechat-read-dashboard": {
       "name": "WeChat Read Dashboard",
       "description": "Personal reading statistics and visualization dashboard."
@@ -172,6 +176,65 @@
     "trae-community-star": {
       "title": "Community Star",
       "detail": "Oct – Dec 2025, Feb – Mar, May – Jun 2026."
+    }
+  },
+  "seq": {
+    "gateTag": "NOAH.DAW v2.6",
+    "gateSub": "every section is a track — the playhead never stops",
+    "gateOpen": "OPEN SESSION",
+    "gateHint": "drag clips to move them · click one to open it · drag tracks to reorder",
+    "arrange": "ARRANGE",
+    "monitorTip": "Monitor — hear the session",
+    "langTip": "language",
+    "themeTip": "theme",
+    "send": "SEND",
+    "color": "color",
+    "sound": "sound",
+    "open": "OPEN",
+    "resetTip": "back to track default",
+    "bioTag": "builds at altitude, ships on descent. piano in public, code in production.",
+    "credsTitle": "margin notes",
+    "stillRecording": "views · still recording",
+    "subscribe": "SUBSCRIBE",
+    "eliseTitle": "Für Elise — the tutorial",
+    "eliseDesc": "step-by-step, no gatekeeping — the whole channel's philosophy in one upload.",
+    "shortTitle": "the short that travelled",
+    "shortDesc": "one upload crossed {n} views on its own — proof the beginner-first formula works at scale.",
+    "kitDesc": "the foundation layer — a starter kit for getting from zero to something real, fast. currently being sampled into the next project.",
+    "statusRendering": "status: rendering…",
+    "secretStatus": "building",
+    "secretNote": "it's secret.",
+    "buildDesc": "a placeholder with a pulse — the next thing is always compiling somewhere on this disk.",
+    "recCite": "Trae community citation — logged",
+    "emailTitle": "direct line",
+    "muteTip": "Mute",
+    "soloTip": "Solo",
+    "reorderTip": "drag to reorder",
+    "lockedTip": "locked at the source",
+    "closeTip": "close (esc)",
+    "dragTip": "drag me",
+    "timbre": "timbre",
+    "trackNames": {
+      "operator": "OPERATOR",
+      "piano": "PIANO_JOURNEY",
+      "works": "WORKS",
+      "sketches": "SKETCHES",
+      "kit": "KIT",
+      "secret": "██████",
+      "signals": "SIGNALS",
+      "routes": "ROUTES",
+      "build": "BUILD.LOG"
+    },
+    "clipLabels": {
+      "creds": "credentials",
+      "channel": "channel — 10M+ views",
+      "elise": "für elise — tutorial",
+      "short": "viral short — 3M+",
+      "email": "email",
+      "rec0": "trae contributor",
+      "rec1": "tips vol.3",
+      "rec2": "tips vol.4",
+      "rec3": "community star"
     }
   }
 }

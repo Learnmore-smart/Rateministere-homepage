@@ -9,6 +9,9 @@
   --color-accent: #0b5fff;
   --font-display: var(--font-display), "Bricolage Grotesque", sans-serif;
   --font-body: var(--font-body), "JetBrains Mono", monospace;
+  --font-fraunces: var(--font-fraunces), "Fraunces", Georgia, serif;
+  --font-space: var(--font-space), "Space Grotesk", sans-serif;
+  --font-silk: var(--font-silk), "Silkscreen", monospace;
 }
 
 body {
@@ -84,19 +87,48 @@ html {
 
 /* ── Custom Cursor Global ────────────────────────── */
 @media (hover: hover) and (pointer: fine) {
-  body,
-  body *,
-  body button,
-  body a {
+  body.custom-cursor,
+  body.custom-cursor *,
+  body.custom-cursor button,
+  body.custom-cursor a {
     cursor: none !important;
   }
-  
+
   /* Exclude inputs, selects, textareas, and embedded frames for standard accessibility */
-  input,
-  textarea,
-  select,
-  iframe {
+  body.custom-cursor input,
+  body.custom-cursor textarea,
+  body.custom-cursor select,
+  body.custom-cursor iframe {
     cursor: auto !important;
   }
+}
+
+/* ── Sequencer theme tokens (.seq scope) ─────────── */
+.seq {
+  --s-bg: #0a0a0c;
+  --s-panel: #0d0d10;
+  --s-head: #101013;
+  --s-lift: #121216;
+  --s-line: #27272a;
+  --s-line2: #3f3f46;
+  --s-grid: rgba(63, 63, 70, 0.35);
+  --s-ink: #e4e4e7;
+  --s-ink2: #a1a1aa;
+  --s-dim: #5b5b66;
+  --s-faint: #32323a;
+}
+
+.seq.light {
+  --s-bg: #f2efe7;
+  --s-panel: #eae7dc;
+  --s-head: #e7e4d8;
+  --s-lift: #e0dccb;
+  --s-line: #d3cebc;
+  --s-line2: #bdb7a3;
+  --s-grid: rgba(95, 88, 70, 0.22);
+  --s-ink: #211e18;
+  --s-ink2: #57534a;
+  --s-dim: #8a8478;
+  --s-faint: #c9c3b2;
 }
 

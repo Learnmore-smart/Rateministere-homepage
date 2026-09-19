@@ -22,6 +22,7 @@ interface ProjectMeta {
 }
 
 const projects: ProjectMeta[] = [
+  { id: "overtake", path: "https://overtake.bid", year: "2026" },
   { id: "wechat-read-dashboard", path: "/wechat-read-stats", year: "2026", github: "https://github.com/Learnmore-smart/Wechat-read-dashboard" },
   { id: "quote-cloud", path: "/quote-cloud", year: "2026", github: "https://github.com/Learnmore-smart/Quote-Cloud" },
   { id: "trae-echoes", path: "/trae-echoes", year: "2026", github: "https://github.com/Learnmore-smart/Trae-Echoes-2026_contest" },
