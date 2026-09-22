@@ -1,6 +1,17 @@
-import { redirect } from "next/navigation";
+import type { Metadata } from "next";
+import SequencerPage from "@/components/sequencer/SequencerPage";
+import { LanguageProvider } from "@/components/LanguageContext";
 
-// Session 026 was promoted to `/` — keep the old study URL working.
+export const metadata: Metadata = {
+  title: "NOAH ZIXIN ZHANG — session_026",
+  description:
+    "The homepage as a DAW session — every section is a track and the playhead never stops. Archived study, previously at /.",
+};
+
 export default function Page() {
-  redirect("/");
+  return (
+    <LanguageProvider>
+      <SequencerPage />
+    </LanguageProvider>
+  );
 }

@@ -103,6 +103,12 @@ html {
   }
 }
 
+/* ── Stack homepage — dark field behind the surface ── */
+html:has(.stack),
+body:has(.stack) {
+  background: #000;
+}
+
 /* ── Sequencer theme tokens (.seq scope) ─────────── */
 .seq {
   --s-bg: #0a0a0c;

@@ -15,23 +15,6 @@ interface Door {
   preview: React.ReactNode;
 }
 
-const pianoRoll = (
-  <div className="relative w-24">
-    <div className="flex h-14 flex-col justify-between border-l border-[#e8b34a]/40 pl-2">
-      {[
-        { l: 0, w: 55, c: "#e8b34a" },
-        { l: 20, w: 40, c: "#3b7bff" },
-        { l: 45, w: 30, c: "#7dd87d" },
-        { l: 30, w: 25, c: "#4a4a4f" },
-        { l: 60, w: 35, c: "#c7432b" },
-      ].map((b, i) => (
-        <div key={i} className="h-[6px] rounded-[1px] opacity-80" style={{ marginLeft: `${b.l}%`, width: `${b.w}%`, background: b.c }} />
-      ))}
-    </div>
-    <div className="absolute inset-y-[-6px] left-1/2 w-px animate-pulse bg-[#ff3355]" />
-  </div>
-);
-
 const fighterTile = (
   <div className="grid w-24 grid-cols-3 gap-1">
     {["#ffd23b", "#3b7bff", "#ff3b3b", "#3be0ff", "#7dd87d", "#333"].map((c, i) => (
@@ -40,6 +23,14 @@ const fighterTile = (
       </div>
     ))}
   </div>
+);
+
+const faderBars = (
+  <svg viewBox="0 0 96 64" className="w-24" fill="none" aria-hidden>
+    <rect x="12" y="10" width="16" height="44" rx="3" stroke="#adadad" strokeWidth="2" />
+    <rect x="40" y="24" width="16" height="30" rx="3" fill="#efb779" />
+    <rect x="68" y="10" width="16" height="44" rx="3" stroke="#adadad" strokeWidth="2" />
+  </svg>
 );
 
 const contours = (
@@ -65,11 +56,11 @@ const DOORS: Door[] = [
   {
     key: "1",
     href: "/",
-    index: "STUDY 01 — SHIPPED",
-    name: "Session 026",
-    tagline: "A DAW arrangement. Every section is a track; the playhead never stops — turn the monitor on and it plays. This one won — it lives at / now.",
-    className: "bg-[#0a0a0c] text-zinc-200 hover:flex-[1.6]",
-    preview: pianoRoll,
+    index: "STUDY 04 — SHIPPED",
+    name: "Supastack",
+    tagline: "The kit's own dialect — Obsidian black, hairline rules, amber signal, serif italics. Four packs; pick yours in the footer. This one lives at / now.",
+    className: "bg-[#000000] text-neutral-200 hover:flex-[1.6]",
+    preview: faderBars,
   },
   {
     key: "2",
@@ -152,15 +143,15 @@ export default function Chooser() {
       {/* Footer strip */}
       <footer className="flex items-center justify-between px-5 py-4 md:px-8">
         <span className="flex items-center gap-4">
+          <span className="hidden font-body text-[10px] tracking-[0.2em] text-white/25 sm:block">
+            archive: <Link href="/classic" className="hover:text-white/60">/classic</Link> · <Link href="/sequencer" className="hover:text-white/60">/sequencer</Link> · <Link href="/recital" className="hover:text-white/60">/recital</Link> · <Link href="/os" className="hover:text-white/60">/os</Link>
+          </span>
           <Link
             href="/classic"
-            className="font-body text-[11px] uppercase tracking-[0.3em] text-white/40 transition-colors hover:text-white"
+            className="font-body text-[11px] uppercase tracking-[0.3em] text-white/40 transition-colors hover:text-white sm:hidden"
           >
-            current site → /classic
+            archive → /classic
           </Link>
-          <span className="hidden font-body text-[10px] tracking-[0.2em] text-white/25 sm:block">
-            archive: <Link href="/recital" className="hover:text-white/60">/recital</Link> · <Link href="/os" className="hover:text-white/60">/os</Link>
-          </span>
         </span>
         <span className="font-body text-[11px] uppercase tracking-[0.3em] text-white/30">
           © 2026

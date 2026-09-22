@@ -1,17 +1,17 @@
 import type { Metadata } from "next";
-import SequencerPage from "@/components/sequencer/SequencerPage";
+import StackPage from "@/components/stack/StackPage";
 import { LanguageProvider } from "@/components/LanguageContext";
 
 export const metadata: Metadata = {
-  title: "NOAH ZIXIN ZHANG — session_026",
+  title: "NOAH ZIXIN ZHANG — Creative Developer",
   description:
-    "Creative developer and creator of Noah's Piano Journey. The homepage as a DAW session — every section is a track and the playhead never stops.",
+    "Code in production. Piano in public. Noah Zixin Zhang builds LearnX, Overtake.bid and OpenNotes — and runs Noah's Piano Journey, a channel ten million views deep.",
 };
 
 export default function Home() {
   return (
     <LanguageProvider>
-      <SequencerPage />
+      <StackPage />
     </LanguageProvider>
   );
 }
