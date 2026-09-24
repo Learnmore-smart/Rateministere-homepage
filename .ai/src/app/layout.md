@@ -20,10 +20,13 @@ fonts, site metadata (OG/Twitter), and the gtag.js snippet.
 ## Important Notes
 - Do not remove `suppressHydrationWarning` while anything writes to
   `<html>` pre-hydration (theme boot script, theme effect).
-- Metadata base is `https://www.rateministere.com`; OG image
-  `/OG-image-ratministere-homepage.png` (sic — filename has the typo).
+- Metadata base is `https://www.rateministere.com`; OG + Twitter image
+  `/OG-image-noah-zixin-zhang.png` (1731×909, in `public/`).
+  The old `/OG-image-ratministere-homepage.png` reference was retired —
+  the file on disk is `OG-image-ratministere-homepage-old.png`.
 
 ## Change History
 | Date | Change | Author |
 |------|--------|--------|
+| 2026-09-23 | Swapped OG/Twitter image to `OG-image-noah-zixin-zhang.png` (1731×909) | Devin |
 | 2026-09-23 | Created mirror; added `suppressHydrationWarning` for the stack theme boot script | Devin |

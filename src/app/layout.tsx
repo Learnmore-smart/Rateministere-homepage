@@ -58,9 +58,9 @@ export const metadata: Metadata = {
     description: "Software Developer, Creator of LearnX.",
     images: [
       {
-        url: "/OG-image-ratministere-homepage.png",
-        width: 1200,
-        height: 630,
+        url: "/OG-image-noah-zixin-zhang.png",
+        width: 1731,
+        height: 909,
         alt: "Noah Zixin Zhang Portfolio",
       },
     ],
@@ -70,7 +70,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "NOAH ZIXIN ZHANG — PORTFOLIO",
     description: "Software Developer, Creator of LearnX.",
-    images: ["/OG-image-ratministere-homepage.png"],
+    images: ["/OG-image-noah-zixin-zhang.png"],
   },
 };
 
