@@ -27,29 +27,24 @@ type Fighter = {
 const FIGHTERS: Fighter[] = [
   {
     id: "piano", name: "PIANO JOURNEY", tag: "MAIN", color: "#ffd23b",
-    desc: "The flagship. 10,000,000+ views of keys, plateaus and breakthroughs — documented in public.",
+    desc: "The flagship. 12,000,000+ views of keys, plateaus and breakthroughs — documented in public.",
     href: PIANO.url,
     stats: [{ label: "VIEWS", v: 97 }, { label: "TEMPO", v: 82 }, { label: "GRIND", v: 100 }],
   },
   {
-    id: "learnx", name: "LEARNX", tag: "SHOT", color: "#3b7bff",
+    id: "supastack", name: "SUPASTACK", tag: "KIT", color: "#efb779",
     desc: FEATURED[0].desc, href: FEATURED[0].url,
-    stats: [{ label: "USERS", v: 74 }, { label: "AI", v: 90 }, { label: "SHIP", v: 85 }],
+    stats: [{ label: "BASE", v: 92 }, { label: "SHIP", v: 96 }, { label: "DX", v: 88 }],
   },
   {
-    id: "overtake", name: "OVERTAKE.BID", tag: "RUSH", color: "#ff3b3b",
+    id: "learnx", name: "LEARNX", tag: "SHOT", color: "#3b7bff",
     desc: FEATURED[1].desc, href: FEATURED[1].url,
-    stats: [{ label: "SPEED", v: 95 }, { label: "BIDS", v: 70 }, { label: "SHIP", v: 88 }],
+    stats: [{ label: "USERS", v: 74 }, { label: "AI", v: 90 }, { label: "SHIP", v: 85 }],
   },
   {
     id: "opennotes", name: "OPENNOTES", tag: "TECH", color: "#3be0ff",
     desc: FEATURED[2].desc, href: FEATURED[2].url,
     stats: [{ label: "SRC", v: 100 }, { label: "NOTES", v: 78 }, { label: "SHIP", v: 80 }],
-  },
-  {
-    id: "kit", name: "[STARTERKIT]", tag: "ITEM", color: "#7dd87d",
-    desc: "A mystery item pulled from the item box — the foundation kit for whatever comes next.",
-    stats: [{ label: "RNG", v: 66 }, { label: "BASE", v: 92 }, { label: "???", v: 55 }],
   },
   {
     id: "secret", name: "???", tag: "LOCKED", color: "#666", locked: true,

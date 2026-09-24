@@ -1,0 +1,91 @@
+/* ── toasts — theme-token driven; inherits .stack vars when rendered
+   inside it, falls back to the light palette standalone ────────── */
+.toasts {
+  position: fixed;
+  bottom: 22px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 80;
+  display: grid;
+  gap: 10px;
+  justify-items: center;
+  width: min(92vw, 480px);
+  pointer-events: none;
+}
+.toast {
+  pointer-events: auto;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  max-width: 100%;
+  padding: 11px 12px 11px 16px;
+  background: var(--raised, #ffffff);
+  border: 1px solid var(--border-strong, rgba(23, 24, 28, 0.22));
+  border-radius: var(--radius-control, 12px);
+  box-shadow:
+    0 14px 40px rgba(0, 0, 0, 0.14),
+    0 2px 8px rgba(0, 0, 0, 0.08);
+  font-size: 0.85rem;
+  line-height: 1.45;
+  color: var(--text, #17181c);
+  animation: toastIn 260ms var(--ease, cubic-bezier(0.16, 1, 0.3, 1)) both;
+}
+.toast[data-leaving] {
+  animation: toastOut 170ms ease-in both;
+}
+.toastDot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--accent, #1d4ed8);
+  flex: 0 0 auto;
+}
+.toastMsg {
+  min-width: 0;
+}
+.toastDismiss {
+  display: grid;
+  place-items: center;
+  width: 28px;
+  height: 28px;
+  flex: 0 0 auto;
+  margin-left: 2px;
+  border: 0;
+  border-radius: 8px;
+  background: transparent;
+  color: var(--muted, #5f636b);
+  cursor: pointer;
+  transition:
+    color 160ms,
+    background-color 160ms;
+}
+.toastDismiss:hover {
+  background: var(--hover-fill, rgba(23, 24, 28, 0.08));
+  color: var(--text, #17181c);
+}
+.toastDismiss:focus-visible {
+  outline: 2px solid var(--accent, #1d4ed8);
+  outline-offset: 2px;
+}
+@keyframes toastIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px) scale(0.97);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+@keyframes toastOut {
+  to {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .toast,
+  .toast[data-leaving] {
+    animation: none;
+  }
+}

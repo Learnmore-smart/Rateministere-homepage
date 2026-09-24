@@ -27,14 +27,26 @@ export function LanguageProvider({ children }: { children: React.ReactNode }) {
   const setLang = (l: Lang) => {
     setLangState(l);
     if (typeof window !== "undefined") {
-      localStorage.setItem("portfolio_lang", l);
+      try {
+        localStorage.setItem("portfolio_lang", l);
+      } catch {
+        /* private mode */
+      }
+      /* SSR stays lang="en" — the client keeps <html lang> in sync */
+      document.documentElement.lang = l;
     }
   };
 
   useEffect(() => {
     if (typeof window !== "undefined") {
-      // Check local storage first
-      const stored = localStorage.getItem("portfolio_lang") as Lang;
+      // Check local storage first (guarded — a private-mode throw would
+      // otherwise kill the provider effect)
+      let stored: Lang | null = null;
+      try {
+        stored = localStorage.getItem("portfolio_lang") as Lang | null;
+      } catch {
+        /* private mode */
+      }
       let initialLang: Lang = "en";
       if (stored && locales[stored]) {
         initialLang = stored;
@@ -47,9 +59,10 @@ export function LanguageProvider({ children }: { children: React.ReactNode }) {
           initialLang = "fr";
         }
       }
-      
+
       setTimeout(() => {
         setLangState(initialLang);
+        document.documentElement.lang = initialLang;
       }, 0);
     }
   }, []);

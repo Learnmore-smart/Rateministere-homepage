@@ -1,8 +1,7 @@
-/* ── "The Stack" — supastack dialect ──────────────────────────
-   Token-driven surface ported from supastack's marketing world:
-   locked Obsidian pack by default; [data-stack-pack] on <html>
-   repaints every token for the visitor's pick. All values below
-   map to supastack theme.css + catalog.ts. */
+/* ── "The Stack" — light & sleek, supastack underneath ────────
+   Token-driven surface. Default theme is a warm paper light with a
+   blue signal; [data-stack-theme="dark"] on <html> repaints every
+   token back to the obsidian dialect this page was ported from. */
 
 .stack {
   /* shared grammar */
@@ -19,18 +18,18 @@
   --hover-fill: color-mix(in srgb, var(--text) 8%, transparent);
   --hairline: color-mix(in srgb, var(--text) 18%, transparent);
 
-  /* obsidian (default pack) */
-  --page: #000000;
-  --section: #080808;
-  --raised: #101010;
-  --text: #f5f5f5;
-  --muted: #adadad;
-  --content-text: #c4c4c4;
-  --border: rgba(255, 255, 255, 0.12);
-  --border-strong: rgba(255, 255, 255, 0.22);
-  --accent: #efb779;
-  --accent-hover: #ffd4a3;
-  --accent-ink: #171009;
+  /* paper (default theme) */
+  --page: #fafaf8;
+  --section: #f1f0ea;
+  --raised: #ffffff;
+  --text: #17181c;
+  --muted: #5f636b;
+  --content-text: #3d4148;
+  --border: rgba(23, 24, 28, 0.1);
+  --border-strong: rgba(23, 24, 28, 0.22);
+  --accent: #1d4ed8;
+  --accent-hover: #1e40af;
+  --accent-ink: #ffffff;
 
   background: var(--page);
   color: var(--text);
@@ -40,49 +39,22 @@
   min-height: 100dvh;
   overflow-x: clip;
   -webkit-font-smoothing: antialiased;
-  color-scheme: dark;
+  color-scheme: light;
 }
 
-:global(html[data-stack-pack="graphite"]) .stack {
-  --page: #050505;
-  --section: #0c0c0c;
-  --raised: #161616;
-  --text: #f2f2f2;
-  --muted: #a3a3a3;
+:global(html[data-stack-theme="dark"]) .stack {
+  --page: #000000;
+  --section: #080808;
+  --raised: #101010;
+  --text: #f5f5f5;
+  --muted: #adadad;
   --content-text: #c4c4c4;
   --border: rgba(255, 255, 255, 0.12);
   --border-strong: rgba(255, 255, 255, 0.22);
-  --accent: #c8c8c8;
-  --accent-hover: #e4e4e4;
-  --accent-ink: #111111;
-}
-
-:global(html[data-stack-pack="midnight"]) .stack {
-  --page: #0a1220;
-  --section: #0f1828;
-  --raised: #162033;
-  --text: #e8eef6;
-  --muted: #9aa8bc;
-  --content-text: #c5d0de;
-  --border: rgba(232, 238, 246, 0.12);
-  --border-strong: rgba(232, 238, 246, 0.22);
-  --accent: #8eb4e8;
-  --accent-hover: #b3ccf0;
+  --accent: #8fb4ff;
+  --accent-hover: #b8ccff;
   --accent-ink: #0a1220;
-}
-
-:global(html[data-stack-pack="ink"]) .stack {
-  --page: #000000;
-  --section: #050505;
-  --raised: #0d0d0d;
-  --text: #ffffff;
-  --muted: #b3b3b3;
-  --content-text: #d0d0d0;
-  --border: rgba(255, 255, 255, 0.14);
-  --border-strong: rgba(255, 255, 255, 0.28);
-  --accent: #ffffff;
-  --accent-hover: #e8e8e8;
-  --accent-ink: #000000;
+  color-scheme: dark;
 }
 
 @media (min-width: 768px) {
@@ -116,7 +88,7 @@
   color: inherit;
   text-decoration: none;
 }
-.stack :where(h1, h2, h3, p, ul, figure) {
+.stack :where(h1, h2, h3, p, ul, figure, blockquote, dl) {
   margin: 0;
 }
 .stack :where(h1, h2) {
@@ -143,19 +115,29 @@
 }
 
 /* ── header ─────────────────────────────────────────────── */
+/* always frosted — if the scrolled flag ever missed, dark nav text
+   would sit unreadably over dark cards; scroll only deepens it */
 .header {
   position: fixed;
   inset: 0 0 auto;
   height: var(--header-h);
   z-index: 40;
+  background: color-mix(in srgb, var(--page) 55%, transparent);
+  -webkit-backdrop-filter: blur(14px);
+  backdrop-filter: blur(14px);
+  border-bottom: 1px solid transparent;
+  transition:
+    background-color 300ms var(--ease),
+    border-color 300ms var(--ease);
 }
 .headerScrolled {
   background: color-mix(in srgb, var(--page) 78%, transparent);
-  border-bottom: 1px solid var(--border);
+  border-bottom-color: var(--border);
+  -webkit-backdrop-filter: blur(16px);
   backdrop-filter: blur(16px);
 }
 @supports not (backdrop-filter: blur(16px)) {
-  .headerScrolled {
+  .header {
     background: var(--section);
   }
 }
@@ -176,6 +158,7 @@
   font-size: 0.9375rem;
   font-weight: 500;
   letter-spacing: -0.03em;
+  white-space: nowrap;
 }
 .mark {
   display: block;
@@ -187,19 +170,24 @@
   transform-origin: bottom;
 }
 @media (prefers-reduced-motion: no-preference) {
+  /* hover "rise" — bars grow upward staggered like a level meter.
+     Uses the `scale` property (not `transform`): barUp's `both` fill
+     holds transform: scaleY(1) forever and would defeat a transform
+     transition. transform-box/origin above apply to `scale` too. */
+  .brand .mark rect {
+    transition: scale 340ms var(--ease);
+  }
   .brand:is(:hover, :focus-visible) .mark rect:nth-child(1) {
-    animation: barDip 700ms var(--ease);
+    scale: 1 1.14;
   }
   .brand:is(:hover, :focus-visible) .mark rect:nth-child(2) {
-    animation: barDip 700ms 60ms var(--ease);
+    scale: 1 1.24;
+    transition-delay: 45ms;
   }
   .brand:is(:hover, :focus-visible) .mark rect:nth-child(3) {
-    animation: barDip 700ms 120ms var(--ease);
+    scale: 1 1.14;
+    transition-delay: 90ms;
   }
-}
-@keyframes barDip {
-  0%, 100% { transform: scaleY(1); }
-  40% { transform: scaleY(0.4); }
 }
 .desktopNav {
   display: none;
@@ -237,34 +225,172 @@
   gap: 12px;
   justify-self: end;
 }
-.langs {
-  display: none;
+/* language dropdown — <details>/<summary> popover, ported from the
+   supastack language-switcher but with <button> items (setLang, no nav) */
+.langMenu {
+  position: relative;
+}
+.langTrigger {
+  display: inline-flex;
   align-items: center;
-  gap: 2px;
+  gap: 8px;
+  height: 44px;
+  padding: 0 12px;
+  background: transparent;
   border: 1px solid var(--border);
   border-radius: var(--radius-control);
-  padding: 3px;
-}
-.langs button {
-  font: 500 0.75rem/1 var(--font-sans);
   color: var(--muted);
-  background: transparent;
-  border: 0;
-  border-radius: 8px;
-  padding: 7px 9px;
-  min-height: 30px;
+  font: inherit;
+  font-size: 0.8125rem;
+  cursor: pointer;
+  list-style: none;
+  white-space: nowrap;
+  user-select: none; /* double-click would otherwise select the label */
   transition:
-    color 160ms,
-    background-color 160ms;
+    border-color 180ms var(--ease),
+    color 180ms var(--ease),
+    background-color 180ms var(--ease);
 }
-.langs button:hover {
+.langTrigger::-webkit-details-marker {
+  display: none;
+}
+.langTrigger::marker {
+  content: "";
+}
+.langTrigger:hover,
+.langMenu[open] .langTrigger {
+  border-color: var(--border-strong);
   color: var(--text);
 }
-.langs button[aria-pressed="true"] {
+.langGlyph {
+  display: block;
+}
+.langChevron {
+  display: block;
+  transition: transform 220ms var(--ease);
+}
+.langMenu[open] .langChevron {
+  transform: rotate(180deg);
+}
+.langPop {
+  position: absolute;
+  right: 0;
+  top: calc(100% + 8px);
+  z-index: 60;
+  min-width: 150px;
+  margin: 0;
+  padding: 6px;
+  list-style: none;
+  background: color-mix(in srgb, var(--raised) 92%, transparent);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-control);
+  box-shadow:
+    0 1px 2px color-mix(in srgb, var(--page) 35%, transparent),
+    0 14px 36px color-mix(in srgb, var(--page) 60%, transparent),
+    inset 0 1px 0 color-mix(in srgb, var(--text) 8%, transparent);
+  -webkit-backdrop-filter: blur(18px);
+  backdrop-filter: blur(18px);
+}
+.langMenu[data-side="top"] .langPop {
+  top: auto;
+  bottom: calc(100% + 8px);
+}
+.langItem {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  width: 100%;
+  min-height: 40px;
+  padding: 0 10px;
+  background: transparent;
+  border: 0;
+  border-radius: calc(var(--radius-control) - 5px);
+  color: var(--muted);
+  font: inherit;
+  font-size: 0.8125rem;
+  cursor: pointer;
+  transition:
+    background-color 140ms,
+    color 140ms;
+}
+.langItem:hover {
   background: var(--hover-fill);
   color: var(--text);
 }
-.headerCta {
+.langItem:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: -2px;
+}
+.langItem[aria-current] {
+  color: var(--text);
+}
+.langCheck {
+  color: var(--accent);
+  flex: 0 0 auto;
+}
+@media (prefers-reduced-motion: no-preference) {
+  .langMenu[open] .langPop {
+    animation: langPopIn 170ms cubic-bezier(0.2, 0.8, 0.2, 1);
+  }
+  .langMenu[data-side="top"][open] .langPop {
+    animation-name: langPopInUp;
+  }
+  .langMenu[data-closing] .langPop {
+    animation: langPopOut 130ms cubic-bezier(0.4, 0, 0.7, 0.2) forwards;
+  }
+  .langMenu[data-side="top"][data-closing] .langPop {
+    animation-name: langPopOutDown;
+  }
+}
+@keyframes langPopIn {
+  from {
+    opacity: 0;
+    transform: translateY(-5px) scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+@keyframes langPopOut {
+  from {
+    opacity: 1;
+    transform: none;
+  }
+  to {
+    opacity: 0;
+    transform: translateY(-4px) scale(0.985);
+  }
+}
+@keyframes langPopInUp {
+  from {
+    opacity: 0;
+    transform: translateY(5px) scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+@keyframes langPopOutDown {
+  from {
+    opacity: 1;
+    transform: none;
+  }
+  to {
+    opacity: 0;
+    transform: translateY(4px) scale(0.985);
+  }
+}
+/* header instance hides until the nav row has room (same breakpoint
+   the old pills used); the mobile-menu instance is always visible */
+.langMenuHeader {
+  display: none;
+}
+/* specificity: needs (0,2,0) — plain .headerCta loses to the later
+   .btn { display: inline-flex } and the CTA never hides on mobile */
+.headerEnd .headerCta {
   display: none;
   height: 44px;
   min-height: 44px;
@@ -272,7 +398,8 @@
   font-size: 0.8125rem;
   white-space: nowrap;
 }
-.menuButton {
+.menuButton,
+.themeBtn {
   display: grid;
   place-items: center;
   width: 44px;
@@ -283,11 +410,13 @@
   border-radius: var(--radius-control);
   color: var(--text);
   font: inherit;
+  cursor: pointer;
   transition:
     background-color 200ms var(--ease),
     border-color 200ms var(--ease);
 }
-.menuButton:hover {
+.menuButton:hover,
+.themeBtn:hover {
   background: var(--hover-fill);
   border-color: var(--border-strong);
 }
@@ -298,15 +427,40 @@
   .desktopNav {
     display: flex;
   }
-  .headerCta {
+  .headerEnd .headerCta {
     display: inline-flex;
   }
-  .langs {
-    display: flex;
+  .langMenuHeader {
+    display: block;
   }
   .menuButton {
     display: none;
   }
+}
+
+/* wide variant for the mobile menu footer */
+.menuTheme {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  justify-self: start;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-control);
+  padding: 13px 16px;
+  background: transparent;
+  color: var(--text);
+  font: 500 0.875rem/1 var(--font-sans);
+  cursor: pointer;
+  transition:
+    background-color 200ms var(--ease),
+    border-color 200ms var(--ease);
+}
+.menuTheme:hover {
+  background: var(--hover-fill);
+  border-color: var(--border-strong);
+}
+.menuTheme svg {
+  color: var(--accent);
 }
 
 /* mobile menu dialog */
@@ -386,22 +540,43 @@
   display: grid;
   gap: 18px;
 }
-.menuFoot .langs {
-  display: inline-flex;
+.menuFoot .langMenu {
   justify-self: start;
 }
 .menuFoot .btn {
   width: 100%;
+}
+/* full-width button, short centered label — keep the key-press
+   underline under the label instead of spanning the whole width */
+.menuFoot .btn::after {
+  left: 33%;
+  right: 33%;
 }
 
 /* ── shared primitives ──────────────────────────────────── */
 .main {
   padding-top: var(--header-h);
 }
-.wrap {
-  max-width: var(--max);
-  margin: 0 auto;
-  padding: 0 var(--gutter);
+/* language-swap crossfade — translated regions fade+blur out in 170ms
+   while `shown` catches up to `lang`, then the transition reverses at
+   the slower 220ms base rate once data-lang-swap clears */
+.main,
+.desktopNav,
+.menuPanel,
+.footer {
+  transition:
+    opacity 0.22s var(--ease),
+    filter 0.22s var(--ease),
+    transform 0.22s var(--ease);
+}
+.stack[data-lang-swap] .main,
+.stack[data-lang-swap] .desktopNav,
+.stack[data-lang-swap] .menuPanel,
+.stack[data-lang-swap] .footer {
+  opacity: 0;
+  filter: blur(6px);
+  transform: translateY(4px);
+  transition-duration: 0.17s;
 }
 .section {
   padding: var(--space-section) var(--gutter);
@@ -446,6 +621,7 @@
 }
 
 .btn {
+  position: relative;
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -458,33 +634,59 @@
   font: 500 0.9375rem/1.4 var(--font-sans);
   cursor: pointer;
   transition:
-    transform 220ms var(--ease),
+    transform 160ms var(--ease),
     background-color 220ms var(--ease),
     border-color 220ms var(--ease),
     box-shadow 220ms var(--ease);
 }
+/* "key press" — hover presses the button down 1px while an accent
+   underline sweeps in at the inner bottom edge; :active bottoms out.
+   (Replaces a rejected sheen sweep — user asked for piano-key feel.) */
+.btn::after {
+  content: "";
+  position: absolute;
+  left: 16px;
+  right: 16px;
+  bottom: 7px;
+  height: 2px;
+  border-radius: 2px;
+  background: currentColor;
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 280ms var(--ease);
+  pointer-events: none;
+}
+.btnSecondary::after {
+  background: var(--accent);
+}
+@media (hover: hover) {
+  .btn:hover {
+    transform: translateY(1px);
+  }
+  .btn:hover::after {
+    transform: scaleX(1);
+  }
+  .btnPrimary:hover {
+    background: var(--accent-hover);
+    border-color: var(--accent-hover);
+  }
+  .btnSecondary:hover {
+    background: var(--hover-fill);
+    border-color: var(--border-strong);
+  }
+}
 .btn:active {
-  transform: scale(0.96);
+  transform: translateY(2px) scale(0.97);
 }
 .btnPrimary {
   background: var(--accent);
   color: var(--accent-ink);
   border-color: var(--accent);
 }
-.btnPrimary:hover {
-  background: var(--accent-hover);
-  border-color: var(--accent-hover);
-  transform: translateY(-2px);
-  box-shadow: 0 14px 34px color-mix(in srgb, var(--accent) 26%, transparent);
-}
 .btnSecondary {
   background: color-mix(in srgb, var(--text) 6%, transparent);
   color: var(--text);
   border-color: var(--border-strong);
-}
-.btnSecondary:hover {
-  background: var(--hover-fill);
-  transform: translateY(-2px);
 }
 .btnArrow {
   transition: transform 260ms var(--ease);
@@ -502,35 +704,23 @@
   max-width: var(--max);
   margin: 0 auto;
 }
-.heroKicker {
-  font-family: var(--font-mono);
-  font-size: 0.75rem;
-  font-weight: 700;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  color: var(--accent);
-  display: inline-flex;
-  align-items: center;
-  gap: 10px;
-}
-.heroKicker::before,
-.heroKicker::after {
-  content: "";
-  width: 28px;
-  height: 1px;
-  background: var(--border-strong);
-}
+/* exactly two lines, never wrapped mid-phrase — each phrase is a
+   nowrap block; 7.6vw keeps the longest line (fr ~11em) inside
+   the 320px viewport minus gutters */
 .heroTitle {
   margin-top: 26px;
-  font-size: clamp(2.6rem, 7.2vw, 4.9rem);
+  font-size: clamp(1.5rem, 7.6vw, 4.9rem);
   font-weight: 500;
   line-height: 1.04;
   letter-spacing: -0.035em;
-  text-wrap: balance;
-  max-width: 14ch;
+  max-width: none;
 }
+.heroLine,
 .heroTitle em {
   display: block;
+  white-space: nowrap;
+}
+.heroTitle em {
   font-family: var(--font-serif);
   font-style: italic;
   font-weight: 400;
@@ -579,9 +769,6 @@
 @media (prefers-reduced-motion: no-preference) {
   .headerInner {
     animation: headerIn 550ms var(--ease) both;
-  }
-  .heroKicker {
-    animation: rise 700ms 60ms var(--ease) both;
   }
   .heroTitle {
     animation: rise 700ms 140ms var(--ease) both;
@@ -746,17 +933,51 @@
   gap: 12px;
   margin-top: 34px;
 }
+/* portrait card (mp4 is 720×1280) — capped so it doesn't tower
+   over the copy column */
 .videoFrame {
+  position: relative;
   background: var(--raised);
   border: 1px solid var(--border);
   border-radius: var(--radius-card);
   overflow: hidden;
+  max-width: 340px;
+  width: 100%;
+  margin-inline: auto;
 }
 .videoFrame video {
   display: block;
   width: 100%;
-  aspect-ratio: 16 / 9;
+  aspect-ratio: 9 / 16;
   object-fit: cover;
+}
+/* floating mute/unmute over the video's top-right corner — the video
+   stays muted for autoplay; the click flips `muted` on the element */
+.soundToggle {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  z-index: 2;
+  display: grid;
+  place-items: center;
+  width: 40px;
+  height: 40px;
+  padding: 0;
+  border: 1px solid var(--border);
+  border-radius: 50%;
+  background: color-mix(in srgb, var(--page) 60%, transparent);
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+  color: var(--text);
+  cursor: pointer;
+  transition:
+    transform 160ms var(--ease),
+    border-color 200ms var(--ease),
+    background-color 200ms var(--ease);
+}
+.soundToggle:hover {
+  border-color: var(--border-strong);
+  transform: translateY(-1px);
 }
 .videoCaption {
   display: flex;
@@ -881,6 +1102,17 @@
 .cardGhost .cardImg svg {
   color: var(--muted);
   opacity: 0.7;
+}
+/* the hidden project — a button wearing the card's clothes */
+.cardSecret {
+  padding: 0;
+  font: inherit;
+  color: inherit;
+  text-align: left;
+  cursor: pointer;
+}
+.cardSecret .redacted {
+  font-size: 0.98rem;
 }
 .chip {
   display: inline-flex;
@@ -1029,9 +1261,15 @@
   color: var(--text);
   text-wrap: pretty;
 }
-.quote + p {
-  margin-top: 12px;
+/* quote1 attribution — mono/muted on its own line inside the
+   blockquote (which is italic serif). NOTE: the old `.quote + p`
+   adjacent-sibling rule was deleted — it also matched `.quoteSmall`
+   (the quote2 line) and stomped its serif/italic styling. */
+.quoteSrc {
+  display: block;
+  margin-top: 14px;
   font-family: var(--font-mono);
+  font-style: normal;
   font-size: 0.7rem;
   letter-spacing: 0.1em;
   text-transform: uppercase;
@@ -1266,52 +1504,21 @@
   letter-spacing: 0.08em;
   color: var(--muted);
 }
-.picker {
-  display: flex;
-  align-items: center;
-  flex-wrap: wrap;
-  gap: 6px;
-}
-.picker > span {
-  font-family: var(--font-mono);
-  font-size: 0.64rem;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: var(--muted);
-  margin-right: 6px;
-}
-.picker button {
+.builtWith {
   display: inline-flex;
   align-items: center;
-  gap: 7px;
-  background: transparent;
-  border: 1px solid var(--border);
-  border-radius: 999px;
+  gap: 9px;
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  letter-spacing: 0.08em;
   color: var(--muted);
-  font: 500 0.74rem/1 var(--font-sans);
-  padding: 8px 12px;
-  cursor: pointer;
-  transition:
-    color 180ms,
-    border-color 180ms,
-    background-color 180ms;
+  transition: color 200ms var(--ease);
 }
-.picker button:hover {
-  color: var(--text);
-  border-color: var(--border-strong);
+.builtWith:hover {
+  color: var(--accent);
 }
-.picker button[aria-pressed="true"] {
-  color: var(--text);
-  border-color: var(--border-strong);
-  background: var(--hover-fill);
-}
-.picker button i {
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
-}
-.picker button[aria-pressed="true"] i {
-  box-shadow: 0 0 0 3px color-mix(in srgb, currentColor 18%, transparent);
+.builtWith svg {
+  display: block;
 }
 
 /* ── reduced motion ─────────────────────────────────────── */
@@ -1322,6 +1529,9 @@
     animation: none !important;
     transition: none !important;
     scroll-behavior: auto !important;
+  }
+  .btn::after {
+    display: none;
   }
   .stack [data-revealed="false"] {
     opacity: 1;

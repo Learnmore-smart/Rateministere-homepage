@@ -13,7 +13,7 @@ import {
 } from "framer-motion";
 import { ArrowUpRight } from "lucide-react";
 import ProtectedImage from "@/components/ProtectedImage";
-import { PROFILE, PIANO, PORTRAIT, SOCIALS, FEATURED, STARTERKIT, SECRET, ARCHIVE, RECOGNITION } from "@/lib/content";
+import { PROFILE, PIANO, PORTRAIT, SOCIALS, FEATURED, SECRET, ARCHIVE, RECOGNITION } from "@/lib/content";
 
 /* ── palette (scoped to this page) ─────────────────────────────
    stage  #0c0a08   paper  #ece5d8   brass  #c9a15f
@@ -355,19 +355,9 @@ export default function RecitalPage() {
           </Rise>
         </section>
 
-        {/* ENCORE — starterkit + premiere */}
+        {/* ENCORE — premiere */}
         <section className="pt-24">
           <Rise><ProgramMark n="№ 05" title="Encore" sub="by request" /></Rise>
-          <Rise delay={0.05}>
-            <div className="mt-6">
-              <ProgramRow
-                op="Posth."
-                title={STARTERKIT.name}
-                desc={STARTERKIT.desc}
-                meta={STARTERKIT.year}
-              />
-            </div>
-          </Rise>
           <Rise delay={0.08}>
             <Curtain>
               <div className="flex min-h-[240px] flex-col items-center justify-center gap-4 bg-[#0a0806] px-8 py-12 text-center">

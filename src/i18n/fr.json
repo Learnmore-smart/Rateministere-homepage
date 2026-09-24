@@ -16,7 +16,7 @@
     "title": "Parcours",
     "year": "2026",
     "bio": "Actuellement étudiant au Collège Marianopolis à Montréal. Maîtrise l'anglais, le français et le mandarin ; espagnol conversationnel.",
-    "quote": "Tu peux abandonner à tout moment, alors pourquoi maintenant ?",
+    "quote": "On peut abandonner à tout moment, alors pourquoi maintenant ?",
     "walterMitty": "Un jour, je trouverai mon négatif n°25",
     "walterMittySource": "La Vie rêvée de Walter Mitty",
     "cards": {
@@ -33,6 +33,11 @@
   "featured": {
     "title": "Sélection",
     "subtitle": "Deux projets phares",
+    "supastack": {
+      "label": "supastack",
+      "heading": "Le kit de démarrage",
+      "description": "Un kit SaaS prêt pour la production — auth, facturation, i18n, thèmes et IA, livré en un repo."
+    },
     "learnx": {
       "label": "LearnX",
       "heading": "Préparation aux examens",
@@ -41,7 +46,7 @@
     "piano": {
       "label": "YouTube",
       "heading": "Noah's Piano Journey",
-      "description": "Une chaîne de piano conçue pour les débutants — routines d'entraînement simples, premiers morceaux et progression étape par étape. (Plus de 10 millions de vues sur YouTube, avec un Short viral à 3M+ vues)",
+      "description": "Une chaîne de piano conçue pour les débutants — routines d'entraînement simples, premiers morceaux et progression étape par étape. (Plus de 12 millions de vues sur YouTube, avec un Short viral à 3M+ vues)",
       "shortViews": "Ce Short a plus de 3 millions de vues"
     }
   },
@@ -200,8 +205,7 @@
     "eliseDesc": "pas à pas, sans rien cacher — toute la philosophie de la chaîne en une vidéo.",
     "shortTitle": "le short qui a voyagé",
     "shortDesc": "une seule vidéo a dépassé {n} vues — la preuve que la formule débutant fonctionne à grande échelle.",
-    "kitDesc": "la couche fondation — un kit pour passer de zéro à quelque chose de réel, vite. en cours d'échantillonnage dans le prochain projet.",
-    "statusRendering": "statut : rendu…",
+    "kitDesc": "la couche fondation — le kit de production sur lequel ce site est construit. livré, en vente, en expansion.",
     "secretStatus": "en construction",
     "secretNote": "c'est secret.",
     "buildDesc": "un placeholder avec un pouls — la prochaine chose compile toujours quelque part sur ce disque.",
@@ -219,7 +223,7 @@
       "piano": "VOYAGE_PIANO",
       "works": "ŒUVRES",
       "sketches": "CROQUIS",
-      "kit": "KIT",
+      "kit": "STACK",
       "secret": "██████",
       "signals": "HONNEURS",
       "routes": "LIENS",
@@ -227,7 +231,7 @@
     },
     "clipLabels": {
       "creds": "notes",
-      "channel": "chaîne — 10M+ vues",
+      "channel": "chaîne — 12M+ vues",
       "elise": "für elise — tutoriel",
       "short": "short viral — 3M+",
       "email": "courriel",
@@ -242,28 +246,29 @@
       "piano": "Piano",
       "work": "Projets",
       "archive": "Archive",
-      "about": "À propos",
-      "concepts": "Études"
+      "about": "À propos"
     },
     "menu": "Menu",
+    "langMenuLabel": "Langue",
     "hello": "Dire bonjour",
-    "heroKicker": "Développeur créatif — Montréal, QC",
     "heroTitleA": "Du code en production.",
     "heroTitleB": "Du piano en public.",
-    "heroLede": "Étudiant à Marianopolis, auteur de LearnX, Overtake.bid et d'une étagère de petites machines — et les mains derrière une chaîne piano vue plus de dix millions de fois.",
+    "heroLede": "Étudiant à Marianopolis, auteur de supastack, LearnX et d'une étagère de petites machines — et les mains derrière une chaîne piano vue plus de douze millions de fois.",
     "heroPrimary": "Voir les projets",
     "heroSecondary": "@pianowithnoah",
     "pianoKicker": "La chaîne",
-    "pianoTitle": "Noah's Piano Journey",
-    "pianoBlurb": "Des routines simples, des premiers morceaux, des progrès pas à pas — une chaîne piano pensée pour les débutants, regardée plus de dix millions de fois.",
+    "pianoBlurb": "Des routines simples, des premiers morceaux, des progrès pas à pas — une chaîne piano pensée pour les débutants, regardée plus de douze millions de fois.",
     "pianoViews": "vues sur YouTube",
     "pianoShort": "sur un seul Short",
     "pianoRecording": "toujours en ligne",
     "pianoCta": "S'abonner sur YouTube",
     "pianoCaption": "Lettre à Élise, enseignée comme un ami le ferait — toute la philosophie de la chaîne en une vidéo.",
+    "pianoSound": "Son",
     "workTitle": "Travaux choisis",
-    "workSub": "Trois en ligne. Un en assemblage.",
-    "kitStatus": "en assemblage",
+    "workSub": "Trois en ligne. Un toujours secret.",
+    "hiddenStatus": "toujours caché",
+    "hiddenAria": "Projet secret — toujours caché",
+    "hiddenToast": "Toujours sous scellés — il sortira quand il sera prêt.",
     "archiveTitle": "Archive",
     "archiveSub": "Dix entrées — chacune livrée, ou montée ici même.",
     "aboutTitle": "À propos",
@@ -273,6 +278,7 @@
     "factLanguages": "Langues",
     "factType": "Type",
     "quote1": "On peut abandonner à tout moment, alors pourquoi maintenant ?",
+    "quote1src": "« Père riche, père pauvre »",
     "quote2": "Un jour, je trouverai mon négatif n°25",
     "quote2src": "La Vie rêvée de Walter Mitty",
     "recTitle": "Distinctions — Trae",
@@ -281,8 +287,11 @@
     "buildDesc": "un placeholder qui pulse — la prochaine chose compile toujours quelque part.",
     "ctaTitle": "Dire bonjour.",
     "ctaSub": "Mail, X ou les commentaires — choisissez un canal.",
-    "theme": "Pack",
-    "footerNote": "En dialecte supastack — quatre packs, une page.",
+    "themeLight": "Passer au thème clair",
+    "themeDark": "Passer au thème sombre",
+    "toastDismiss": "Fermer la notification",
+    "footerNote": "Une page, deux ambiances — clair par défaut, sombre au choix.",
+    "builtWith": "Construit avec supastack",
     "copyright": "© 2026 Noah Zixin Zhang"
   }
 }

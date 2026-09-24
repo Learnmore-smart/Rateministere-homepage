@@ -12,7 +12,7 @@ import {
 import { ArrowUpRight, Flag, RadioTower } from "lucide-react";
 import ProtectedImage from "@/components/ProtectedImage";
 import { hill, PEAKS } from "./contours";
-import { PROFILE, PIANO, PORTRAIT, SOCIALS, FEATURED, STARTERKIT, SECRET, ARCHIVE, RECOGNITION } from "@/lib/content";
+import { PROFILE, PIANO, PORTRAIT, SOCIALS, FEATURED, SECRET, ARCHIVE, RECOGNITION } from "@/lib/content";
 
 /* palette: paper #e9e3d5 · ink #232620 · contour #7d6647 · glacier #3f6d8e · signal #c7432b */
 
@@ -274,14 +274,14 @@ export default function AtlasPage() {
             <div className="flex items-baseline justify-between">
               <h2 className="font-space text-3xl font-bold tracking-tight md:text-4xl">Triangulation</h2>
               <span className="font-body text-[11px] uppercase tracking-[0.3em] text-[#232620]/65">
-                {FEATURED.length + ARCHIVE.length + 2} points fixed
+                {FEATURED.length + ARCHIVE.length + 1} points fixed
               </span>
             </div>
           </Rise>
 
           <Rise delay={0.05}>
             <div className="mt-8">
-              {[...FEATURED, STARTERKIT].map((p, i) => (
+              {FEATURED.map((p, i) => (
                 <a
                   key={p.id}
                   href={p.url}

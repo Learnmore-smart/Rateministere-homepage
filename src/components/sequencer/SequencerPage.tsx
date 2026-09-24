@@ -46,7 +46,7 @@ const TRACKS: TrackDef[] = [
   {
     id: "piano", name: "PIANO_JOURNEY", color: "#e8b34a", freq: 261.63,
     clips: [
-      { id: "channel", label: "channel — 10M+ views", at: 6, w: 30 },
+      { id: "channel", label: "channel — 12M+ views", at: 6, w: 30 },
       { id: "elise", label: "für elise — tutorial", at: 46, w: 24 },
       { id: "short", label: "viral short — 3M+", at: 78, w: 16 },
     ],
@@ -55,8 +55,7 @@ const TRACKS: TrackDef[] = [
     id: "works", name: "WORKS", color: "#3b7bff", freq: 329.63,
     clips: [
       { id: "learnx", label: "LearnX", at: 3, w: 16 },
-      { id: "overtake", label: "Overtake.bid", at: 28, w: 16 },
-      { id: "opennotes", label: "OpenNotes", at: 53, w: 15 },
+      { id: "opennotes", label: "OpenNotes", at: 28, w: 16 },
     ],
   },
   {
@@ -64,8 +63,8 @@ const TRACKS: TrackDef[] = [
     clips: ARCHIVE.map((a, i) => ({ id: a.id, label: a.name.toLowerCase().replace(/\s+/g, "-"), at: 1 + i * 9.5, w: 8 })),
   },
   {
-    id: "kit", name: "KIT", color: "#7dd87d", freq: 440.0,
-    clips: [{ id: "kit", label: "[STARTERKIT]", at: 10, w: 26 }],
+    id: "kit", name: "STACK", color: "#efb779", freq: 440.0,
+    clips: [{ id: "kit", label: "supastack", at: 10, w: 26 }],
   },
   {
     id: "secret", name: "██████", color: "#4a4a4f", freq: 0, locked: true,
@@ -837,11 +836,10 @@ function ClipDetail({ id, t, cc }: { id: string; t: TranslationType; cc: string 
         </div>
       );
     case "learnx":
-    case "overtake":
     case "opennotes": {
       const p = FEATURED.find((x) => x.id === id);
       if (!p) return null;
-      const tr18n = id === "learnx" ? t.featured.learnx : id === "overtake" ? t.recent.overtake : t.recent.opennotes;
+      const tr18n = id === "learnx" ? t.featured.learnx : t.recent.opennotes;
       return (
         <div className="flex items-center gap-3">
           {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -856,10 +854,12 @@ function ClipDetail({ id, t, cc }: { id: string; t: TranslationType; cc: string 
     }
     case "kit":
       return (
-        <div>
-          <h2 className="font-silk text-sm" style={{ color: cc }}>[STARTERKIT]</h2>
-          <p className="mt-1 font-mono text-[10px] leading-relaxed text-(--s-ink2)">{t.seq.kitDesc}</p>
-          <p className="mt-1.5 font-mono text-[10px] text-(--s-dim)">{t.seq.statusRendering}</p>
+        <div className="flex items-center gap-3">
+          <div className="min-w-0 flex-1">
+            <h2 className="font-silk text-sm" style={{ color: cc }}>supastack</h2>
+            <p className="mt-1 font-mono text-[10px] leading-relaxed text-(--s-ink2)">{t.seq.kitDesc}</p>
+          </div>
+          <OpenBtn href="https://supastack.dev" color={cc} label={t.seq.open} />
         </div>
       );
     case "secret":

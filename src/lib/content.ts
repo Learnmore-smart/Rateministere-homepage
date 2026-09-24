@@ -21,10 +21,10 @@ export const PIANO = {
   channel: "Noah's Piano Journey",
   url: "https://www.youtube.com/@pianowithnoah?sub_confirmation=1",
   handle: "@pianowithnoah",
-  views: "10,000,000+",
+  views: "12,000,000+",
   viralShort: "3,000,000+",
   blurb:
-    "A piano channel built for beginners — simple practice routines, first pieces, and step-by-step progress. Over ten million views, including a Short watched three million times.",
+    "A piano channel built for beginners — simple practice routines, first pieces, and step-by-step progress. Over twelve million views, including a Short watched three million times.",
   demoVideo: "/Videos-demo/Für Elise - Easy piano tutorial (1).mp4",
 } as const;
 
@@ -54,20 +54,20 @@ export interface Project {
 
 export const FEATURED: Project[] = [
   {
+    id: "supastack",
+    name: "supastack",
+    year: "2026",
+    desc: "The production SaaS starter kit — auth, billing, i18n, themes and AI wiring in one repo.",
+    url: "https://supastack.dev",
+    image: "/supastack-OG.png",
+  },
+  {
     id: "learnx",
     name: "LearnX",
     year: "2026",
     desc: "Exam preparation platform — chunks files into units, drills them with spaced repetition.",
     url: "https://www.learnx.pro",
-    image: "/LearnX.png",
-  },
-  {
-    id: "overtake",
-    name: "Overtake.bid",
-    year: "2026",
-    desc: "Weekly product ranking board — bids fund promotion for the Top 10.",
-    url: "https://overtake.bid",
-    image: "/Overtake.png",
+    image: "/LearnX-OG.png",
   },
   {
     id: "opennotes",
@@ -78,15 +78,6 @@ export const FEATURED: Project[] = [
     image: "/OpenNotes.png",
   },
 ];
-
-// The named entry the user asked to surface.
-export const STARTERKIT: Project = {
-  id: "starterkit",
-  name: "[Starterkit]",
-  year: "2026",
-  desc: "A starter system, still being assembled.",
-  url: "#",
-};
 
 // The unknown secret project — deliberately redacted everywhere.
 export const SECRET = {

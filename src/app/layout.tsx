@@ -82,6 +82,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
+      suppressHydrationWarning
       className={`${bricolage.variable} ${jetbrains.variable} ${fraunces.variable} ${spaceGrotesk.variable} ${silkscreen.variable} ${inter.variable} ${instrument.variable} h-full antialiased scroll-smooth`}
     >
       <head>

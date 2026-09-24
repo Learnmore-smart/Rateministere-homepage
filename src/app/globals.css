@@ -85,6 +85,20 @@ html {
   scrollbar-gutter: stable;
 }
 
+/* No rubber-band/stretch past the top or bottom of the page. */
+html,
+body {
+  overscroll-behavior: none;
+}
+
+/* The scroll container is <html class="scroll-smooth"> — per-component
+   reduced-motion blocks can't reach it, so kill smooth scrolling here. */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto !important;
+  }
+}
+
 /* ── Custom Cursor Global ────────────────────────── */
 @media (hover: hover) and (pointer: fine) {
   body.custom-cursor,
@@ -103,10 +117,29 @@ html {
   }
 }
 
-/* ── Stack homepage — dark field behind the surface ── */
-html:has(.stack),
-body:has(.stack) {
+/* ── Stack homepage — dark field behind the surface when themed dark.
+   (Keys off <html data-stack-theme>, not .stack — CSS Modules hashes
+   the class, so a :has(.stack) selector here would never match.) ── */
+html[data-stack-theme="dark"],
+html[data-stack-theme="dark"] body {
   background: #000;
+}
+
+/* ── Theme switch: circular color-spread reveal ────────────
+   StackPage animates a clip-path circle on ::view-transition-new(root)
+   from the toggle's click point. Kill the default crossfade + blend so
+   the new snapshot is a clean layer we can clip; z-index puts the new
+   theme on top of the old during the spread. */
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation: none;
+  mix-blend-mode: normal;
+}
+::view-transition-old(root) {
+  z-index: 1;
+}
+::view-transition-new(root) {
+  z-index: 2147483646;
 }
 
 /* ── Sequencer theme tokens (.seq scope) ─────────── */

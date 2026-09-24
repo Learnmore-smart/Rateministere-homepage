@@ -179,7 +179,7 @@ export default function FeaturedGrid() {
                   {item.id === "piano" && (
                     <div className="absolute top-3 right-3 z-10 bg-[#ff0000]/95 text-white font-body text-[9px] uppercase tracking-wider font-bold px-2 py-0.5 rounded-full shadow-sm flex items-center gap-1.5 select-none">
                       <span className="h-1.5 w-1.5 rounded-full bg-white animate-pulse" />
-                      10M+ Views
+                      12M+ Views
                     </div>
                   )}
 
@@ -311,7 +311,7 @@ function ShowcaseModal({
               {item.id === "piano" && (
                 <div className="absolute top-3 right-3 z-10 bg-[#ff0000]/95 text-white font-body text-[9px] uppercase tracking-wider font-bold px-2 py-0.5 rounded-full shadow-sm flex items-center gap-1.5">
                   <span className="h-1.5 w-1.5 rounded-full bg-white animate-pulse" />
-                  10M+ Views
+                  12M+ Views
                 </div>
               )}
             </div>

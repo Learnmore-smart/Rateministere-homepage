@@ -1,11 +1,37 @@
 "use client";
 
-import { useEffect, useId, useRef, useState } from "react";
+import {
+  useEffect,
+  useId,
+  useRef,
+  useState,
+  type FocusEvent as ReactFocusEvent,
+  type KeyboardEvent as ReactKeyboardEvent,
+  type MouseEvent,
+} from "react";
 import Link from "next/link";
-import { ArrowUpRight, Blocks, Lock, Mail } from "lucide-react";
+import {
+  ArrowUpRight,
+  Check,
+  ChevronDown,
+  Languages,
+  Lock,
+  Mail,
+  Moon,
+  Sun,
+  Volume2,
+  VolumeX,
+} from "lucide-react";
 import ProtectedImage from "@/components/ProtectedImage";
 import BrandIcon from "@/components/icons/brands";
-import { useLang, langLabels, langOrder } from "@/components/LanguageContext";
+import {
+  locales,
+  useLang,
+  langLabels,
+  langOrder,
+  type Lang,
+} from "@/components/LanguageContext";
+import { ToastStack, useToasts } from "@/components/toast";
 import {
   ARCHIVE,
   FEATURED,
@@ -15,7 +41,6 @@ import {
   RECOGNITION,
   SECRET,
   SOCIALS,
-  STARTERKIT,
 } from "@/lib/content";
 import styles from "./stack.module.css";
 
@@ -39,13 +64,7 @@ const REC_I18N = [
   "trae-community-star",
 ];
 
-const PACKS = [
-  { id: "obsidian", dot: "#efb779" },
-  { id: "graphite", dot: "#c8c8c8" },
-  { id: "midnight", dot: "#8eb4e8" },
-  { id: "ink", dot: "#ffffff" },
-] as const;
-type PackId = (typeof PACKS)[number]["id"];
+type Theme = "light" | "dark";
 
 /* brand mark — three fader bars, the middle one signal-hot */
 function StackMark() {
@@ -58,6 +77,161 @@ function StackMark() {
   );
 }
 
+/* language dropdown — <details>/<summary> popover ported from
+   supastack's language-switcher, but items are <button>s calling
+   setLang (no cookie, no navigation). Used twice: header (.headerEnd,
+   hidden <900px via .langMenuHeader) and the mobile .menuFoot
+   (side="top" so the popover opens upward). */
+function LangMenu({
+  side = "bottom",
+  className,
+}: {
+  side?: "top" | "bottom";
+  className?: string;
+}) {
+  const { lang, setLang, t } = useLang();
+  const detailsRef = useRef<HTMLDetailsElement>(null);
+  const summaryRef = useRef<HTMLElement>(null);
+  /* single tracked timer for the animated close — repeated requestClose
+     calls would otherwise stack timeouts and a stale one could slam a
+     reopened popover shut */
+  const closeTimer = useRef(0);
+
+  function requestClose(refocus = false) {
+    const el = detailsRef.current;
+    if (!el?.open) return;
+    if (refocus) summaryRef.current?.focus();
+    /* already animating out — bail WITHOUT clearing closeTimer: a second
+       call (outside-pointerdown → focusout → onBlur) must let the armed
+       finisher run, else open stays true with data-closing and no
+       timer — popover frozen invisible/unclosable */
+    if (el.dataset.closing) return;
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      el.open = false;
+    } else {
+      /* let the out-animation play before removing `open` */
+      el.dataset.closing = "true";
+      closeTimer.current = window.setTimeout(() => {
+        el.open = false;
+        delete el.dataset.closing;
+        closeTimer.current = 0;
+      }, 140);
+    }
+  }
+
+  useEffect(() => {
+    function onPointerDown(event: PointerEvent) {
+      const el = detailsRef.current;
+      if (el?.open && !el.contains(event.target as Node)) requestClose();
+    }
+    function onKeyDown(event: KeyboardEvent) {
+      if (event.key !== "Escape") return;
+      if (detailsRef.current?.open) {
+        event.preventDefault();
+        requestClose(true);
+      }
+    }
+    document.addEventListener("pointerdown", onPointerDown);
+    document.addEventListener("keydown", onKeyDown);
+    return () => {
+      document.removeEventListener("pointerdown", onPointerDown);
+      document.removeEventListener("keydown", onKeyDown);
+      window.clearTimeout(closeTimer.current);
+    };
+  }, []);
+
+  function onSummaryClick(event: MouseEvent) {
+    /* re-clicking an open summary would toggle it shut natively —
+       intercept so the close animates instead */
+    if (detailsRef.current?.open) {
+      event.preventDefault();
+      requestClose();
+    } else {
+      /* opening — cancel any in-flight animated close and drop its
+         marker, or a leftover data-closing keeps the popover invisible */
+      window.clearTimeout(closeTimer.current);
+      if (detailsRef.current) delete detailsRef.current.dataset.closing;
+    }
+  }
+
+  function onSummaryKeyDown(event: ReactKeyboardEvent) {
+    const el = detailsRef.current;
+    if (event.key === "ArrowDown" && el && !el.open) {
+      event.preventDefault();
+      window.clearTimeout(closeTimer.current);
+      delete el.dataset.closing;
+      el.open = true;
+      (
+        el.querySelector<HTMLElement>("button[aria-current]") ??
+        el.querySelector<HTMLElement>("ul button")
+      )?.focus();
+    }
+  }
+
+  function onPopoverKeyDown(event: ReactKeyboardEvent) {
+    if (event.key !== "ArrowDown" && event.key !== "ArrowUp") return;
+    const items = Array.from(
+      detailsRef.current?.querySelectorAll<HTMLElement>("ul button") ?? [],
+    );
+    if (items.length === 0) return;
+    const index = items.indexOf(document.activeElement as HTMLElement);
+    const next =
+      event.key === "ArrowDown"
+        ? (index + 1) % items.length
+        : (index - 1 + items.length) % items.length;
+    event.preventDefault();
+    items[next]?.focus();
+  }
+
+  function onBlur(event: ReactFocusEvent) {
+    if (!event.currentTarget.contains(event.relatedTarget)) requestClose();
+  }
+
+  function choose(l: Lang) {
+    setLang(l);
+    /* refocus the trigger — closing otherwise strands keyboard focus */
+    requestClose(true);
+  }
+
+  return (
+    <details
+      ref={detailsRef}
+      className={className ? `${styles.langMenu} ${className}` : styles.langMenu}
+      data-side={side}
+      onBlur={onBlur}
+    >
+      <summary
+        ref={summaryRef}
+        className={styles.langTrigger}
+        aria-label={`${t.stack.langMenuLabel}: ${langLabels[lang]}`}
+        onClick={onSummaryClick}
+        onKeyDown={onSummaryKeyDown}
+      >
+        <Languages size={15} aria-hidden="true" className={styles.langGlyph} />
+        <span>{langLabels[lang]}</span>
+        <ChevronDown size={14} aria-hidden="true" className={styles.langChevron} />
+      </summary>
+      <ul className={styles.langPop} onKeyDown={onPopoverKeyDown}>
+        {langOrder.map((l) => (
+          <li key={l}>
+            <button
+              type="button"
+              className={styles.langItem}
+              aria-current={l === lang ? "true" : undefined}
+              onClick={() => choose(l)}
+            >
+              <span>{langLabels[l]}</span>
+              {l === lang ? (
+                <Check size={14} aria-hidden="true" className={styles.langCheck} />
+              ) : null}
+            </button>
+          </li>
+        ))}
+      </ul>
+    </details>
+  );
+}
+
 function hostOf(url: string) {
   try {
     return new URL(url).host.replace(/^www\./, "");
@@ -66,58 +240,192 @@ function hostOf(url: string) {
   }
 }
 
+/* theme switch as a circular color-spread from the click point.
+   The apply callback must mutate the DOM synchronously (dataset +
+   setState) so the ::view-transition-new snapshot sees the new theme.
+   Falls back to an instant switch for reduced-motion, missing origin,
+   or browsers without startViewTransition. */
+function transitionTo(apply: () => void, origin?: { x: number; y: number }) {
+  const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const doc = document as Document & {
+    startViewTransition?: (cb: () => void) => {
+      ready: Promise<void>;
+      finished: Promise<void>;
+      updateCallbackDone: Promise<void>;
+    };
+  };
+  if (reduced || typeof doc.startViewTransition !== "function" || !origin) {
+    apply();
+    return;
+  }
+  const maxR = Math.hypot(
+    Math.max(origin.x, window.innerWidth - origin.x),
+    Math.max(origin.y, window.innerHeight - origin.y),
+  );
+  try {
+    const vt = doc.startViewTransition(apply);
+    /* finished/updateCallbackDone reject on skipped or superseded
+       transitions — swallow them so they never surface as unhandled */
+    vt.finished.catch(() => {});
+    vt.updateCallbackDone.catch(() => {});
+    vt.ready
+      .then(() => {
+        document.documentElement.animate(
+          {
+            clipPath: [
+              `circle(0px at ${origin.x}px ${origin.y}px)`,
+              `circle(${maxR}px at ${origin.x}px ${origin.y}px)`,
+            ],
+          },
+          {
+            duration: 520,
+            easing: "cubic-bezier(0.16, 1, 0.3, 1)",
+            pseudoElement: "::view-transition-new(root)",
+          },
+        );
+      })
+      .catch(() => {});
+  } catch {
+    /* a synchronous throw must never swallow the theme switch */
+    apply();
+  }
+}
+
 export default function StackPage() {
-  const { t, lang, setLang } = useLang();
+  const { lang } = useLang();
+  /* shown trails lang by one 170ms fade — text swaps while the page is
+     blurred/dimmed, then data-lang-swap clears and it crossfades back.
+     Also masks the localStorage-restore swap on first load. */
+  const [shown, setShown] = useState<Lang>(lang);
+  const [langSwap, setLangSwap] = useState(false);
+  /* mirror of langSwap for the swap effect — the flag is deliberately
+     NOT an effect dep, so setting it mid-flight never re-runs the
+     effect and kills the pending midpoint timer */
+  const langSwapRef = useRef(false);
+  const t = locales[shown];
   const s = t.stack;
   const [scrolled, setScrolled] = useState(false);
-  const [pack, setPack] = useState<PackId>("obsidian");
+  /* the video stays `muted` in the DOM so autoplay keeps working —
+     the toggle just flips the property on the element */
+  const [soundOn, setSoundOn] = useState(false);
+  const [theme, setTheme] = useState<Theme>("light");
   const [reduced, setReduced] = useState(false);
+  const { toasts, push, dismiss } = useToasts();
   const root = useRef<HTMLDivElement>(null);
   const dialog = useRef<HTMLDialogElement>(null);
+  const video = useRef<HTMLVideoElement>(null);
   const menuTitle = useId();
 
-  /* pack boot: localStorage → <html data-stack-pack> + state */
+  /* theme boot: localStorage → <html data-stack-theme> + state
+     (legacy stack_pack visits migrate — every old pack was dark) */
   useEffect(() => {
-    let saved: PackId | null = null;
+    let saved: Theme | null = null;
     try {
-      const raw = localStorage.getItem("stack_pack") as PackId | null;
-      if (raw && PACKS.some((p) => p.id === raw)) saved = raw;
+      const raw = localStorage.getItem("stack_theme");
+      if (raw === "light" || raw === "dark") saved = raw;
+      else if (localStorage.getItem("stack_pack")) saved = "dark";
     } catch {
       /* private mode */
     }
-    if (saved) document.documentElement.dataset.stackPack = saved;
+    if (saved) document.documentElement.dataset.stackTheme = saved;
     const mq = window.matchMedia("(prefers-reduced-motion: reduce)");
     const mqNow = mq.matches;
     /* async hydration — sync setState in effect body is disallowed */
     setTimeout(() => {
-      if (saved) setPack(saved);
+      if (saved) setTheme(saved);
       setReduced(mqNow);
     }, 0);
     const onMq = (e: MediaQueryListEvent) => setReduced(e.matches);
     mq.addEventListener("change", onMq);
-    return () => mq.removeEventListener("change", onMq);
+    return () => {
+      mq.removeEventListener("change", onMq);
+      /* don't leak the stack theme (and its dark body bg) onto other routes */
+      delete document.documentElement.dataset.stackTheme;
+    };
   }, []);
 
-  /* pack → <html data-stack-pack> (kept in an effect: DOM mutation) */
+  /* pauses the already-autoplaying piano video when reduced motion is
+     detected — removing the autoPlay attribute alone doesn't pause it */
   useEffect(() => {
-    document.documentElement.dataset.stackPack = pack;
-  }, [pack]);
+    if (reduced) video.current?.pause();
+  }, [reduced]);
 
-  const pickPack = (id: PackId) => {
-    setPack(id);
-    try {
-      localStorage.setItem("stack_pack", id);
-    } catch {
-      /* private mode */
+  /* sound toggle — unmute/mute the element directly (muting in JSX
+     would fight the muted-autoplay requirement) */
+  useEffect(() => {
+    if (video.current) video.current.muted = !soundOn;
+  }, [soundOn]);
+
+  /* language crossfade: fade out (data-lang-swap) → swap `shown` at the
+     dimmed midpoint → fade back in. setState is deferred a tick because
+     React compiler lint bans sync setState in effects. The `lang ===
+     shown` branch doubles as the release: it fires when setShown lands
+     AND rescues a cancelled A→B→A swap where the flag is stuck on —
+     clearing it ~60ms after the text mounts gives the fade-in something
+     to reveal. All timer ids are tracked and wiped on cleanup so rapid
+     A→B→C swaps can't strand a stale clear. */
+  useEffect(() => {
+    const timers: number[] = [];
+    if (lang === shown) {
+      if (langSwapRef.current) {
+        timers.push(
+          window.setTimeout(() => {
+            langSwapRef.current = false;
+            setLangSwap(false);
+          }, 60),
+        );
+      }
+      return () => timers.forEach((id) => window.clearTimeout(id));
     }
+    if (reduced) {
+      timers.push(window.setTimeout(() => setShown(lang), 0));
+    } else {
+      timers.push(
+        window.setTimeout(() => {
+          langSwapRef.current = true;
+          setLangSwap(true);
+        }, 0),
+      );
+      timers.push(window.setTimeout(() => setShown(lang), 170));
+    }
+    return () => timers.forEach((id) => window.clearTimeout(id));
+  }, [lang, shown, reduced]);
+
+  const toggleTheme = (e?: MouseEvent<HTMLElement>) => {
+    const next: Theme = theme === "dark" ? "light" : "dark";
+    const apply = () => {
+      document.documentElement.dataset.stackTheme = next;
+      setTheme(next);
+      try {
+        localStorage.setItem("stack_theme", next);
+      } catch {
+        /* private mode */
+      }
+    };
+    /* click coords → spread origin; synthetic/keyboard clicks (0,0)
+       fall back to the button's center */
+    let origin: { x: number; y: number } | undefined;
+    if (e) {
+      if (e.clientX || e.clientY) {
+        origin = { x: e.clientX, y: e.clientY };
+      } else {
+        const r = e.currentTarget.getBoundingClientRect();
+        origin = { x: r.left + r.width / 2, y: r.top + r.height / 2 };
+      }
+    }
+    transitionTo(apply, origin);
   };
 
-  /* header condenses once the hero scrolls under it */
+  /* header condenses once the hero scrolls under it — first read is
+     deferred a tick (sync setState in effect bodies is banned) */
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 20);
-    onScroll();
+    const id = window.setTimeout(onScroll, 0);
     window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
+    return () => {
+      window.clearTimeout(id);
+      window.removeEventListener("scroll", onScroll);
+    };
   }, []);
 
   /* once-only reveals — marked here so no-JS never hides content */
@@ -128,8 +436,32 @@ export default function StackPage() {
       (entries) => {
         for (const e of entries) {
           if (e.isIntersecting) {
-            (e.target as HTMLElement).dataset.revealed = "true";
-            io.unobserve(e.target);
+            const el = e.target as HTMLElement;
+            el.dataset.revealed = "true";
+            /* the [data-revealed] transition only exists to run the
+               reveal — once it ends, drop the attribute (and the inline
+               stagger delay) so the element's own transitions (card
+               hover lift, xLine color…) run at their authored speeds */
+            let fallback = 0;
+            const finish = () => {
+              delete el.dataset.revealed;
+              el.style.transitionDelay = "";
+              el.removeEventListener("transitionend", onEnd);
+              window.clearTimeout(fallback);
+            };
+            const onEnd = (ev: TransitionEvent) => {
+              /* bubbled descendant transitionends (cardImg img, link
+                 arrows…) must not fire this early — only the element's
+                 own reveal counts */
+              if (ev.target === el) finish();
+            };
+            el.addEventListener("transitionend", onEnd);
+            /* no transition → no transitionend (:focus-within
+               force-reveal, reduced-motion, transitioncancel) —
+               idempotent fallback just past the longest reveal
+               (210ms stagger + 700ms transition) */
+            fallback = window.setTimeout(finish, 900);
+            io.unobserve(el);
           }
         }
       },
@@ -164,12 +496,12 @@ export default function StackPage() {
   };
 
   return (
-    <div ref={root} className={styles.stack}>
-      {/* pre-paint pack restore (SSR'd inline so there's no flash) */}
+    <div ref={root} className={styles.stack} data-lang-swap={langSwap || undefined}>
+      {/* pre-paint theme restore (SSR'd inline so there's no flash) */}
       <script
         dangerouslySetInnerHTML={{
           __html:
-            "try{var p=localStorage.getItem('stack_pack');if(p)document.documentElement.dataset.stackPack=p}catch(e){}",
+            "try{var t=localStorage.getItem('stack_theme');if(t!=='dark'&&t!=='light')t=localStorage.getItem('stack_pack')?'dark':'light';document.documentElement.dataset.stackTheme=t}catch(e){}",
         }}
       />
       <a className={styles.skip} href="#main">
@@ -191,18 +523,21 @@ export default function StackPage() {
             ))}
           </nav>
           <div className={styles.headerEnd}>
-            <div className={styles.langs} role="group" aria-label="Language">
-              {langOrder.map((l) => (
-                <button
-                  key={l}
-                  type="button"
-                  aria-pressed={lang === l}
-                  onClick={() => setLang(l)}
-                >
-                  {langLabels[l]}
-                </button>
-              ))}
-            </div>
+            <LangMenu className={styles.langMenuHeader} />
+            <button
+              type="button"
+              className={styles.themeBtn}
+              aria-pressed={theme === "dark"}
+              aria-label={theme === "dark" ? s.themeLight : s.themeDark}
+              title={theme === "dark" ? s.themeLight : s.themeDark}
+              onClick={toggleTheme}
+            >
+              {theme === "dark" ? (
+                <Sun size={17} aria-hidden="true" />
+              ) : (
+                <Moon size={17} aria-hidden="true" />
+              )}
+            </button>
             <a className={`${styles.btn} ${styles.btnPrimary} ${styles.headerCta}`} href={`mailto:${PROFILE.email}`}>
               {s.hello}
             </a>
@@ -226,6 +561,13 @@ export default function StackPage() {
         ref={dialog}
         className={styles.menuDialog}
         aria-labelledby={menuTitle}
+        onClose={() => {
+          const d = dialog.current?.querySelector("details");
+          if (d) {
+            d.open = false;
+            delete d.dataset.closing;
+          }
+        }}
         onClick={(e) => {
           if (e.target === e.currentTarget) closeMenu();
         }}
@@ -245,18 +587,22 @@ export default function StackPage() {
                 {n.label}
               </a>
             ))}
-            <Link href="/concepts" onClick={closeMenu}>
-              {s.nav.concepts}
-            </Link>
           </nav>
           <div className={styles.menuFoot}>
-            <div className={styles.langs} role="group" aria-label="Language">
-              {langOrder.map((l) => (
-                <button key={l} type="button" aria-pressed={lang === l} onClick={() => setLang(l)}>
-                  {langLabels[l]}
-                </button>
-              ))}
-            </div>
+            <LangMenu side="top" />
+            <button
+              type="button"
+              className={styles.menuTheme}
+              aria-pressed={theme === "dark"}
+              onClick={toggleTheme}
+            >
+              {theme === "dark" ? (
+                <Sun size={16} aria-hidden="true" />
+              ) : (
+                <Moon size={16} aria-hidden="true" />
+              )}
+              {theme === "dark" ? s.themeLight : s.themeDark}
+            </button>
             <a className={`${styles.btn} ${styles.btnPrimary}`} href={`mailto:${PROFILE.email}`} onClick={closeMenu}>
               {s.hello}
             </a>
@@ -267,9 +613,8 @@ export default function StackPage() {
       <main className={styles.main} id="main">
         {/* ═══ hero ═══ */}
         <section className={styles.hero} aria-labelledby="hero-title">
-          <p className={styles.heroKicker}>{s.heroKicker}</p>
           <h1 className={styles.heroTitle} id="hero-title">
-            {s.heroTitleA}
+            <span className={styles.heroLine}>{s.heroTitleA}</span>
             <em>{s.heroTitleB}</em>
           </h1>
           <p className={styles.heroLede}>{s.heroLede}</p>
@@ -326,6 +671,7 @@ export default function StackPage() {
             </div>
             <figure className={styles.videoFrame} data-reveal>
               <video
+                ref={video}
                 src={PIANO.demoVideo}
                 poster="/Noah-Piano-Journey.png"
                 autoPlay={!reduced}
@@ -335,13 +681,26 @@ export default function StackPage() {
                 playsInline
                 preload="metadata"
               />
+              <button
+                type="button"
+                className={styles.soundToggle}
+                aria-pressed={soundOn}
+                aria-label={s.pianoSound}
+                title={s.pianoSound}
+                onClick={() => setSoundOn((v) => !v)}
+              >
+                {soundOn ? (
+                  <Volume2 size={17} aria-hidden="true" />
+                ) : (
+                  <VolumeX size={17} aria-hidden="true" />
+                )}
+              </button>
               <figcaption className={styles.videoCaption}>
                 <p>{s.pianoCaption}</p>
                 <span className={styles.rec}>
                   <i aria-hidden="true" />
                   Tutorial
                 </span>
-
               </figcaption>
             </figure>
           </div>
@@ -382,22 +741,29 @@ export default function StackPage() {
                 </div>
               </a>
             ))}
-            <div className={`${styles.card} ${styles.cardGhost}`} data-reveal style={{ transitionDelay: "210ms" }}>
+            <button
+              type="button"
+              className={`${styles.card} ${styles.cardGhost} ${styles.cardSecret}`}
+              aria-label={s.hiddenAria}
+              data-reveal
+              style={{ transitionDelay: "210ms" }}
+              onClick={() => push(s.hiddenToast)}
+            >
               <div className={styles.cardImg}>
-                <Blocks size={40} strokeWidth={1.2} aria-hidden="true" />
+                <Lock size={40} strokeWidth={1.2} aria-hidden="true" />
               </div>
               <div className={styles.cardBody}>
                 <div className={styles.cardTop}>
-                  <h3>{STARTERKIT.name}</h3>
-                  <span>{STARTERKIT.year}</span>
+                  <h3 className={styles.redacted}>{SECRET.name}</h3>
+                  <span>{SECRET.year}</span>
                 </div>
-                <p>{STARTERKIT.desc}</p>
+                <p>{s.secretNote}</p>
                 <span className={styles.chip}>
                   <i aria-hidden="true" />
-                  {s.kitStatus}
+                  {s.hiddenStatus}
                 </span>
               </div>
-            </div>
+            </button>
           </div>
         </section>
 
@@ -459,7 +825,10 @@ export default function StackPage() {
                   <dd>{PROFILE.type}</dd>
                 </div>
               </dl>
-              <blockquote className={styles.quote}>“{s.quote1}”</blockquote>
+              <blockquote className={styles.quote}>
+                “{s.quote1}”
+                <span className={styles.quoteSrc}>— {s.quote1src}</span>
+              </blockquote>
               <p className={styles.quoteSmall}>
                 “{s.quote2}” — {s.quote2src}
               </p>
@@ -557,28 +926,25 @@ export default function StackPage() {
           </nav>
         </div>
         <div className={styles.footerBottom}>
-          <small>
-            {s.copyright} ·{" "}
-            <Link href="/concepts" style={{ color: "inherit" }}>
-              /concepts
-            </Link>
-          </small>
-          <div className={styles.picker} role="group" aria-label={s.theme}>
-            <span>{s.theme}</span>
-            {PACKS.map((p) => (
-              <button
-                key={p.id}
-                type="button"
-                aria-pressed={pack === p.id}
-                onClick={() => pickPack(p.id)}
-              >
-                <i style={{ background: p.dot }} aria-hidden="true" />
-                {p.id}
-              </button>
-            ))}
-          </div>
+          <small>{s.copyright}</small>
+          <a
+            className={styles.builtWith}
+            href="https://supastack.dev"
+            target="_blank"
+            rel="noreferrer"
+          >
+            <svg width="13" height="13" viewBox="0 0 24 24" aria-hidden="true">
+              <rect x="1.4" y="1.4" width="9.2" height="9.2" rx="1.8" fill="#f5f5f5" stroke="#686868" strokeWidth="0.25" />
+              <rect x="13.4" y="1.4" width="9.2" height="9.2" rx="1.8" fill="#929292" stroke="#686868" strokeWidth="0.25" />
+              <rect x="1.4" y="13.4" width="9.2" height="9.2" rx="1.8" fill="#929292" stroke="#686868" strokeWidth="0.25" />
+              <rect x="13.4" y="13.4" width="9.2" height="9.2" rx="1.8" fill="#f5f5f5" stroke="#686868" strokeWidth="0.25" />
+            </svg>
+            {s.builtWith}
+          </a>
         </div>
       </footer>
+
+      <ToastStack toasts={toasts} onDismiss={dismiss} dismissLabel={s.toastDismiss} />
     </div>
   );
 }
