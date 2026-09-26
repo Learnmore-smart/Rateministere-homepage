@@ -79,6 +79,13 @@ export const FEATURED: Project[] = [
   },
 ];
 
+// Late-2025 launch film for LearnX — pre-rebuild footage, kept as an artifact.
+export const LEARNX_FILM = {
+  url: "https://youtu.be/u1BplKvekjc",
+  embed: "https://www.youtube-nocookie.com/embed/u1BplKvekjc?autoplay=1&rel=0",
+  poster: "/learnx-film.jpg", // 1280×720
+} as const;
+
 // The unknown secret project — deliberately redacted everywhere.
 export const SECRET = {
   name: "██████████",

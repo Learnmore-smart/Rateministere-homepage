@@ -1,6 +1,6 @@
 # src/components/stack/StackPage.tsx (+ stack.module.css)
 
-> Last updated: 2026-09-23 (v3.2) | Protection: STANDARD
+> Last updated: 2026-09-26 (v3.4) | Protection: STANDARD
 
 ## Purpose
 `/` homepage — the "Supastack" study (STUDY 04, applied 2026-09-18), now
@@ -21,7 +21,9 @@ still wrapped in `LanguageProvider`).
   `#piano` (stats + Für Elise video card, muted `autoPlay` unless
   reduced-motion, floating sound toggle) →
   `#work` (4 cards: supastack, LearnX, OpenNotes, + a redacted hidden card —
-  click → toast) → `#archive` (10-row index from `ARCHIVE`) → `#about`
+  click → toast; then a span-2 **LearnX launch-film card** — click-to-play
+  YouTube facade, poster → `youtube-nocookie` iframe on demand) →
+  `#archive` (10-row index from `ARCHIVE`) → `#about`
   (ProtectedImage portrait, fact rows, quote, honors) → secret/`build;` band →
   `#contact` CTA → footer (socials, "Built with supastack"
   with the official 4-tile supastack mark — white TL/BR, gray TR/BL, thin
@@ -142,6 +144,15 @@ still wrapped in `LanguageProvider`).
   `transform` and still respects `transform-box: fill-box` /
   `transform-origin: bottom`. Stagger via `transition-delay` on the
   hover rules (in only — un-hover drops the delay so bars fall together).
+- **Film card (`cardFilm`)**: a `<div>` wearing `.card` — it contains a
+  real `<button>` facade, so it can't be an `<a>` like its siblings.
+  Poster is a local `/learnx-film.jpg` (1280×720 maxres pull); the click
+  swaps in `LEARNX_FILM.embed` (`youtube-nocookie.com/embed/...?autoplay=1&rel=0`)
+  so zero Google requests happen pre-click. Strings are `stack.filmTitle /
+  filmNote / filmPlay` (aria-label); year `2025` is a literal. Its
+  `grid-column: span 2` is gated behind `@media (min-width: 620px)` —
+  `auto-fit minmax(250px,1fr)` collapses to one track below that, and an
+  ungated span 2 would fabricate an implicit track → clipped card.
 - Hero has no kicker/banner (user found it ugly — removed 2026-09-23);
   the section opens straight on `.heroTitle` (`margin-top: 26px` kept as
   top air). Location info lives in `.heroMeta` under the CTAs.
@@ -176,9 +187,17 @@ still wrapped in `LanguageProvider`).
   `.quoteSmall` (the quote2 line) and stomped its serif/italic styling;
   do not re-add an adjacent-sibling rule there.
 
+## Bug Fixes
+
+| Date | Bug | Cause | Fix |
+|------|-----|-------|-----|
+| 2026-09-24 | Mobile-menu LangMenu popover clipped off-screen (white sliver + stray ✓ mid-panel) | `.langPop` is `right: 0` — right-aligned to the trigger. Correct for the header's right-edge trigger, but `.menuFoot`'s trigger is at the left edge → 150px popover landed at `left:-33px` and `.menuDialog { overflow:auto }` clipped it (scroll origin can't go negative → unreachable). Verified via getBoundingClientRect. | `.menuFoot .langPop { right:auto; left:0 }` — left-align popover to trigger (spans gutter..+150px, always in-view). Header instance unchanged. |
+
 ## Change History
 | Date | Change | Author |
 |------|--------|--------|
+| 2026-09-26 | v3.4: LearnX launch-film card added to `#work` (last grid item, span-2 ≥620px) — click-to-play facade (`/learnx-film.jpg` poster → youtube-nocookie iframe), `LEARNX_FILM` in content.ts, `film*` keys in all three JSONs | Devin |
+| 2026-09-24 | v3.3: menuFoot lang popover left-aligned (clip fix above). Menu open animation replaced — drop-from-top `menuIn` (translateY -18px + scale, ungated) → `menuFade` 200ms on dialog + `::backdrop` + staggered `menuItem` rise (nav links 40–190ms, menuFoot 220ms), all inside `no-preference` since `.stack *` reduce-kill can't reach `::backdrop`. Verified live: rects + computed animations + zh→en swap in dialog | Devin |
 | 2026-09-18 | Created; promoted to `/` (sequencer → `/sequencer`) | Devin |
 | 2026-09-18 | Fix: `:where()` element resets (btn contrast); `barDip` replaces bounce-named keyframes; drop dead `transition: height` | Devin |
 | 2026-09-23 | v3: light-first reskin follow-ups — blue accent replaces bronze/amber; mobile header fix (`.headerEnd .headerCta` specificity + `.brand` nowrap); circular view-transition theme spread; official supastack mark in footer credit | Devin |

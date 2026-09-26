@@ -18,6 +18,7 @@ import {
   Lock,
   Mail,
   Moon,
+  Play,
   Sun,
   Volume2,
   VolumeX,
@@ -35,6 +36,7 @@ import { ToastStack, useToasts } from "@/components/toast";
 import {
   ARCHIVE,
   FEATURED,
+  LEARNX_FILM,
   PIANO,
   PORTRAIT,
   PROFILE,
@@ -308,6 +310,9 @@ export default function StackPage() {
   /* the video stays `muted` in the DOM so autoplay keeps working —
      the toggle just flips the property on the element */
   const [soundOn, setSoundOn] = useState(false);
+  /* film card stays a poster facade until click — no youtube iframe
+     (or google request) exists before then */
+  const [filmPlaying, setFilmPlaying] = useState(false);
   const [theme, setTheme] = useState<Theme>("light");
   const [reduced, setReduced] = useState(false);
   const { toasts, push, dismiss } = useToasts();
@@ -764,6 +769,56 @@ export default function StackPage() {
                 </span>
               </div>
             </button>
+            {/* LearnX launch film — a div wearing the card's clothes:
+                the poster is a click-to-play facade, so no iframe can
+                nest inside an <a> like the other cards */}
+            <div
+              className={`${styles.card} ${styles.cardFilm}`}
+              data-reveal
+              style={{ transitionDelay: "280ms" }}
+            >
+              <div className={styles.cardImg}>
+                {filmPlaying ? (
+                  <iframe
+                    className={styles.filmIframe}
+                    src={LEARNX_FILM.embed}
+                    title={s.filmTitle}
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                    allowFullScreen
+                  />
+                ) : (
+                  <button
+                    type="button"
+                    className={styles.filmBtn}
+                    aria-label={s.filmPlay}
+                    title={s.filmPlay}
+                    onClick={() => setFilmPlaying(true)}
+                  >
+                    {/* eslint-disable-next-line @next/next/no-img-element */}
+                    <img src={LEARNX_FILM.poster} alt="" loading="lazy" />
+                    <span className={styles.filmPlay} aria-hidden="true">
+                      <Play size={20} fill="currentColor" />
+                    </span>
+                  </button>
+                )}
+              </div>
+              <div className={styles.cardBody}>
+                <div className={styles.cardTop}>
+                  <h3>{s.filmTitle}</h3>
+                  <span>2025</span>
+                </div>
+                <p>{s.filmNote}</p>
+                <a
+                  className={styles.cardLink}
+                  href={LEARNX_FILM.url}
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  {hostOf(LEARNX_FILM.url)}
+                  <ArrowUpRight size={13} aria-hidden="true" />
+                </a>
+              </div>
+            </div>
           </div>
         </section>
 
