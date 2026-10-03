@@ -36,7 +36,7 @@ above remain reachable by direct URL only.
 - 2026-09-18: Revamp v2 complete — user asked for a sleek redesign "using the supastack repo"; `/` is now `StackPage`, a token-driven port of supastack's Obsidian marketing dialect. Four packs (obsidian/graphite/midnight/ink) switchable in the footer, persisted to `localStorage("stack_pack")` — **user still needs to pick one**; once chosen, the picker can be removed and the pack locked.
 - Verified: lint + build green, impeccable detector clean, browser-checked EN/ZH/FR, all 4 packs, mobile menu, 320px no-overflow, focus rings, reduced-motion/no-JS fallbacks. `globals.css` body got a dark background so overscroll doesn't flash light.
 - 2026-09-17: (superseded) DAW sequencer homepage — now archived at `/sequencer`.
-- Required content per mockup: Noah's Piano Journey YouTube feature (`youtube.com/@pianowithnoah`, 12M+ views), a `build;` placeholder block, a `[Starterkit]` project entry, a redacted "secret project" teaser, a distinctive X (@Learnmore_smart) link.
+- Required content per mockup: Noah's Piano Journey YouTube feature (`youtube.com/@pianowithnoah`, 12M+ views), a `build;` placeholder block, a `[Starterkit]` project entry, a redacted "secret project" teaser, a distinctive X (@noah_z_zhang) link.
 - Photos `public/p/nz-7f3a9d.jpg` (768×1024) + `public/p/nz-4e1b8c.jpg` (1024×1024) are paragliding portraits — user wants scraping deterrence: `src/proxy.ts` blocks foreign-referer hotlinks on `/p/*`, `ProtectedImage` component kills context menu/drag, headers add nosniff. Obscured filenames intentional — do not rename to anything human-readable.
 
 ## NEVER Change

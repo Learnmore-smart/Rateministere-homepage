@@ -305,7 +305,7 @@ export default function ArcadePage() {
               transition={{ duration: 0.9, repeat: Infinity }}
               style={{ textShadow: "0 3px 0 #000" }}
             >
-              ⚠ CHALLENGER APPROACHING — @Learnmore_smart ⚠
+              ⚠ CHALLENGER APPROACHING — {SOCIALS.x.handle} ⚠
             </motion.p>
           </a>
 

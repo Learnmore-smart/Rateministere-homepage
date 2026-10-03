@@ -94,7 +94,7 @@ export default function Footer() {
                   GitHub
                 </a>
                 <a
-                  href="https://x.com/Learnmore_smart"
+                  href="https://x.com/noah_z_zhang"
                   target="_blank"
                   rel="noreferrer"
                   className="inline-flex items-center gap-2 rounded-full border border-border bg-background px-4 py-2 font-body text-[11px] uppercase tracking-[0.26em] transition-colors hover:text-text cursor-pointer"
@@ -112,7 +112,7 @@ export default function Footer() {
                   Instagram
                 </a>
                 <a
-                  href="https://www.youtube.com/@pianowithnoah?sub_confirmation=1"
+                  href="https://www.youtube.com/@pianowithnoah"
                   target="_blank"
                   rel="noreferrer"
                   className="inline-flex items-center gap-2 rounded-full border border-border bg-background px-4 py-2 font-body text-[11px] uppercase tracking-[0.26em] transition-colors hover:text-text cursor-pointer"

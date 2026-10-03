@@ -19,7 +19,7 @@ export const PROFILE = {
 
 export const PIANO = {
   channel: "Noah's Piano Journey",
-  url: "https://www.youtube.com/@pianowithnoah?sub_confirmation=1",
+  url: "https://www.youtube.com/@pianowithnoah",
   handle: "@pianowithnoah",
   views: "12,000,000+",
   viralShort: "3,000,000+",
@@ -34,7 +34,7 @@ export const PORTRAIT = {
 } as const;
 
 export const SOCIALS = {
-  x: { label: "X", handle: "@Learnmore_smart", url: "https://x.com/Learnmore_smart" },
+  x: { label: "X", handle: "@noah_z_zhang", url: "https://x.com/noah_z_zhang" },
   github: { label: "GitHub", url: "https://github.com/Learnmore-smart" },
   youtube: { label: "YouTube", url: PIANO.url },
   instagram: { label: "Instagram", url: "https://www.instagram.com/learnmore_smart/" },

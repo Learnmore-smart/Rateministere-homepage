@@ -29,7 +29,7 @@ A creative developer's own domain that also mounts satellite projects (`vercel.j
 
 Confirmed:
 
-- Required content on the homepage: Noah's Piano Journey feature (`youtube.com/@pianowithnoah`, 12M+ views, a 3M+ Short), a `build;` placeholder block, a `[Starterkit]` entry, a redacted secret-project teaser, a distinctive X link (@Learnmore_smart).
+- Required content on the homepage: Noah's Piano Journey feature (`youtube.com/@pianowithnoah`, 12M+ views, a 3M+ Short), a `build;` placeholder block, a `[Starterkit]` entry, a redacted secret-project teaser, a distinctive X link (@noah_z_zhang).
 - Real assets on hand: `/p/nz-7f3a9d.jpg` + `/p/nz-4e1b8c.jpg` portraits, `/Noah-Piano-Journey.png` channel art, `/LearnX.png` `/Overtake.png` `/OpenNotes.png` project shots, `/Videos-demo/` Für Elise tutorial + LearnX mp4s.
 - vercel.json satellite rewrites are untouchable.
 

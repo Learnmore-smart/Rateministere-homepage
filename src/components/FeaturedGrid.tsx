@@ -41,7 +41,7 @@ const BENTO_ITEMS: BentoItem[] = [
     image: "/Noah-Piano-Journey.png",
     previewType: "video",
     src: "/Videos-demo/Für Elise - Easy piano tutorial (1).mp4",
-    link: "https://www.youtube.com/@pianowithnoah?sub_confirmation=1",
+    link: "https://www.youtube.com/@pianowithnoah",
     className: "sm:col-span-2 md:col-span-2 md:row-span-1 min-h-[220px] md:min-h-[240px]",
   },
   {
@@ -492,7 +492,7 @@ function ShowcaseModal({
               <div className="flex flex-wrap gap-3">
                 {item.id === "piano" && (
                   <a
-                    href="https://www.youtube.com/@pianowithnoah?sub_confirmation=1"
+                    href="https://www.youtube.com/@pianowithnoah"
                     target="_blank"
                     rel="noreferrer"
                     className="inline-flex items-center gap-2 rounded-full border border-border bg-surface px-4 py-2 font-body text-[10px] uppercase tracking-[0.2em] text-text hover:border-text/30 transition-colors cursor-pointer"
