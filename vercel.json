@@ -91,6 +91,14 @@
     {
       "source": "/inventory-register/:path*",
       "destination": "https://inventory-register-539015434556.us-central1.run.app/inventory-register/:path*"
+    },
+    {
+      "source": "/pluto",
+      "destination": "https://pluto.rateministere.com"
+    },
+    {
+      "source": "/pluto/:path*",
+      "destination": "https://pluto.rateministere.com/:path*"
     }
   ],
   "headers": [
