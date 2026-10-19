@@ -98,7 +98,7 @@ const TRACKS: TrackDef[] = [
 const ARCHIVE_I18N: Record<string, string> = {
   wechat: "wechat-read-dashboard", "quote-cloud": "quote-cloud", "trae-echoes": "trae-echoes",
   wyt: "waste-your-tokens", enforcer: "enforcer", atlas: "hidden-china-atlas",
-  panic: "release-panic-room", rate: "rateministere", caelum: "caelum", msu: "mari-msu-2026",
+  panic: "release-panic-room", rate: "rateministere", opennotes: "opennotes", msu: "mari-msu-2026",
 };
 const REC_I18N = ["trae-annual-contributor", "trae-vol3-quality", "trae-vol4-top", "trae-community-star"];
 const ROUTE_ICONS: Record<string, BrandName> = {

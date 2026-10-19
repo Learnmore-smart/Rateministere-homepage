@@ -22,6 +22,7 @@ interface ProjectMeta {
 }
 
 const projects: ProjectMeta[] = [
+  { id: "opennotes", path: "https://learnmore-smart.github.io/OpenNotes/", year: "2025–2026", github: "https://github.com/Learnmore-smart/OpenNotes" },
   { id: "overtake", path: "https://overtake.bid", year: "2026" },
   { id: "wechat-read-dashboard", path: "/wechat-read-stats", year: "2026", github: "https://github.com/Learnmore-smart/Wechat-read-dashboard" },
   { id: "quote-cloud", path: "/quote-cloud", year: "2026", github: "https://github.com/Learnmore-smart/Quote-Cloud" },
@@ -31,7 +32,6 @@ const projects: ProjectMeta[] = [
   { id: "hidden-china-atlas", path: "/hidden-china-atlas", year: "2026", github: "https://github.com/Learnmore-smart/Hidden-China-Atlas" },
   { id: "release-panic-room", path: "/release-panic-room", year: "2026", github: "https://github.com/Learnmore-smart/Release-Panic-Room" },
   { id: "rateministere", path: "/rateministere", year: "2026", github: "https://github.com/Learnmore-smart/RateMinistere" },
-  { id: "caelum", path: "https://github.com/Learnmore-smart/Caelum", year: "2026", github: "https://github.com/Learnmore-smart/Caelum" },
   { id: "mari-msu-2026", path: "/mari-msu-2026", year: "2026", github: "https://github.com/Learnmore-smart/Mari-MSU-2026" },
   { id: "zhich-pvp", path: "https://github.com/Learnmore-smart/zhich-pvp-auto_aim_bot", year: "2025", github: "https://github.com/Learnmore-smart/zhich-pvp-auto_aim_bot" },
   { id: "code-share", path: "https://github.com/Learnmore-smart/Trae-code-share", year: "2025", github: "https://github.com/Learnmore-smart/Trae-code-share" },

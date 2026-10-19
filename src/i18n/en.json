@@ -43,6 +43,21 @@
       "heading": "Exam preparation",
       "description": "Exam preparation platform with sprint generation. Chunks files into units to study using spaced repetition and advanced techniques."
     },
+    "vorlee": {
+      "label": "Vorlee",
+      "heading": "AI Lead Outreach on X",
+      "description": "Find leads on X who need what you build. Vorlee drafts personalized first messages while keeping your accounts safe."
+    },
+    "pluto": {
+      "label": "Pluto",
+      "heading": "Discord AI Companion",
+      "description": "A self-hosted AI companion for Discord servers — answers mentions, browses the web, executes tools, and holds long-term memory."
+    },
+    "spinshare": {
+      "label": "SpinShare",
+      "heading": "Radial File Converter",
+      "description": "A Windows-native radial file converter. Drag any file, tap Shift, and convert between formats mid-gesture without uploads."
+    },
     "piano": {
       "label": "YouTube",
       "heading": "Noah's Piano Journey",
@@ -126,9 +141,21 @@
       "name": "RateMinistere",
       "description": "Voting teacher platform."
     },
-    "caelum": {
-      "name": "Caelum",
-      "description": "Windows note taking app."
+    "opennotes": {
+      "name": "OpenNotes",
+      "description": "A quiet, pen-first PDF annotation workspace for Windows."
+    },
+    "vorlee": {
+      "name": "Vorlee",
+      "description": "AI lead finding and personalized outreach on X."
+    },
+    "pluto": {
+      "name": "Pluto",
+      "description": "A self-hosted AI member for Discord servers with browser, tools and memory."
+    },
+    "spinshare": {
+      "name": "SpinShare",
+      "description": "A Windows-native radial file converter — convert files mid-drag on your PC."
     },
     "mari-msu-2026": {
       "name": "Mari MSU 2026",
@@ -253,7 +280,7 @@
     "hello": "Say hello",
     "heroTitleA": "Code in production.",
     "heroTitleB": "Piano in public.",
-    "heroLede": "Student at Marianopolis, builder of supastack, LearnX and a shelf of smaller machines — and the hands behind a piano channel twelve million views deep.",
+    "heroLede": "Student at Marianopolis, builder of supastack, LearnX, Vorlee, Pluto, SpinShare and a shelf of smaller machines — and the hands behind a piano channel twelve million views deep.",
     "heroPrimary": "Explore the work",
     "heroSecondary": "@pianowithnoah",
     "pianoKicker": "The channel",
@@ -265,13 +292,16 @@
     "pianoCaption": "Für Elise, taught like a friend would — the channel's whole philosophy in one upload.",
     "pianoSound": "Sound",
     "workTitle": "Selected work",
-    "workSub": "Three live. One still hidden.",
+    "workSub": "Five live. One still hidden.",
     "hiddenStatus": "still hidden",
     "hiddenAria": "Secret project — still hidden",
     "hiddenToast": "Still under wraps — this one launches when it's ready.",
     "filmTitle": "LearnX — the launch film",
     "filmNote": "Shot in late 2025, before the rebuild — three hand-rolled months on tape. The product has moved on; the film hasn't.",
     "filmPlay": "Play the LearnX launch film",
+    "supastackFilmTitle": "supastack — 3-minute demo",
+    "supastackFilmNote": "Is this the fastest way to build an app? A fast-paced walkthrough of auth, billing, themes and full-stack modules.",
+    "supastackFilmPlay": "Play the supastack demo video",
     "archiveTitle": "Archive",
     "archiveSub": "Ten entries — each shipped, or mounted right here.",
     "aboutTitle": "About",

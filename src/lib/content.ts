@@ -70,12 +70,28 @@ export const FEATURED: Project[] = [
     image: "/LearnX-OG.png",
   },
   {
-    id: "opennotes",
-    name: "OpenNotes",
+    id: "spinshare",
+    name: "SpinShare",
     year: "2026",
-    desc: "A quiet, pen-first PDF annotation workspace for Windows.",
-    url: "https://learnmore-smart.github.io/OpenNotes/",
-    image: "/OpenNotes.png",
+    desc: "A Windows-native radial file converter — drag any file, tap Shift, and convert between formats mid-gesture without uploads.",
+    url: "https://spinshare.dev",
+    image: "/spinshare-OG.png",
+  },
+  {
+    id: "pluto",
+    name: "Pluto",
+    year: "2026",
+    desc: "A self-hosted AI companion for Discord servers — answers mentions, browses the web, executes tools, and holds long-term memory.",
+    url: "https://pluto.rateministere.com",
+    image: "/pluto-OG.png",
+  },
+  {
+    id: "vorlee",
+    name: "Vorlee",
+    year: "2026",
+    desc: "Find leads on X who need what you build. Vorlee drafts personalized first messages while keeping your accounts safe.",
+    url: "https://vorlee.com",
+    image: "/vorlee-OG.png",
   },
 ];
 
@@ -84,6 +100,12 @@ export const LEARNX_FILM = {
   url: "https://youtu.be/u1BplKvekjc",
   embed: "https://www.youtube-nocookie.com/embed/u1BplKvekjc?autoplay=1&rel=0",
   poster: "/learnx-film.jpg", // 1280×720
+} as const;
+
+export const SUPASTACK_FILM = {
+  url: "https://youtu.be/sAB3zR1uzW4",
+  embed: "https://www.youtube-nocookie.com/embed/sAB3zR1uzW4?autoplay=1&rel=0",
+  poster: "/supastack-film.jpg", // 1280×720
 } as const;
 
 // The unknown secret project — deliberately redacted everywhere.
@@ -95,6 +117,14 @@ export const SECRET = {
 } as const;
 
 export const ARCHIVE: Project[] = [
+  {
+    id: "opennotes",
+    name: "OpenNotes",
+    year: "2025–2026",
+    desc: "A quiet, pen-first PDF annotation workspace for Windows.",
+    url: "https://learnmore-smart.github.io/OpenNotes/",
+    github: "https://github.com/Learnmore-smart/OpenNotes",
+  },
   { id: "wechat", name: "WeChat Read Dashboard", year: "2026", desc: "Personal reading statistics and visualization.", url: "/wechat-read-stats" },
   { id: "quote-cloud", name: "Quote Cloud", year: "2026", desc: "An interactive cloud of curated quotes.", url: "/quote-cloud" },
   { id: "trae-echoes", name: "Voice Ink Echoes", year: "2026", desc: "3D mood app — paints mountains with sound.", url: "/trae-echoes" },
@@ -103,7 +133,6 @@ export const ARCHIVE: Project[] = [
   { id: "atlas", name: "Hidden China Atlas", year: "2026", desc: "Interactive geographic atlas.", url: "/hidden-china-atlas" },
   { id: "panic", name: "Release Panic Room", year: "2026", desc: "A last-minute stress game.", url: "/release-panic-room" },
   { id: "rate", name: "RateMinistere", year: "2026", desc: "Teacher voting platform.", url: "/rateministere" },
-  { id: "caelum", name: "Caelum", year: "2026", desc: "Windows note-taking app.", url: "https://github.com/Learnmore-smart/Caelum" },
   { id: "msu", name: "Mari MSU 2026", year: "2026", desc: "Student portal design.", url: "/mari-msu-2026" },
 ];
 

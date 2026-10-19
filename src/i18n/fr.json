@@ -43,6 +43,21 @@
       "heading": "Préparation aux examens",
       "description": "Plateforme de préparation aux examens avec génération de sprints. Divise vos fichiers en unités pour apprendre avec la répétition espacée et des techniques avancées."
     },
+    "vorlee": {
+      "label": "Vorlee",
+      "heading": "Prospection IA sur X",
+      "description": "Trouve des prospects sur X qui ont besoin de vos solutions. Vorlee rédige un premier message personnalisé tout en protégeant vos comptes."
+    },
+    "pluto": {
+      "label": "Pluto",
+      "heading": "Compagnon IA Discord",
+      "description": "Un compagnon IA auto-hébergé pour serveurs Discord — répond aux mentions, navigue sur le web, exécute des outils et retient la mémoire."
+    },
+    "spinshare": {
+      "label": "SpinShare",
+      "heading": "Convertisseur radial de fichiers",
+      "description": "Convertisseur radial natif pour Windows. Glissez un fichier, appuyez sur Maj et convertissez sans quitter le geste ni téléverser."
+    },
     "piano": {
       "label": "YouTube",
       "heading": "Noah's Piano Journey",
@@ -126,9 +141,21 @@
       "name": "RateMinistere",
       "description": "Plateforme de vote pour enseignants."
     },
-    "caelum": {
-      "name": "Caelum",
-      "description": "Application de prise de notes Windows."
+    "opennotes": {
+      "name": "OpenNotes",
+      "description": "Un espace d'annotation PDF au stylet pour Windows."
+    },
+    "vorlee": {
+      "name": "Vorlee",
+      "description": "Prospection et prise de contact personnalisée par IA sur X."
+    },
+    "pluto": {
+      "name": "Pluto",
+      "description": "Un membre IA auto-hébergé pour serveurs Discord avec navigateur, outils et mémoire."
+    },
+    "spinshare": {
+      "name": "SpinShare",
+      "description": "Convertisseur radial de fichiers sous Windows — convertissez vos fichiers pendant le glisser-déposer."
     },
     "mari-msu-2026": {
       "name": "Mari MSU 2026",
@@ -253,7 +280,7 @@
     "hello": "Dire bonjour",
     "heroTitleA": "Du code en production.",
     "heroTitleB": "Du piano en public.",
-    "heroLede": "Étudiant à Marianopolis, auteur de supastack, LearnX et d'une étagère de petites machines — et les mains derrière une chaîne piano vue plus de douze millions de fois.",
+    "heroLede": "Étudiant à Marianopolis, auteur de supastack, LearnX, Vorlee, Pluto, SpinShare et d'une étagère de petites machines — et les mains derrière une chaîne piano vue plus de douze millions de fois.",
     "heroPrimary": "Voir les projets",
     "heroSecondary": "@pianowithnoah",
     "pianoKicker": "La chaîne",
@@ -265,13 +292,16 @@
     "pianoCaption": "Lettre à Élise, enseignée comme un ami le ferait — toute la philosophie de la chaîne en une vidéo.",
     "pianoSound": "Son",
     "workTitle": "Travaux choisis",
-    "workSub": "Trois en ligne. Un toujours secret.",
+    "workSub": "Cinq en ligne. Un toujours secret.",
     "hiddenStatus": "toujours caché",
     "hiddenAria": "Projet secret — toujours caché",
     "hiddenToast": "Toujours sous scellés — il sortira quand il sera prêt.",
     "filmTitle": "LearnX — le film de lancement",
     "filmNote": "Tourné fin 2025, avant la refonte — trois mois de travail artisanal. Le produit a avancé ; le film est resté.",
     "filmPlay": "Lire le film de lancement LearnX",
+    "supastackFilmTitle": "supastack — démo en 3 minutes",
+    "supastackFilmNote": "Est-ce le moyen le plus rapide de concevoir une application ? Démo complète — auth, facturation, thèmes et modules.",
+    "supastackFilmPlay": "Lire la vidéo de démonstration supastack",
     "archiveTitle": "Archive",
     "archiveSub": "Dix entrées — chacune livrée, ou montée ici même.",
     "aboutTitle": "À propos",

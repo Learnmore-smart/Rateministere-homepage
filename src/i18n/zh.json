@@ -43,6 +43,21 @@
       "heading": "考试备战",
       "description": "带有冲刺生成功能的考试备战平台。将你的文件拆分为知识单元，让你可以通过间隔重复等高效学习技巧进行备战。"
     },
+    "vorlee": {
+      "label": "Vorlee",
+      "heading": "X 平台智能拓客",
+      "description": "在 X 上寻找潜在客户并起草高转化首条私信，全流程保障账号安全。"
+    },
+    "pluto": {
+      "label": "Pluto",
+      "heading": "Discord 专属 AI 成员",
+      "description": "运行在自己电脑上的 Discord AI 成员：被 @ 或回复时响应，支持沙盒网页浏览、图表生成与长期服务器记忆。"
+    },
+    "spinshare": {
+      "label": "SpinShare",
+      "heading": "Windows 径向拖拽转换器",
+      "description": "Windows 原生径向文件转换器。拖动任意文件轻点 Shift 呼出轮盘，不离开手势即刻在本地完成格式转换。"
+    },
     "piano": {
       "label": "YouTube",
       "heading": "Noah's Piano Journey",
@@ -126,9 +141,21 @@
       "name": "RateMinistere",
       "description": "教师投票平台。"
     },
-    "caelum": {
-      "name": "Caelum",
-      "description": "Windows 笔记应用程序。"
+    "opennotes": {
+      "name": "OpenNotes",
+      "description": "专为 Windows 设计的手写笔优先 PDF 批注工作区。"
+    },
+    "vorlee": {
+      "name": "Vorlee",
+      "description": "X 平台潜在客户挖掘与个性化触达工具。"
+    },
+    "pluto": {
+      "name": "Pluto",
+      "description": "具备网页浏览、实用工具与记忆能力的自托管 Discord AI 成员。"
+    },
+    "spinshare": {
+      "name": "SpinShare",
+      "description": "Windows 原生径向文件转换器——拖拽过程中在本地完成文件格式转换。"
     },
     "mari-msu-2026": {
       "name": "Mari MSU 2026",
@@ -253,7 +280,7 @@
     "hello": "打个招呼",
     "heroTitleA": "代码，跑在生产环境。",
     "heroTitleB": "钢琴，弹在众人面前。",
-    "heroLede": "Marianopolis 在读，做了 supastack、LearnX 和一架子小工具；也是一个 1200 万播放钢琴频道背后的人。",
+    "heroLede": "Marianopolis 在读，做了 supastack、LearnX、Vorlee、Pluto、SpinShare 和一架子小工具；也是一个 1200 万播放钢琴频道背后的人。",
     "heroPrimary": "看看作品",
     "heroSecondary": "@pianowithnoah",
     "pianoKicker": "频道",
@@ -265,13 +292,16 @@
     "pianoCaption": "《致爱丽丝》，像朋友教你那样讲——频道的全部理念都在这一条里。",
     "pianoSound": "声音",
     "workTitle": "精选作品",
-    "workSub": "三个已上线，一个仍保密。",
+    "workSub": "五个已上线，一个仍保密。",
     "hiddenStatus": "仍保密",
     "hiddenAria": "秘密项目——仍保密",
     "hiddenToast": "仍在保密中——准备好了自然会上线。",
     "filmTitle": "LearnX · 宣传片",
     "filmNote": "摄于 2025 年底、重写之前——纯手工搓了三个月。产品一直在往前走，这卷影像留在原地。",
     "filmPlay": "播放 LearnX 宣传片",
+    "supastackFilmTitle": "supastack——3分钟实机演示",
+    "supastackFilmNote": "最快构建应用的捷径？实机上手演示——认证、计费、主题与全栈模块一气呵成。",
+    "supastackFilmPlay": "播放 supastack 演示视频",
     "archiveTitle": "归档",
     "archiveSub": "十个条目——个个上线，或就挂载在本站。",
     "aboutTitle": "关于",

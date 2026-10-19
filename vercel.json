@@ -99,6 +99,22 @@
     {
       "source": "/pluto/:path*",
       "destination": "https://pluto.rateministere.com/:path*"
+    },
+    {
+      "source": "/vorlee",
+      "destination": "https://vorlee.com"
+    },
+    {
+      "source": "/vorlee/:path*",
+      "destination": "https://vorlee.com/:path*"
+    },
+    {
+      "source": "/spinshare",
+      "destination": "https://spinshare.dev"
+    },
+    {
+      "source": "/spinshare/:path*",
+      "destination": "https://spinshare.dev/:path*"
     }
   ],
   "headers": [

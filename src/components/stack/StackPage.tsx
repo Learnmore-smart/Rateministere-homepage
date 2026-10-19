@@ -37,6 +37,7 @@ import {
   ARCHIVE,
   FEATURED,
   LEARNX_FILM,
+  SUPASTACK_FILM,
   PIANO,
   PORTRAIT,
   PROFILE,
@@ -48,6 +49,7 @@ import styles from "./stack.module.css";
 
 /* archive clip id → t.projects key (same map the sequencer uses) */
 const ARCHIVE_I18N: Record<string, string> = {
+  opennotes: "opennotes",
   wechat: "wechat-read-dashboard",
   "quote-cloud": "quote-cloud",
   "trae-echoes": "trae-echoes",
@@ -56,7 +58,6 @@ const ARCHIVE_I18N: Record<string, string> = {
   atlas: "hidden-china-atlas",
   panic: "release-panic-room",
   rate: "rateministere",
-  caelum: "caelum",
   msu: "mari-msu-2026",
 };
 const REC_I18N = [
@@ -310,9 +311,9 @@ export default function StackPage() {
   /* the video stays `muted` in the DOM so autoplay keeps working —
      the toggle just flips the property on the element */
   const [soundOn, setSoundOn] = useState(false);
-  /* film card stays a poster facade until click — no youtube iframe
+  /* film cards stay poster facades until click — no youtube iframe
      (or google request) exists before then */
-  const [filmPlaying, setFilmPlaying] = useState(false);
+  const [playingFilm, setPlayingFilm] = useState<"learnx" | "supastack" | null>(null);
   const [theme, setTheme] = useState<Theme>("light");
   const [reduced, setReduced] = useState(false);
   const { toasts, push, dismiss } = useToasts();
@@ -738,7 +739,7 @@ export default function StackPage() {
                     <h3>{p.name}</h3>
                     <span>{p.year}</span>
                   </div>
-                  <p>{featuredDesc(p.id)}</p>
+                  <p>{featuredDesc(p.id) || p.desc}</p>
                   <span className={styles.cardLink}>
                     {hostOf(p.url)}
                     <ArrowUpRight size={13} aria-hidden="true" />
@@ -751,7 +752,7 @@ export default function StackPage() {
               className={`${styles.card} ${styles.cardGhost} ${styles.cardSecret}`}
               aria-label={s.hiddenAria}
               data-reveal
-              style={{ transitionDelay: "210ms" }}
+              style={{ transitionDelay: `${FEATURED.length * 70}ms` }}
               onClick={() => push(s.hiddenToast)}
             >
               <div className={styles.cardImg}>
@@ -775,10 +776,10 @@ export default function StackPage() {
             <div
               className={`${styles.card} ${styles.cardFilm}`}
               data-reveal
-              style={{ transitionDelay: "280ms" }}
+              style={{ transitionDelay: `${(FEATURED.length + 1) * 70}ms` }}
             >
               <div className={styles.cardImg}>
-                {filmPlaying ? (
+                {playingFilm === "learnx" ? (
                   <iframe
                     className={styles.filmIframe}
                     src={LEARNX_FILM.embed}
@@ -792,7 +793,7 @@ export default function StackPage() {
                     className={styles.filmBtn}
                     aria-label={s.filmPlay}
                     title={s.filmPlay}
-                    onClick={() => setFilmPlaying(true)}
+                    onClick={() => setPlayingFilm("learnx")}
                   >
                     {/* eslint-disable-next-line @next/next/no-img-element */}
                     <img src={LEARNX_FILM.poster} alt="" loading="lazy" />
@@ -815,6 +816,54 @@ export default function StackPage() {
                   rel="noreferrer"
                 >
                   {hostOf(LEARNX_FILM.url)}
+                  <ArrowUpRight size={13} aria-hidden="true" />
+                </a>
+              </div>
+            </div>
+            {/* supastack demo film */}
+            <div
+              className={`${styles.card} ${styles.cardFilm}`}
+              data-reveal
+              style={{ transitionDelay: `${(FEATURED.length + 2) * 70}ms` }}
+            >
+              <div className={styles.cardImg}>
+                {playingFilm === "supastack" ? (
+                  <iframe
+                    className={styles.filmIframe}
+                    src={SUPASTACK_FILM.embed}
+                    title={s.supastackFilmTitle}
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                    allowFullScreen
+                  />
+                ) : (
+                  <button
+                    type="button"
+                    className={styles.filmBtn}
+                    aria-label={s.supastackFilmPlay}
+                    title={s.supastackFilmPlay}
+                    onClick={() => setPlayingFilm("supastack")}
+                  >
+                    {/* eslint-disable-next-line @next/next/no-img-element */}
+                    <img src={SUPASTACK_FILM.poster} alt="" loading="lazy" />
+                    <span className={styles.filmPlay} aria-hidden="true">
+                      <Play size={20} fill="currentColor" />
+                    </span>
+                  </button>
+                )}
+              </div>
+              <div className={styles.cardBody}>
+                <div className={styles.cardTop}>
+                  <h3>{s.supastackFilmTitle}</h3>
+                  <span>2026</span>
+                </div>
+                <p>{s.supastackFilmNote}</p>
+                <a
+                  className={styles.cardLink}
+                  href={SUPASTACK_FILM.url}
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  {hostOf(SUPASTACK_FILM.url)}
                   <ArrowUpRight size={13} aria-hidden="true" />
                 </a>
               </div>
