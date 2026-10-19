@@ -1074,7 +1074,7 @@
   border-color: var(--border-strong);
 }
 .cardImg {
-  aspect-ratio: 16 / 10;
+  aspect-ratio: 1200 / 630;
   overflow: hidden;
   border-bottom: 1px solid var(--border);
   background: var(--section);
