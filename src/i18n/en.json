@@ -48,6 +48,11 @@
       "heading": "AI Lead Outreach on X",
       "description": "Find leads on X who need what you build. Vorlee drafts personalized first messages while keeping your accounts safe."
     },
+    "fklearn": {
+      "label": "FkLearn",
+      "heading": "Student Tutoring Marketplace",
+      "description": "A student tutoring marketplace — affordable tutoring for students. Waitlist now open."
+    },
     "pluto": {
       "label": "Pluto",
       "heading": "Discord AI Companion",
@@ -144,6 +149,14 @@
     "opennotes": {
       "name": "OpenNotes",
       "description": "A quiet, pen-first PDF annotation workspace for Windows."
+    },
+    "novapuraai": {
+      "name": "NovapuraAI",
+      "description": "OpenAI-compatible API router and gateway."
+    },
+    "file-guardian": {
+      "name": "File Guardian",
+      "description": "An agent skill that makes AI write documentation before writing code."
     },
     "vorlee": {
       "name": "Vorlee",
@@ -280,7 +293,7 @@
     "hello": "Say hello",
     "heroTitleA": "Code in production.",
     "heroTitleB": "Piano in public.",
-    "heroLede": "Student at Marianopolis, builder of supastack, LearnX, Vorlee, Pluto, SpinShare and a shelf of smaller machines — and the hands behind a piano channel twelve million views deep.",
+    "heroLede": "Student at Marianopolis, builder of supastack, LearnX, Vorlee, Pluto, SpinShare, FkLearn and a shelf of smaller machines — and the hands behind a piano channel twelve million views deep.",
     "heroPrimary": "Explore the work",
     "heroSecondary": "@pianowithnoah",
     "pianoKicker": "The channel",
@@ -292,7 +305,7 @@
     "pianoCaption": "Für Elise, taught like a friend would — the channel's whole philosophy in one upload.",
     "pianoSound": "Sound",
     "workTitle": "Selected work",
-    "workSub": "Five live. One still hidden.",
+    "workSub": "Six live. One still hidden.",
     "hiddenStatus": "still hidden",
     "hiddenAria": "Secret project — still hidden",
     "hiddenToast": "Still under wraps — this one launches when it's ready.",
@@ -303,7 +316,7 @@
     "supastackFilmNote": "Is this the fastest way to build an app? A fast-paced walkthrough of auth, billing, themes and full-stack modules.",
     "supastackFilmPlay": "Play the supastack demo video",
     "archiveTitle": "Archive",
-    "archiveSub": "Ten entries — each shipped, or mounted right here.",
+    "archiveSub": "Twelve entries — each shipped, or mounted right here.",
     "aboutTitle": "About",
     "aboutBio": "Builds at altitude, ships on descent. Studies at Marianopolis College in Montreal; fluent in English, French and Mandarin, conversational in Spanish. INTJ — systems over noise.",
     "factLocation": "Location",

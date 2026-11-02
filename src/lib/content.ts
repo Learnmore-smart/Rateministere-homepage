@@ -93,6 +93,14 @@ export const FEATURED: Project[] = [
     url: "https://vorlee.com",
     image: "/vorlee-OG.png",
   },
+  {
+    id: "fklearn",
+    name: "FkLearn",
+    year: "2026",
+    desc: "A student tutoring marketplace — affordable tutoring for students. Waitlist now open.",
+    url: "https://fklearn.com",
+    image: "/fklearn-OG.png",
+  },
 ];
 
 // Late-2025 launch film for LearnX — pre-rebuild footage, kept as an artifact.
@@ -125,6 +133,22 @@ export const ARCHIVE: Project[] = [
     url: "https://learnmore-smart.github.io/OpenNotes/",
     github: "https://github.com/Learnmore-smart/OpenNotes",
   },
+  {
+    id: "novapuraai",
+    name: "NovapuraAI",
+    year: "2026",
+    desc: "OpenAI-compatible API router and gateway.",
+    url: "https://novapuraai.com",
+    github: "https://github.com/Learnmore-smart/novapuraai-router",
+  },
+  {
+    id: "file-guardian",
+    name: "File Guardian",
+    year: "2026",
+    desc: "Agent skill that makes AI write documentation before writing code.",
+    url: "https://github.com/Learnmore-smart/file-guardian-skill",
+    github: "https://github.com/Learnmore-smart/file-guardian-skill",
+  },
   { id: "wechat", name: "WeChat Read Dashboard", year: "2026", desc: "Personal reading statistics and visualization.", url: "/wechat-read-stats" },
   { id: "quote-cloud", name: "Quote Cloud", year: "2026", desc: "An interactive cloud of curated quotes.", url: "/quote-cloud" },
   { id: "trae-echoes", name: "Voice Ink Echoes", year: "2026", desc: "3D mood app — paints mountains with sound.", url: "/trae-echoes" },
@@ -132,7 +156,7 @@ export const ARCHIVE: Project[] = [
   { id: "enforcer", name: "Enforcer", year: "2026", desc: "Focus app built in 24 h at MariHacks.", url: "https://www.rateministere.com/Enforcer" },
   { id: "atlas", name: "Hidden China Atlas", year: "2026", desc: "Interactive geographic atlas.", url: "/hidden-china-atlas" },
   { id: "panic", name: "Release Panic Room", year: "2026", desc: "A last-minute stress game.", url: "/release-panic-room" },
-  { id: "rate", name: "RateMinistere", year: "2026", desc: "Teacher voting platform.", url: "/rateministere" },
+  { id: "rate", name: "RateMinistere", year: "2025", desc: "Teacher voting platform.", url: "/rateministere" },
   { id: "msu", name: "Mari MSU 2026", year: "2026", desc: "Student portal design.", url: "/mari-msu-2026" },
 ];
 

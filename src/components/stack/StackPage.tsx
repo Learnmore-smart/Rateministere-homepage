@@ -50,6 +50,8 @@ import styles from "./stack.module.css";
 /* archive clip id → t.projects key (same map the sequencer uses) */
 const ARCHIVE_I18N: Record<string, string> = {
   opennotes: "opennotes",
+  novapuraai: "novapuraai",
+  "file-guardian": "file-guardian",
   wechat: "wechat-read-dashboard",
   "quote-cloud": "quote-cloud",
   "trae-echoes": "trae-echoes",

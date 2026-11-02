@@ -16,7 +16,7 @@
 
 ## SequencerPage v4 — archived at `/sequencer` (was homepage until the stack redesign), i18n + themes
 
-Nine tracks (`TRACKS` const, order = default layout): `OPERATOR`, `PIANO_JOURNEY`, `WORKS`, `SKETCHES` (all 10 ARCHIVE projects as clips), `KIT` ([STARTERKIT]), `██████` (locked secret — popover shows only "building — it's secret"), `SIGNALS`, `ROUTES` (socials w/ brand icons), `BUILD.LOG`.
+Nine tracks (`TRACKS` const, order = default layout): `OPERATOR`, `PIANO_JOURNEY`, `WORKS`, `SKETCHES` (all 12 ARCHIVE projects as clips — spacing `1 + i*8` so the last clip ends ≤97%; `9.5` overflowed the lane past 10 clips), `KIT` ([STARTERKIT]), `██████` (locked secret — popover shows only "building — it's secret"), `SIGNALS`, `ROUTES` (socials w/ brand icons), `BUILD.LOG`.
 
 **v4 changes (user-requested):**
 - **Clip drag**: every clip draggable horizontally in its lane (pointer capture + threshold in `TrackRow.clipDown/Move/Up`); live `clipPos[clipId]` % state; drop snaps to bar grid. In-memory only — refresh resets. Locked track can't drag.
@@ -69,3 +69,4 @@ Nine tracks (`TRACKS` const, order = default layout): `OPERATOR`, `PIANO_JOURNEY
 | 2026-09-17 | v4 per user feedback: clip drag replaces click-to-stamp; bottom inspector → anchored ClipPopover w/ cached color+pitch pickers; i18n (LanguageProvider + t.seq, en/zh/fr); light mode (.seq.light vars + seq_theme); brand icons (icons/brands.tsx); secret clip = "building — it's secret" only | Devin |
 | 2026-09-17 | v4.1: clip collision bounds (no overlap); popover moved to lane level + transform fix (page overflow bug); +4 pitches & waveform picker (sine/tri/sqr/saw cached as style.w); lang button removed (auto-detect only); track/clip labels localized via t.seq.trackNames/clipLabels + t.projects names; PIANO handle → @pianowithnoah | Devin |
 | 2026-09-23 | `/concepts` chooser deleted (Chooser.tsx + route + `.ai` mirror removed); all study routes stay live but unlinked | Devin |
+| 2026-11-01 | Sequencer SKETCHES clip spacing 9.5→8 (12 ARCHIVE clips fit in-lane); `ARCHIVE_I18N` +novapuraai/file-guardian | Devin |

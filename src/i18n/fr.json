@@ -48,6 +48,11 @@
       "heading": "Prospection IA sur X",
       "description": "Trouve des prospects sur X qui ont besoin de vos solutions. Vorlee rédige un premier message personnalisé tout en protégeant vos comptes."
     },
+    "fklearn": {
+      "label": "FkLearn",
+      "heading": "Plateforme de tutorat",
+      "description": "Une place de marché de tutorat pour étudiants — des cours abordables. Liste d'attente ouverte."
+    },
     "pluto": {
       "label": "Pluto",
       "heading": "Compagnon IA Discord",
@@ -144,6 +149,14 @@
     "opennotes": {
       "name": "OpenNotes",
       "description": "Un espace d'annotation PDF au stylet pour Windows."
+    },
+    "novapuraai": {
+      "name": "NovapuraAI",
+      "description": "Routeur et passerelle d'API compatible OpenAI."
+    },
+    "file-guardian": {
+      "name": "File Guardian",
+      "description": "Un skill qui force l'IA à rédiger la documentation avant le code."
     },
     "vorlee": {
       "name": "Vorlee",
@@ -280,7 +293,7 @@
     "hello": "Dire bonjour",
     "heroTitleA": "Du code en production.",
     "heroTitleB": "Du piano en public.",
-    "heroLede": "Étudiant à Marianopolis, auteur de supastack, LearnX, Vorlee, Pluto, SpinShare et d'une étagère de petites machines — et les mains derrière une chaîne piano vue plus de douze millions de fois.",
+    "heroLede": "Étudiant à Marianopolis, auteur de supastack, LearnX, Vorlee, Pluto, SpinShare, FkLearn et d'une étagère de petites machines — et les mains derrière une chaîne piano vue plus de douze millions de fois.",
     "heroPrimary": "Voir les projets",
     "heroSecondary": "@pianowithnoah",
     "pianoKicker": "La chaîne",
@@ -292,7 +305,7 @@
     "pianoCaption": "Lettre à Élise, enseignée comme un ami le ferait — toute la philosophie de la chaîne en une vidéo.",
     "pianoSound": "Son",
     "workTitle": "Travaux choisis",
-    "workSub": "Cinq en ligne. Un toujours secret.",
+    "workSub": "Six en ligne. Un toujours secret.",
     "hiddenStatus": "toujours caché",
     "hiddenAria": "Projet secret — toujours caché",
     "hiddenToast": "Toujours sous scellés — il sortira quand il sera prêt.",
@@ -303,7 +316,7 @@
     "supastackFilmNote": "Est-ce le moyen le plus rapide de concevoir une application ? Démo complète — auth, facturation, thèmes et modules.",
     "supastackFilmPlay": "Lire la vidéo de démonstration supastack",
     "archiveTitle": "Archive",
-    "archiveSub": "Dix entrées — chacune livrée, ou montée ici même.",
+    "archiveSub": "Douze entrées — chacune livrée, ou montée ici même.",
     "aboutTitle": "À propos",
     "aboutBio": "Construit en altitude, livre dans la descente. Étudie à Marianopolis College à Montréal ; anglais, français et mandarin courants, espagnol conversationnel. INTJ — des systèmes plutôt que du bruit.",
     "factLocation": "Lieu",

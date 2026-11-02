@@ -48,6 +48,11 @@
       "heading": "X 平台智能拓客",
       "description": "在 X 上寻找潜在客户并起草高转化首条私信，全流程保障账号安全。"
     },
+    "fklearn": {
+      "label": "FkLearn",
+      "heading": "学生辅导平台",
+      "description": "面向学生的平价辅导市集——为学生对接辅导老师。候补名单现已开放。"
+    },
     "pluto": {
       "label": "Pluto",
       "heading": "Discord 专属 AI 成员",
@@ -144,6 +149,14 @@
     "opennotes": {
       "name": "OpenNotes",
       "description": "专为 Windows 设计的手写笔优先 PDF 批注工作区。"
+    },
+    "novapuraai": {
+      "name": "NovapuraAI",
+      "description": "OpenAI 兼容的 API 路由与网关。"
+    },
+    "file-guardian": {
+      "name": "File Guardian",
+      "description": "让 AI 先写文档、再写代码的 agent 技能。"
     },
     "vorlee": {
       "name": "Vorlee",
@@ -280,7 +293,7 @@
     "hello": "打个招呼",
     "heroTitleA": "代码，跑在生产环境。",
     "heroTitleB": "钢琴，弹在众人面前。",
-    "heroLede": "Marianopolis 在读，做了 supastack、LearnX、Vorlee、Pluto、SpinShare 和一架子小工具；也是一个 1200 万播放钢琴频道背后的人。",
+    "heroLede": "Marianopolis 在读，做了 supastack、LearnX、Vorlee、Pluto、SpinShare、FkLearn 和一架子小工具；也是一个 1200 万播放钢琴频道背后的人。",
     "heroPrimary": "看看作品",
     "heroSecondary": "@pianowithnoah",
     "pianoKicker": "频道",
@@ -292,7 +305,7 @@
     "pianoCaption": "《致爱丽丝》，像朋友教你那样讲——频道的全部理念都在这一条里。",
     "pianoSound": "声音",
     "workTitle": "精选作品",
-    "workSub": "五个已上线，一个仍保密。",
+    "workSub": "六个已上线，一个仍保密。",
     "hiddenStatus": "仍保密",
     "hiddenAria": "秘密项目——仍保密",
     "hiddenToast": "仍在保密中——准备好了自然会上线。",
@@ -303,7 +316,7 @@
     "supastackFilmNote": "最快构建应用的捷径？实机上手演示——认证、计费、主题与全栈模块一气呵成。",
     "supastackFilmPlay": "播放 supastack 演示视频",
     "archiveTitle": "归档",
-    "archiveSub": "十个条目——个个上线，或就挂载在本站。",
+    "archiveSub": "十二个条目——个个上线，或就挂载在本站。",
     "aboutTitle": "关于",
     "aboutBio": "高处构思，下坡交付。就读于蒙特利尔 Marianopolis College；英语、法语、中文流利，西班牙语能聊。INTJ——要系统，不要噪音。",
     "factLocation": "位置",

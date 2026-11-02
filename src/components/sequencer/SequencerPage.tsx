@@ -60,7 +60,7 @@ const TRACKS: TrackDef[] = [
   },
   {
     id: "sketches", name: "SKETCHES", color: "#3f8e7d", freq: 392.0,
-    clips: ARCHIVE.map((a, i) => ({ id: a.id, label: a.name.toLowerCase().replace(/\s+/g, "-"), at: 1 + i * 9.5, w: 8 })),
+    clips: ARCHIVE.map((a, i) => ({ id: a.id, label: a.name.toLowerCase().replace(/\s+/g, "-"), at: 1 + i * 8, w: 8 })),
   },
   {
     id: "kit", name: "STACK", color: "#efb779", freq: 440.0,
@@ -99,6 +99,7 @@ const ARCHIVE_I18N: Record<string, string> = {
   wechat: "wechat-read-dashboard", "quote-cloud": "quote-cloud", "trae-echoes": "trae-echoes",
   wyt: "waste-your-tokens", enforcer: "enforcer", atlas: "hidden-china-atlas",
   panic: "release-panic-room", rate: "rateministere", opennotes: "opennotes", msu: "mari-msu-2026",
+  novapuraai: "novapuraai", "file-guardian": "file-guardian",
 };
 const REC_I18N = ["trae-annual-contributor", "trae-vol3-quality", "trae-vol4-top", "trae-community-star"];
 const ROUTE_ICONS: Record<string, BrandName> = {

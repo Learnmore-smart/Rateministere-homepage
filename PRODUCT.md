@@ -12,7 +12,7 @@ Visitors to `rateministere.com` — recruiters, collaborators, followers of Noah
 
 ## Product Purpose
 
-Noah Zixin Zhang's personal homepage. It proves two things at once: he ships real software (supastack, LearnX, Vorlee, Pluto, SpinShare, OpenNotes, a ten-entry archive) and he plays in public (a piano channel with 12M+ views). Success is a visitor leaving with a accurate sense of the person — or clicking through to a project or the YouTube channel.
+Noah Zixin Zhang's personal homepage. It proves two things at once: he ships real software (supastack, LearnX, Vorlee, FkLearn, Pluto, SpinShare, OpenNotes, a twelve-entry archive) and he plays in public (a piano channel with 12M+ views). Success is a visitor leaving with a accurate sense of the person — or clicking through to a project or the YouTube channel.
  
  ## Positioning
  
@@ -30,7 +30,7 @@ Noah Zixin Zhang's personal homepage. It proves two things at once: he ships rea
  Confirmed:
  
  - Required content on the homepage: Noah's Piano Journey feature (`youtube.com/@pianowithnoah`, 12M+ views, a 3M+ Short), a `build;` placeholder block, a `[Starterkit]` entry, a redacted secret-project teaser, a distinctive X link (@noah_z_zhang).
- - Real assets on hand: `/p/nz-7f3a9d.jpg` + `/p/nz-4e1b8c.jpg` portraits, `/Noah-Piano-Journey.png` channel art, `/supastack-OG.png`, `/LearnX-OG.png`, `/vorlee-OG.png`, `/pluto-OG.png`, `/spinshare-OG.png`, `/OpenNotes.png` project shots, `/supastack-film.jpg` + `/learnx-film.jpg` video posters, `/Videos-demo/` Für Elise tutorial + LearnX mp4s.
+ - Real assets on hand: `/p/nz-7f3a9d.jpg` + `/p/nz-4e1b8c.jpg` portraits, `/Noah-Piano-Journey.png` channel art, `/supastack-OG.png`, `/LearnX-OG.png`, `/vorlee-OG.png`, `/fklearn-OG.png`, `/pluto-OG.png`, `/spinshare-OG.png`, `/OpenNotes.png` project shots, `/supastack-film.jpg` + `/learnx-film.jpg` video posters, `/Videos-demo/` Für Elise tutorial + LearnX mp4s.
  - vercel.json satellite rewrites are untouchable.
 
 ## Brand Commitments

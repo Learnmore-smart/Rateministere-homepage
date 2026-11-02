@@ -1,6 +1,6 @@
 # src/components/stack/StackPage.tsx (+ stack.module.css)
 
-> Last updated: 2026-09-26 (v3.4) | Protection: STANDARD
+> Last updated: 2026-11-01 (v3.5) | Protection: STANDARD
 
 ## Purpose
 `/` homepage — the "Supastack" study (STUDY 04, applied 2026-09-18), now
@@ -20,10 +20,11 @@ still wrapped in `LanguageProvider`).
   (`#hero-title`) →
   `#piano` (stats + Für Elise video card, muted `autoPlay` unless
   reduced-motion, floating sound toggle) →
-  `#work` (4 cards: supastack, LearnX, OpenNotes, + a redacted hidden card —
+  `#work` (6 cards from `FEATURED`: supastack, LearnX, SpinShare, Pluto,
+  Vorlee, FkLearn, + a redacted hidden card —
   click → toast; then a span-2 **LearnX launch-film card** — click-to-play
   YouTube facade, poster → `youtube-nocookie` iframe on demand) →
-  `#archive` (10-row index from `ARCHIVE`) → `#about`
+  `#archive` (12-row index from `ARCHIVE`) → `#about`
   (ProtectedImage portrait, fact rows, quote, honors) → secret/`build;` band →
   `#contact` CTA → footer (socials, "Built with supastack"
   with the official 4-tile supastack mark — white TL/BR, gray TR/BL, thin
@@ -197,6 +198,7 @@ still wrapped in `LanguageProvider`).
 | Date | Change | Author |
 |------|--------|--------|
 | 2026-09-26 | v3.4: LearnX launch-film card added to `#work` (last grid item, span-2 ≥620px) — click-to-play facade (`/learnx-film.jpg` poster → youtube-nocookie iframe), `LEARNX_FILM` in content.ts, `film*` keys in all three JSONs | Devin |
+| 2026-11-01 | v3.5: `#work` 5→6 featured cards (FkLearn added after Vorlee in `FEATURED`); `#archive` 10→12 rows (novapuraai, file-guardian); `ARCHIVE_I18N` gained the two new id→key entries; `workSub`/`archiveSub` counts updated in all three JSONs; heroLede + page.tsx meta now name FkLearn | Devin |
 | 2026-09-24 | v3.3: menuFoot lang popover left-aligned (clip fix above). Menu open animation replaced — drop-from-top `menuIn` (translateY -18px + scale, ungated) → `menuFade` 200ms on dialog + `::backdrop` + staggered `menuItem` rise (nav links 40–190ms, menuFoot 220ms), all inside `no-preference` since `.stack *` reduce-kill can't reach `::backdrop`. Verified live: rects + computed animations + zh→en swap in dialog | Devin |
 | 2026-09-18 | Created; promoted to `/` (sequencer → `/sequencer`) | Devin |
 | 2026-09-18 | Fix: `:where()` element resets (btn contrast); `barDip` replaces bounce-named keyframes; drop dead `transition: height` | Devin |
