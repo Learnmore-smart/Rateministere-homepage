@@ -58,6 +58,11 @@
       "heading": "Compagnon IA Discord",
       "description": "Un compagnon IA auto-hébergé pour serveurs Discord — répond aux mentions, navigue sur le web, exécute des outils et retient la mémoire."
     },
+    "cairn": {
+      "label": "Cairn",
+      "heading": "Radar mémoire et coffre NTFS",
+      "description": "Radar mémoire Windows, carte de l'espace disque, coffre anti-suppression NTFS et sauvegarde cloud unidirectionnelle."
+    },
     "spinshare": {
       "label": "SpinShare",
       "heading": "Convertisseur radial de fichiers",
@@ -293,7 +298,7 @@
     "hello": "Dire bonjour",
     "heroTitleA": "Du code en production.",
     "heroTitleB": "Du piano en public.",
-    "heroLede": "Étudiant à Marianopolis, auteur de supastack, LearnX, Vorlee, Pluto, SpinShare, FkLearn et d'une étagère de petites machines — et les mains derrière une chaîne piano vue plus de douze millions de fois.",
+    "heroLede": "Étudiant à Marianopolis, auteur de supastack, LearnX, Cairn, Vorlee, Pluto, SpinShare, FkLearn et d'une étagère de petites machines — et les mains derrière une chaîne piano vue plus de douze millions de fois.",
     "heroPrimary": "Voir les projets",
     "heroSecondary": "@pianowithnoah",
     "pianoKicker": "La chaîne",
@@ -305,7 +310,7 @@
     "pianoCaption": "Lettre à Élise, enseignée comme un ami le ferait — toute la philosophie de la chaîne en une vidéo.",
     "pianoSound": "Son",
     "workTitle": "Travaux choisis",
-    "workSub": "Six en ligne. Un toujours secret.",
+    "workSub": "Sept en ligne. Un toujours secret.",
     "hiddenStatus": "toujours caché",
     "hiddenAria": "Projet secret — toujours caché",
     "hiddenToast": "Toujours sous scellés — il sortira quand il sera prêt.",

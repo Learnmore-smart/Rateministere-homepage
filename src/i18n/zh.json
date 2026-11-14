@@ -58,6 +58,11 @@
       "heading": "Discord 专属 AI 成员",
       "description": "运行在自己电脑上的 Discord AI 成员：被 @ 或回复时响应，支持沙盒网页浏览、图表生成与长期服务器记忆。"
     },
+    "cairn": {
+      "label": "Cairn",
+      "heading": "内存雷达与防误删保险库",
+      "description": "Windows 内存监测、磁盘空间扫描与 NTFS 拒绝删除资产保险库，并支持自带云盘单向备份。"
+    },
     "spinshare": {
       "label": "SpinShare",
       "heading": "Windows 径向拖拽转换器",
@@ -293,7 +298,7 @@
     "hello": "打个招呼",
     "heroTitleA": "代码，跑在生产环境。",
     "heroTitleB": "钢琴，弹在众人面前。",
-    "heroLede": "Marianopolis 在读，做了 supastack、LearnX、Vorlee、Pluto、SpinShare、FkLearn 和一架子小工具；也是一个 1200 万播放钢琴频道背后的人。",
+    "heroLede": "Marianopolis 在读，做了 supastack、LearnX、Cairn、Vorlee、Pluto、SpinShare、FkLearn 和一架子小工具；也是一个 1200 万播放钢琴频道背后的人。",
     "heroPrimary": "看看作品",
     "heroSecondary": "@pianowithnoah",
     "pianoKicker": "频道",
@@ -305,7 +310,7 @@
     "pianoCaption": "《致爱丽丝》，像朋友教你那样讲——频道的全部理念都在这一条里。",
     "pianoSound": "声音",
     "workTitle": "精选作品",
-    "workSub": "六个已上线，一个仍保密。",
+    "workSub": "七个已上线，一个仍保密。",
     "hiddenStatus": "仍保密",
     "hiddenAria": "秘密项目——仍保密",
     "hiddenToast": "仍在保密中——准备好了自然会上线。",

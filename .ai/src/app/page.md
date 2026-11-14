@@ -15,3 +15,7 @@ description; OG/Twitter images live in `layout.tsx`).
 | Date | Change | Author |
 |------|--------|--------|
 | 2026-11-01 | Meta description: added FkLearn to the product list | Devin |
+
+
+## 2026-11-13 Update
+- Updated page `description` metadata to include Cairn alongside LearnX and SpinShare.

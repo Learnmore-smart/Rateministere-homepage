@@ -53,6 +53,12 @@ export const metadata: Metadata = {
   metadataBase: new URL("https://www.rateministere.com"),
   title: "NOAH ZIXIN ZHANG — PORTFOLIO",
   description: "Software Developer, Creator of LearnX.",
+  icons: {
+    icon: [
+      { url: "/favicon.ico" },
+      { url: "/favicon.svg", type: "image/svg+xml" },
+    ],
+  },
   openGraph: {
     title: "NOAH ZIXIN ZHANG — PORTFOLIO",
     description: "Software Developer, Creator of LearnX.",

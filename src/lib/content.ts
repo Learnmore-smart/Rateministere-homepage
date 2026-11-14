@@ -70,6 +70,14 @@ export const FEATURED: Project[] = [
     image: "/LearnX-OG.png",
   },
   {
+    id: "cairn",
+    name: "Cairn",
+    year: "2026",
+    desc: "A Windows memory radar, disk bloat treemap and NTFS deny-delete vault with one-way cloud backup.",
+    url: "https://cairn.supastack.dev",
+    image: "/cairn-OG.png",
+  },
+  {
     id: "spinshare",
     name: "SpinShare",
     year: "2026",

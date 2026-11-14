@@ -28,3 +28,7 @@ see `src/components/LanguageContext.tsx`). Used by `/` (StackPage via
 | Date | Change | Author |
 |------|--------|--------|
 | 2026-11-01 | Added `featured.fklearn`, `projects.novapuraai`, `projects.file-guardian`; workSub 5→6, archiveSub 10→12, heroLede +FkLearn (all three locales) | Devin |
+
+
+## 2026-11-13 Update
+- Added `featured.cairn` (short Cairn product summary without em dashes), updated `stack.heroLede` to include Cairn, and updated `stack.workSub` from six to seven live projects.

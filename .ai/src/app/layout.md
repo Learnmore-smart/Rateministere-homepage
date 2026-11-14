@@ -30,3 +30,7 @@ fonts, site metadata (OG/Twitter), and the gtag.js snippet.
 |------|--------|--------|
 | 2026-09-23 | Swapped OG/Twitter image to `OG-image-noah-zixin-zhang.png` (1731×909) | Devin |
 | 2026-09-23 | Created mirror; added `suppressHydrationWarning` for the stack theme boot script | Devin |
+
+
+## 2026-11-13 Update
+- Added `metadata.icons` pointing to `/favicon.ico` (7-size PNG-packed `src/app/favicon.ico`) and `/favicon.svg` (`public/favicon.svg`) using the StackMark 3-rectangle piano motif.
