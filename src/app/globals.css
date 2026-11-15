@@ -125,6 +125,37 @@ html[data-stack-theme="dark"] body {
   background: #000;
 }
 
+/* ── Roll homepage (/) — the table colour behind the page, so
+   overscroll and view-transition snapshots never flash the other
+   theme. Keys off <html data-roll-theme> for the same reason as the
+   stack rule above. ── */
+html[data-roll-theme="light"],
+html[data-roll-theme="light"] body {
+  background: #eef0ef;
+}
+html[data-roll-theme="dark"],
+html[data-roll-theme="dark"] body {
+  background: #120d0c;
+}
+html[data-roll-theme="dark"]::-webkit-scrollbar-track {
+  background: #120d0c;
+}
+html[data-roll-theme="dark"]::-webkit-scrollbar-thumb {
+  background: #4a3d39;
+}
+html[data-roll-theme="dark"]::-webkit-scrollbar-thumb:hover {
+  background: #66544f;
+}
+
+/* How far a frame has developed. Registered so RollPage can animate
+   the mask gradient that washes a positive in over its negative;
+   without @property the wash simply snaps. */
+@property --dev {
+  syntax: "<percentage>";
+  inherits: false;
+  initial-value: 130%;
+}
+
 /* ── Theme switch: circular color-spread reveal ────────────
    StackPage animates a clip-path circle on ::view-transition-new(root)
    from the toggle's click point. Kill the default crossfade + blend so

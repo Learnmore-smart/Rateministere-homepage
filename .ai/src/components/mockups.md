@@ -70,3 +70,6 @@ Nine tracks (`TRACKS` const, order = default layout): `OPERATOR`, `PIANO_JOURNEY
 | 2026-09-17 | v4.1: clip collision bounds (no overlap); popover moved to lane level + transform fix (page overflow bug); +4 pitches & waveform picker (sine/tri/sqr/saw cached as style.w); lang button removed (auto-detect only); track/clip labels localized via t.seq.trackNames/clipLabels + t.projects names; PIANO handle → @pianowithnoah | Devin |
 | 2026-09-23 | `/concepts` chooser deleted (Chooser.tsx + route + `.ai` mirror removed); all study routes stay live but unlinked | Devin |
 | 2026-11-01 | Sequencer SKETCHES clip spacing 9.5→8 (12 ARCHIVE clips fit in-lane); `ARCHIVE_I18N` +novapuraai/file-guardian | Devin |
+
+## 2026-11-15 Update
+- `/` is now `components/roll/RollPage.tsx` (see its own mirror doc). StackPage joined the archived, unlinked studies at `/stack`. Sequencer / arcade / classic piano stats bumped to 14M / 4.5M.

@@ -32,3 +32,12 @@ see `src/components/LanguageContext.tsx`). Used by `/` (StackPage via
 
 ## 2026-11-13 Update
 - Added `featured.cairn` (short Cairn product summary without em dashes), updated `stack.heroLede` to include Cairn, and updated `stack.workSub` from six to seven live projects.
+
+## 2026-11-15 Update
+- New `roll.*` namespace (24 keys, all three locales) for RollPage. Values use `{n}` / `{m}` / `{p}` / `{f}` / `{views}` / `{short}` placeholders filled in RollPage — keep them when translating.
+- `featured.blade` added; `stack.workSub` → eight live; `stack.heroLede` names BLADE; every 12M / 3M mention → 14M / 4.5M (`featured.piano`, `seq.clipLabels`, `stack.pianoBlurb`, `roll.lede`).
+- `roll.lede` spells out "fourteen million" — update it with `PIANO.views`.
+- `stack.*` is still read by BOTH `/` (RollPage) and `/stack` (StackPage).
+
+## 2026-11-16 Update
+- `stack.ghLabel` added (all three locales) — `"{name} on GitHub"` pattern for repo-mark aria-labels/titles. RollPage fills it via `fill()`, StackPage via `.replace("{name}", …)`.

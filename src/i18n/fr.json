@@ -36,7 +36,7 @@
     "supastack": {
       "label": "supastack",
       "heading": "Le kit de démarrage",
-      "description": "Un kit SaaS prêt pour la production — auth, facturation, i18n, thèmes et IA, livré en un repo."
+      "description": "Un kit SaaS prêt pour la production : auth, facturation, i18n, thèmes et IA, livré en un repo."
     },
     "learnx": {
       "label": "LearnX",
@@ -51,12 +51,12 @@
     "fklearn": {
       "label": "FkLearn",
       "heading": "Plateforme de tutorat",
-      "description": "Une place de marché de tutorat pour étudiants — des cours abordables. Liste d'attente ouverte."
+      "description": "Une place de marché de tutorat pour étudiants, avec des cours abordables. Liste d'attente ouverte."
     },
     "pluto": {
       "label": "Pluto",
       "heading": "Compagnon IA Discord",
-      "description": "Un compagnon IA auto-hébergé pour serveurs Discord — répond aux mentions, navigue sur le web, exécute des outils et retient la mémoire."
+      "description": "Un compagnon IA auto-hébergé pour serveurs Discord. Il répond aux mentions, navigue sur le web, exécute des outils et retient la mémoire."
     },
     "cairn": {
       "label": "Cairn",
@@ -68,11 +68,16 @@
       "heading": "Convertisseur radial de fichiers",
       "description": "Convertisseur radial natif pour Windows. Glissez un fichier, appuyez sur Maj et convertissez sans quitter le geste ni téléverser."
     },
+    "blade": {
+      "label": "BLADE",
+      "heading": "Pipeline de dé-durcissement",
+      "description": "Un pipeline open source de dé-durcissement. Il retire les défenses BLA des artefacts protégés pour que les analyseurs lisent la vraie logique, pas les leurres."
+    },
     "piano": {
       "label": "YouTube",
       "heading": "Noah's Piano Journey",
-      "description": "Une chaîne de piano conçue pour les débutants — routines d'entraînement simples, premiers morceaux et progression étape par étape. (Plus de 12 millions de vues sur YouTube, avec un Short viral à 3M+ vues)",
-      "shortViews": "Ce Short a plus de 3 millions de vues"
+      "description": "Une chaîne de piano conçue pour les débutants : routines d'entraînement simples, premiers morceaux et progression étape par étape. (Plus de 14 millions de vues sur YouTube, avec un Short viral à plus de 4,5 M de vues)",
+      "shortViews": "Ce Short a plus de 4,5 millions de vues"
     }
   },
   "recent": {
@@ -173,7 +178,7 @@
     },
     "spinshare": {
       "name": "SpinShare",
-      "description": "Convertisseur radial de fichiers sous Windows — convertissez vos fichiers pendant le glisser-déposer."
+      "description": "Convertisseur radial de fichiers sous Windows. Convertissez vos fichiers pendant le glisser-déposer."
     },
     "mari-msu-2026": {
       "name": "Mari MSU 2026",
@@ -276,9 +281,9 @@
     },
     "clipLabels": {
       "creds": "notes",
-      "channel": "chaîne — 12M+ vues",
+      "channel": "chaîne — 14M+ vues",
       "elise": "für elise — tutoriel",
-      "short": "short viral — 3M+",
+      "short": "short viral — 4,5M+",
       "email": "courriel",
       "rec0": "contributeur trae",
       "rec1": "tips vol.3",
@@ -298,32 +303,33 @@
     "hello": "Dire bonjour",
     "heroTitleA": "Du code en production.",
     "heroTitleB": "Du piano en public.",
-    "heroLede": "Étudiant à Marianopolis, auteur de supastack, LearnX, Cairn, Vorlee, Pluto, SpinShare, FkLearn et d'une étagère de petites machines — et les mains derrière une chaîne piano vue plus de douze millions de fois.",
+    "heroLede": "Étudiant à Marianopolis, auteur de supastack, LearnX, Cairn, SpinShare, BLADE, Pluto, Vorlee, FkLearn et d'une étagère de petites machines, et les mains derrière une chaîne piano vue plus de quatorze millions de fois.",
     "heroPrimary": "Voir les projets",
     "heroSecondary": "@pianowithnoah",
     "pianoKicker": "La chaîne",
-    "pianoBlurb": "Des routines simples, des premiers morceaux, des progrès pas à pas — une chaîne piano pensée pour les débutants, regardée plus de douze millions de fois.",
+    "pianoBlurb": "Des routines simples, des premiers morceaux, des progrès pas à pas. Une chaîne piano pensée pour les débutants, regardée plus de quatorze millions de fois.",
     "pianoViews": "vues sur YouTube",
     "pianoShort": "sur un seul Short",
     "pianoRecording": "toujours en ligne",
     "pianoCta": "S'abonner sur YouTube",
-    "pianoCaption": "Lettre à Élise, enseignée comme un ami le ferait — toute la philosophie de la chaîne en une vidéo.",
+    "pianoCaption": "Lettre à Élise, enseignée comme un ami le ferait. Toute la philosophie de la chaîne en une vidéo.",
     "pianoSound": "Son",
     "workTitle": "Travaux choisis",
-    "workSub": "Sept en ligne. Un toujours secret.",
+    "workSub": "Huit en ligne. Un toujours secret.",
     "hiddenStatus": "toujours caché",
-    "hiddenAria": "Projet secret — toujours caché",
-    "hiddenToast": "Toujours sous scellés — il sortira quand il sera prêt.",
-    "filmTitle": "LearnX — le film de lancement",
-    "filmNote": "Tourné fin 2025, avant la refonte — trois mois de travail artisanal. Le produit a avancé ; le film est resté.",
+    "hiddenAria": "Projet secret, toujours caché",
+    "hiddenToast": "Toujours sous scellés. Il sortira quand il sera prêt.",
+    "filmTitle": "LearnX : le film de lancement",
+    "filmNote": "Tourné fin 2025, avant la refonte. Trois mois de travail artisanal. Le produit a avancé ; le film est resté.",
     "filmPlay": "Lire le film de lancement LearnX",
-    "supastackFilmTitle": "supastack — démo en 3 minutes",
-    "supastackFilmNote": "Est-ce le moyen le plus rapide de concevoir une application ? Démo complète — auth, facturation, thèmes et modules.",
+    "supastackFilmTitle": "supastack : démo en 3 minutes",
+    "supastackFilmNote": "Est-ce le moyen le plus rapide de concevoir une application ? Démo complète : auth, facturation, thèmes et modules.",
     "supastackFilmPlay": "Lire la vidéo de démonstration supastack",
     "archiveTitle": "Archive",
-    "archiveSub": "Douze entrées — chacune livrée, ou montée ici même.",
+    "archiveSub": "Douze entrées, chacune livrée ou montée ici même.",
+    "ghLabel": "Dépôt GitHub de {name}",
     "aboutTitle": "À propos",
-    "aboutBio": "Construit en altitude, livre dans la descente. Étudie à Marianopolis College à Montréal ; anglais, français et mandarin courants, espagnol conversationnel. INTJ — des systèmes plutôt que du bruit.",
+    "aboutBio": "Construit en altitude, livre dans la descente. Étudie à Marianopolis College à Montréal ; anglais, français et mandarin courants, espagnol conversationnel. INTJ : des systèmes plutôt que du bruit.",
     "factLocation": "Lieu",
     "factSchool": "École",
     "factLanguages": "Langues",
@@ -332,17 +338,43 @@
     "quote1src": "« Père riche, père pauvre »",
     "quote2": "Un jour, je trouverai mon négatif n°25",
     "quote2src": "La Vie rêvée de Walter Mitty",
-    "recTitle": "Distinctions — Trae",
+    "recTitle": "Distinctions Trae",
     "secretStatus": "en chantier",
     "secretNote": "Détails confidentiels jusqu'au lancement. La maison garde ses secrets.",
-    "buildDesc": "un placeholder qui pulse — la prochaine chose compile toujours quelque part.",
+    "buildDesc": "un placeholder qui pulse. La prochaine chose compile toujours quelque part.",
     "ctaTitle": "Dire bonjour.",
-    "ctaSub": "Mail, X ou les commentaires — choisissez un canal.",
+    "ctaSub": "Mail, X ou les commentaires. Choisissez un canal.",
     "themeLight": "Passer au thème clair",
     "themeDark": "Passer au thème sombre",
     "toastDismiss": "Fermer la notification",
-    "footerNote": "Une page, deux ambiances — clair par défaut, sombre au choix.",
+    "footerNote": "Une page, deux ambiances : clair par défaut, sombre au choix.",
     "builtWith": "Construit avec supastack",
     "copyright": "© 2026 Noah Zixin Zhang"
+  },
+  "roll": {
+    "skip": "Aller au contenu",
+    "sections": "Sections de la page",
+    "social": "Réseaux sociaux",
+    "openMenu": "Ouvrir le menu",
+    "closeMenu": "Fermer le menu",
+    "lightsOff": "Éteindre la lumière",
+    "lightsOn": "Rallumer la lumière",
+    "lede": "Étudiant à Marianopolis College, à Montréal. Voici la pellicule entière : {n} vues, entre les logiciels que j'ai en production et une chaîne piano vue plus de quatorze millions de fois. La vue {m} reste hors de la planche pour l'instant.",
+    "sheetLabel": "Planche-contact, les {n} vues",
+    "sheetHint": "Chaque vue est un lien. Choisissez-en une et la page y saute.",
+    "sheetCount": "{n} vues exposées, n° {m} retenu",
+    "frame": "Vue {n}",
+    "fresh": "Nouveau",
+    "film": "Film",
+    "pianoLine": "{views} vues sur YouTube. Dont {short} sur un seul Short.",
+    "channelOpen": "Ouvrir la chaîne",
+    "tutorial": "Tutoriel",
+    "workSub": "{p} produits et les {f} films tournés à leur sujet, agrandis depuis la planche.",
+    "archiveSub": "Le reste de la pellicule : {n} projets plus modestes, chacun livré ou monté ici même.",
+    "earlier": "Pellicules précédentes",
+    "missingTitle": "Le n° {m} manque à la pellicule.",
+    "missingBody": "Il a été découpé de la bande et mis de côté. Il sera développé le jour du lancement.",
+    "unexposed": "Non exposée",
+    "footerNote": "Une page, deux pièces : la table lumineuse le jour, la chambre noire au choix."
   }
 }

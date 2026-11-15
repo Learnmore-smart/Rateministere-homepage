@@ -205,3 +205,9 @@ still wrapped in `LanguageProvider`).
 | 2026-09-23 | v3: light-first reskin follow-ups — blue accent replaces bronze/amber; mobile header fix (`.headerEnd .headerCta` specificity + `.brand` nowrap); circular view-transition theme spread; official supastack mark in footer credit | Devin |
 | 2026-09-23 | v3.1: `/concepts` removed (Chooser + route deleted; mobile-menu link, footer credit segment, `nav.concepts` keys dropped). Hero kicker removed (JSX + CSS + `heroKicker` i18n keys). Brand hover `barDip` → staggered `scale` rise (fill-mode conflict, see Gotchas) | Devin |
 | 2026-09-23 | v3.2: lang pills → `LangMenu` `<details>` dropdown (ported supastack switcher, `<button>` items, `setLang` only; header + `side="top"` mobile-menu instances); language-swap crossfade (`shown` state + `data-lang-swap`); always-frosted header; hero locked to 2 nowrap lines; piano video 9:16 portrait (340px cap) + floating mute/unmute toggle (stable `pianoSound` label + `aria-pressed`); `.btn` key-press hover + `@media(hover)` hovers; `quote1src` attribution inside the blockquote; 12M views everywhere | Devin |
+
+## 2026-11-15 Update
+- Archived: now served at `/stack` (`app/stack/page.tsx`), no longer `/`. Code untouched. Its `#work` grid shows 8 cards since BLADE joined `FEATURED` (`stack.workSub` updated).
+
+## 2026-11-16 Update
+- Open-source rows show a GitHub mark: each `.archiveRow` sits in a positioned `.archiveItem` wrapper; `.archiveGh` (sibling of the row link — never nested, `<a>` in `<a>` is invalid) is absolute at the right edge, opens `p.github` in a new tab (`stack.ghLabel` aria/title). `.archiveRow` reserves `padding-right: 2.75rem`; hover keeps expanding left only.

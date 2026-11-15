@@ -1,5 +1,6 @@
-// Shared facts for the 2026-09 homepage mockups (/recital, /os, /atlas).
-// English-only per user decision; classic site keeps i18n.
+// Shared facts for the homepage (`/` — RollPage) and every archived study
+// (/stack, /sequencer, /arcade, /atlas, /recital, /os). English source;
+// translated copy lives in src/i18n.
 
 export const PROFILE = {
   name: "Noah Zixin Zhang",
@@ -21,10 +22,10 @@ export const PIANO = {
   channel: "Noah's Piano Journey",
   url: "https://www.youtube.com/@pianowithnoah",
   handle: "@pianowithnoah",
-  views: "12,000,000+",
-  viralShort: "3,000,000+",
+  views: "14,000,000+",
+  viralShort: "4,500,000+",
   blurb:
-    "A piano channel built for beginners — simple practice routines, first pieces, and step-by-step progress. Over twelve million views, including a Short watched three million times.",
+    "A piano channel built for beginners: simple practice routines, first pieces, and step-by-step progress. Over fourteen million views, including a Short watched four and a half million times.",
   demoVideo: "/Videos-demo/Für Elise - Easy piano tutorial (1).mp4",
 } as const;
 
@@ -57,7 +58,7 @@ export const FEATURED: Project[] = [
     id: "supastack",
     name: "supastack",
     year: "2026",
-    desc: "The production SaaS starter kit — auth, billing, i18n, themes and AI wiring in one repo.",
+    desc: "The production SaaS starter kit: auth, billing, i18n, themes and AI wiring in one repo.",
     url: "https://supastack.dev",
     image: "/supastack-OG.png",
   },
@@ -65,7 +66,7 @@ export const FEATURED: Project[] = [
     id: "learnx",
     name: "LearnX",
     year: "2026",
-    desc: "Exam preparation platform — chunks files into units, drills them with spaced repetition.",
+    desc: "Exam preparation platform that chunks files into units and drills them with spaced repetition.",
     url: "https://www.learnx.pro",
     image: "/LearnX-OG.png",
   },
@@ -81,15 +82,24 @@ export const FEATURED: Project[] = [
     id: "spinshare",
     name: "SpinShare",
     year: "2026",
-    desc: "A Windows-native radial file converter — drag any file, tap Shift, and convert between formats mid-gesture without uploads.",
+    desc: "A Windows-native radial file converter. Drag any file, tap Shift, and convert between formats mid-gesture without uploads.",
     url: "https://spinshare.dev",
     image: "/spinshare-OG.png",
+  },
+  {
+    id: "blade",
+    name: "BLADE",
+    year: "2026",
+    desc: "An open-source de-hardening pipeline. It strips BLA defenses from protected artifacts so analyzers read the real logic instead of the decoys.",
+    url: "https://github.com/Learnmore-smart/BLADE",
+    github: "https://github.com/Learnmore-smart/BLADE",
+    image: "/blade-OG.png",
   },
   {
     id: "pluto",
     name: "Pluto",
     year: "2026",
-    desc: "A self-hosted AI companion for Discord servers — answers mentions, browses the web, executes tools, and holds long-term memory.",
+    desc: "A self-hosted AI companion for Discord servers. It answers mentions, browses the web, executes tools, and holds long-term memory.",
     url: "https://pluto.rateministere.com",
     image: "/pluto-OG.png",
   },
@@ -105,7 +115,7 @@ export const FEATURED: Project[] = [
     id: "fklearn",
     name: "FkLearn",
     year: "2026",
-    desc: "A student tutoring marketplace — affordable tutoring for students. Waitlist now open.",
+    desc: "A student tutoring marketplace with affordable tutoring for students. Waitlist now open.",
     url: "https://fklearn.com",
     image: "/fklearn-OG.png",
   },
@@ -157,20 +167,20 @@ export const ARCHIVE: Project[] = [
     url: "https://github.com/Learnmore-smart/file-guardian-skill",
     github: "https://github.com/Learnmore-smart/file-guardian-skill",
   },
-  { id: "wechat", name: "WeChat Read Dashboard", year: "2026", desc: "Personal reading statistics and visualization.", url: "/wechat-read-stats" },
-  { id: "quote-cloud", name: "Quote Cloud", year: "2026", desc: "An interactive cloud of curated quotes.", url: "/quote-cloud" },
-  { id: "trae-echoes", name: "Voice Ink Echoes", year: "2026", desc: "3D mood app — paints mountains with sound.", url: "/trae-echoes" },
-  { id: "wyt", name: "Waste Your Tokens", year: "2026", desc: "A website to help you waste tokens.", url: "/waste-your-tokens" },
-  { id: "enforcer", name: "Enforcer", year: "2026", desc: "Focus app built in 24 h at MariHacks.", url: "https://www.rateministere.com/Enforcer" },
-  { id: "atlas", name: "Hidden China Atlas", year: "2026", desc: "Interactive geographic atlas.", url: "/hidden-china-atlas" },
-  { id: "panic", name: "Release Panic Room", year: "2026", desc: "A last-minute stress game.", url: "/release-panic-room" },
-  { id: "rate", name: "RateMinistere", year: "2025", desc: "Teacher voting platform.", url: "/rateministere" },
-  { id: "msu", name: "Mari MSU 2026", year: "2026", desc: "Student portal design.", url: "/mari-msu-2026" },
+  { id: "wechat", name: "WeChat Read Dashboard", year: "2026", desc: "Personal reading statistics and visualization.", url: "/wechat-read-stats", github: "https://github.com/Learnmore-smart/Wechat-read-dashboard" },
+  { id: "quote-cloud", name: "Quote Cloud", year: "2026", desc: "An interactive cloud of curated quotes.", url: "/quote-cloud", github: "https://github.com/Learnmore-smart/Quote-Cloud" },
+  { id: "trae-echoes", name: "Voice Ink Echoes", year: "2026", desc: "3D mood app that paints mountains with sound.", url: "/trae-echoes", github: "https://github.com/Learnmore-smart/Trae-Echoes-2026_contest" },
+  { id: "wyt", name: "Waste Your Tokens", year: "2026", desc: "A website to help you waste tokens.", url: "/waste-your-tokens", github: "https://github.com/Learnmore-smart/Waste-your-tokens" },
+  { id: "enforcer", name: "Enforcer", year: "2026", desc: "Focus app built in 24 h at MariHacks.", url: "https://www.rateministere.com/Enforcer", github: "https://github.com/Learnmore-smart/Marihacks-IX-2026" },
+  { id: "atlas", name: "Hidden China Atlas", year: "2026", desc: "Interactive geographic atlas.", url: "/hidden-china-atlas", github: "https://github.com/Learnmore-smart/Hidden-China-Atlas" },
+  { id: "panic", name: "Release Panic Room", year: "2026", desc: "A last-minute stress game.", url: "/release-panic-room", github: "https://github.com/Learnmore-smart/Release-Panic-Room" },
+  { id: "msu", name: "Mari MSU 2026", year: "2026", desc: "Student portal design.", url: "/mari-msu-2026", github: "https://github.com/Learnmore-smart/Mari-MSU-2026" },
+  { id: "rate", name: "RateMinistere", year: "2025", desc: "Teacher voting platform.", url: "/rateministere", github: "https://github.com/Learnmore-smart/RateMinistere" },
 ];
 
 export const RECOGNITION = [
   { title: "Trae 2025 Annual Contributor", period: "2025" },
-  { title: "Quality Share Award — Tips Vol.3", period: "2025.05" },
-  { title: "Top Practical Tips Award — Vol.4", period: "2025" },
+  { title: "Quality Share Award, Tips Vol.3", period: "2025.05" },
+  { title: "Top Practical Tips Award, Vol.4", period: "2025" },
   { title: "Community Star", period: "2025–26" },
 ] as const;

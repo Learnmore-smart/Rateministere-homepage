@@ -36,7 +36,7 @@
     "supastack": {
       "label": "supastack",
       "heading": "起步套件",
-      "description": "生产级 SaaS 起步套件——认证、计费、多语言、主题与 AI 接线，一个仓库交付。"
+      "description": "生产级 SaaS 起步套件：认证、计费、多语言、主题与 AI 接线，一个仓库交付。"
     },
     "learnx": {
       "label": "LearnX",
@@ -51,7 +51,7 @@
     "fklearn": {
       "label": "FkLearn",
       "heading": "学生辅导平台",
-      "description": "面向学生的平价辅导市集——为学生对接辅导老师。候补名单现已开放。"
+      "description": "面向学生的平价辅导市集，为学生对接辅导老师。候补名单现已开放。"
     },
     "pluto": {
       "label": "Pluto",
@@ -68,11 +68,16 @@
       "heading": "Windows 径向拖拽转换器",
       "description": "Windows 原生径向文件转换器。拖动任意文件轻点 Shift 呼出轮盘，不离开手势即刻在本地完成格式转换。"
     },
+    "blade": {
+      "label": "BLADE",
+      "heading": "去加固流水线",
+      "description": "开源去加固流水线：剥离受保护产物上的 BLA 防护，让分析工具读到真实逻辑，而不是诱饵。"
+    },
     "piano": {
       "label": "YouTube",
       "heading": "Noah's Piano Journey",
-      "description": "面向初学者的钢琴频道：提供简单的练习方法、入门曲目与循序渐进的进步记录。（YouTube 频道播放量突破 1200 万，单支热门视频播放量超 300 万）",
-      "shortViews": "该 Short 视频播放量已突破 300 万"
+      "description": "面向初学者的钢琴频道：提供简单的练习方法、入门曲目与循序渐进的进步记录。（YouTube 频道播放量突破 1400 万，单支热门视频播放量超 450 万）",
+      "shortViews": "该 Short 视频播放量已突破 450 万"
     }
   },
   "recent": {
@@ -173,7 +178,7 @@
     },
     "spinshare": {
       "name": "SpinShare",
-      "description": "Windows 原生径向文件转换器——拖拽过程中在本地完成文件格式转换。"
+      "description": "Windows 原生径向文件转换器，拖拽过程中在本地完成文件格式转换。"
     },
     "mari-msu-2026": {
       "name": "Mari MSU 2026",
@@ -276,9 +281,9 @@
     },
     "clipLabels": {
       "creds": "批注",
-      "channel": "频道 — 1200万+ 观看",
+      "channel": "频道 — 1400万+ 观看",
       "elise": "致爱丽丝 — 教程",
-      "short": "爆款短视频 — 300万+",
+      "short": "爆款短视频 — 450万+",
       "email": "邮箱",
       "rec0": "年度贡献者",
       "rec1": "技巧 Vol.3",
@@ -298,32 +303,33 @@
     "hello": "打个招呼",
     "heroTitleA": "代码，跑在生产环境。",
     "heroTitleB": "钢琴，弹在众人面前。",
-    "heroLede": "Marianopolis 在读，做了 supastack、LearnX、Cairn、Vorlee、Pluto、SpinShare、FkLearn 和一架子小工具；也是一个 1200 万播放钢琴频道背后的人。",
+    "heroLede": "Marianopolis 在读，做了 supastack、LearnX、Cairn、SpinShare、BLADE、Pluto、Vorlee、FkLearn 和一架子小工具；也是一个 1400 万播放钢琴频道背后的人。",
     "heroPrimary": "看看作品",
     "heroSecondary": "@pianowithnoah",
     "pianoKicker": "频道",
-    "pianoBlurb": "为初学者而建的钢琴频道：简单的练习流程、入门曲目、一步一脚印的进度——播放量已逾 1200 万。",
+    "pianoBlurb": "为初学者而建的钢琴频道：简单的练习流程、入门曲目、一步一脚印的进度。播放量已逾 1400 万。",
     "pianoViews": "YouTube 播放",
     "pianoShort": "单个 Short",
     "pianoRecording": "仍在更新",
     "pianoCta": "在 YouTube 订阅",
-    "pianoCaption": "《致爱丽丝》，像朋友教你那样讲——频道的全部理念都在这一条里。",
+    "pianoCaption": "《致爱丽丝》，像朋友教你那样讲。频道的全部理念都在这一条里。",
     "pianoSound": "声音",
     "workTitle": "精选作品",
-    "workSub": "七个已上线，一个仍保密。",
+    "workSub": "八个已上线，一个仍保密。",
     "hiddenStatus": "仍保密",
-    "hiddenAria": "秘密项目——仍保密",
-    "hiddenToast": "仍在保密中——准备好了自然会上线。",
+    "hiddenAria": "秘密项目，仍保密",
+    "hiddenToast": "仍在保密中，准备好了自然会上线。",
     "filmTitle": "LearnX · 宣传片",
-    "filmNote": "摄于 2025 年底、重写之前——纯手工搓了三个月。产品一直在往前走，这卷影像留在原地。",
+    "filmNote": "摄于 2025 年底、重写之前，纯手工搓了三个月。产品一直在往前走，这卷影像留在原地。",
     "filmPlay": "播放 LearnX 宣传片",
-    "supastackFilmTitle": "supastack——3分钟实机演示",
-    "supastackFilmNote": "最快构建应用的捷径？实机上手演示——认证、计费、主题与全栈模块一气呵成。",
+    "supastackFilmTitle": "supastack：3 分钟实机演示",
+    "supastackFilmNote": "最快构建应用的捷径？实机上手演示：认证、计费、主题与全栈模块一气呵成。",
     "supastackFilmPlay": "播放 supastack 演示视频",
     "archiveTitle": "归档",
-    "archiveSub": "十二个条目——个个上线，或就挂载在本站。",
+    "archiveSub": "十二个条目，个个上线，或就挂载在本站。",
+    "ghLabel": "{name} 的 GitHub 仓库",
     "aboutTitle": "关于",
-    "aboutBio": "高处构思，下坡交付。就读于蒙特利尔 Marianopolis College；英语、法语、中文流利，西班牙语能聊。INTJ——要系统，不要噪音。",
+    "aboutBio": "高处构思，下坡交付。就读于蒙特利尔 Marianopolis College；英语、法语、中文流利，西班牙语能聊。INTJ：要系统，不要噪音。",
     "factLocation": "位置",
     "factSchool": "学校",
     "factLanguages": "语言",
@@ -332,17 +338,43 @@
     "quote1src": "《富爸爸穷爸爸》",
     "quote2": "总有一天，我会找到我的 25 号底片",
     "quote2src": "《白日梦想家》",
-    "recTitle": "荣誉 — Trae",
+    "recTitle": "Trae 荣誉",
     "secretStatus": "建设中",
     "secretNote": "上线前保密。请为这座房子守住秘密。",
-    "buildDesc": "一个有脉搏的占位符——下一个项目永远在编译。",
+    "buildDesc": "一个有脉搏的占位符，下一个项目永远在编译。",
     "ctaTitle": "打个招呼。",
-    "ctaSub": "邮件、X、或评论区——挑一个频道。",
+    "ctaSub": "邮件、X、或评论区，挑一个频道。",
     "themeLight": "切换到浅色主题",
     "themeDark": "切换到深色主题",
     "toastDismiss": "关闭通知",
-    "footerNote": "一页两面——默认浅色，深色随心。",
+    "footerNote": "一页两面：默认浅色，深色随心。",
     "builtWith": "由 supastack 构建",
     "copyright": "© 2026 Noah Zixin Zhang"
+  },
+  "roll": {
+    "skip": "跳到正文",
+    "sections": "页面章节",
+    "social": "社交链接",
+    "openMenu": "打开菜单",
+    "closeMenu": "关闭菜单",
+    "lightsOff": "关灯",
+    "lightsOn": "开灯",
+    "lede": "就读于蒙特利尔 Marianopolis College。这是整卷胶片，共 {n} 格：有我已上线的软件，也有一个播放量超过 1400 万的钢琴频道。第 {m} 格暂时不上印样。",
+    "sheetLabel": "印样，全部 {n} 格",
+    "sheetHint": "每一格都是链接，点哪格，页面就跳到哪格。",
+    "sheetCount": "已曝光 {n} 格，第 {m} 格保留",
+    "frame": "第 {n} 格",
+    "fresh": "新",
+    "film": "影片",
+    "pianoLine": "YouTube 播放 {views}，其中单个 Short 就占 {short}。",
+    "channelOpen": "打开频道",
+    "tutorial": "教程",
+    "workSub": "{p} 个产品，外加为它们拍的 {f} 支影片，从印样上放大出来。",
+    "archiveSub": "这卷胶片余下的部分：{n} 个小项目，个个上线，或就挂载在本站。",
+    "earlier": "更早的胶卷",
+    "missingTitle": "第 {m} 格不在这卷胶片上。",
+    "missingBody": "它被从片条上剪下来，单独收着。上线那天再冲洗。",
+    "unexposed": "未曝光",
+    "footerNote": "一页两间房：白天是看片台，想暗就进暗房。"
   }
 }

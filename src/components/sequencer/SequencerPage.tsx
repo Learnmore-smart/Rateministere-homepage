@@ -46,9 +46,9 @@ const TRACKS: TrackDef[] = [
   {
     id: "piano", name: "PIANO_JOURNEY", color: "#e8b34a", freq: 261.63,
     clips: [
-      { id: "channel", label: "channel — 12M+ views", at: 6, w: 30 },
+      { id: "channel", label: "channel — 14M+ views", at: 6, w: 30 },
       { id: "elise", label: "für elise — tutorial", at: 46, w: 24 },
-      { id: "short", label: "viral short — 3M+", at: 78, w: 16 },
+      { id: "short", label: "viral short — 4.5M+", at: 78, w: 16 },
     ],
   },
   {

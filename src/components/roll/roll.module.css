@@ -1,0 +1,1996 @@
+/* ── The Roll ────────────────────────────────────────────────
+   One roll of film on a light table. Film (amber, perforated) carries
+   the contact sheet, the piano reel and the tail of the roll; prints
+   (white paper) carry the enlargements; everything else is type set
+   straight on the table. Dark theme = the same table with the lights
+   off. One family (Archivo) does every job by width: wide for titles,
+   normal for reading, condensed for edge print. */
+
+.roll {
+  --ease: cubic-bezier(0.16, 1, 0.3, 1);
+  /* developing is a wash, not a snap — it needs an even pace */
+  --ease-wash: cubic-bezier(0.45, 0, 0.25, 1);
+  --gutter: 20px;
+  --header-h: 60px;
+  --max: 1344px;
+  --font: var(--font-archivo), "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei",
+    ui-sans-serif, system-ui, sans-serif;
+  --font-code: var(--font-body), "JetBrains Mono", SFMono-Regular, Consolas, monospace;
+
+  /* light table */
+  --table: #eef0ef;
+  --table-hi: #fbfcfb;
+  --paper: #ffffff;
+  --raised: #ffffff;
+  --ink: #121514;
+  --ink-2: #454b49;
+  --ink-3: #5f6563;
+  --line: rgba(18, 21, 20, 0.14);
+  --line-strong: rgba(18, 21, 20, 0.32);
+  --film: #e08b33;
+  --film-clear: #f3ac5c;
+  --film-ink: #2b1505;
+  --grease: #cc2018;
+  --grease-ink: #ffffff;
+  --print-shadow: 0 1px 1px rgba(18, 21, 20, 0.07), 0 12px 26px -10px rgba(18, 21, 20, 0.26);
+  --print-shadow-up: 0 1px 1px rgba(18, 21, 20, 0.07), 0 26px 44px -16px rgba(18, 21, 20, 0.34);
+
+  /* perforations: one tile per pitch, the hole punched out of it */
+  --hole: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 84'%3E%3Crect x='22' y='21' width='56' height='42' rx='9'/%3E%3C/svg%3E");
+  --hole-v: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 84 100'%3E%3Crect x='21' y='22' width='42' height='56' rx='9'/%3E%3C/svg%3E");
+
+  /* toast.module.css reads these */
+  --text: var(--ink);
+  --muted: var(--ink-3);
+  --accent: var(--grease);
+  --border-strong: var(--line-strong);
+  --hover-fill: color-mix(in srgb, var(--ink) 7%, transparent);
+  --radius-control: 6px;
+
+  background: var(--table);
+  color: var(--ink);
+  font-family: var(--font);
+  font-size: 1.0625rem;
+  font-stretch: 100%;
+  line-height: 1.6;
+  min-height: 100dvh;
+  overflow-x: clip;
+  color-scheme: light;
+  -webkit-font-smoothing: antialiased;
+}
+
+:global(html[data-roll-theme="dark"]) .roll {
+  --table: #120d0c;
+  --table-hi: #1c1513;
+  --paper: #e8e2dc;
+  --raised: #221a18;
+  --ink: #f3ede8;
+  --ink-2: #c5bcb6;
+  --ink-3: #a1968f;
+  --line: rgba(243, 237, 232, 0.15);
+  --line-strong: rgba(243, 237, 232, 0.34);
+  --film: #d8822c;
+  --film-clear: #eda455;
+  --grease: #ff5a4d;
+  --grease-ink: #1a0503;
+  --print-shadow: 0 1px 1px rgba(0, 0, 0, 0.5), 0 14px 28px -10px rgba(0, 0, 0, 0.8);
+  --print-shadow-up: 0 1px 1px rgba(0, 0, 0, 0.5), 0 28px 46px -16px rgba(0, 0, 0, 0.9);
+  color-scheme: dark;
+}
+
+@media (min-width: 768px) {
+  .roll {
+    --gutter: 32px;
+    --header-h: 68px;
+  }
+}
+@media (min-width: 1100px) {
+  .roll {
+    --gutter: 48px;
+  }
+}
+
+/* browser surfaces carry the palette */
+.roll ::selection {
+  background: var(--film);
+  color: var(--film-ink);
+}
+.roll :focus-visible {
+  outline: 2px solid var(--ink);
+  outline-offset: 3px;
+}
+/* :where() keeps element resets at zero specificity so single-class
+   rules always win (the Stack study learned this the hard way) */
+.roll :where(a) {
+  color: inherit;
+  text-decoration: none;
+}
+.roll :where(h1, h2, h3, p, ul, ol, figure, blockquote, dl, dd) {
+  margin: 0;
+}
+.roll :where(h1, h2, h3) {
+  font-family: inherit;
+}
+.roll :where(ul, ol) {
+  padding: 0;
+  list-style: none;
+}
+.roll :where(button) {
+  font: inherit;
+  color: inherit;
+}
+.roll :where([id]) {
+  scroll-margin-top: calc(var(--header-h) + 28px);
+}
+
+.skip {
+  position: fixed;
+  top: -80px;
+  left: 20px;
+  z-index: 60;
+  padding: 12px 16px;
+  background: var(--ink);
+  color: var(--table);
+  border-radius: 6px;
+  font-weight: 650;
+  transition: top 200ms var(--ease);
+}
+.skip:focus {
+  top: 12px;
+}
+
+.wrap {
+  max-width: calc(var(--max) + 2 * var(--gutter));
+  margin-inline: auto;
+  padding-inline: var(--gutter);
+}
+
+/* edge print — the condensed caps exposed along a film's margin */
+.meta,
+.nav small,
+.mobileNav small,
+.menuTop p,
+.year,
+.no,
+.tag,
+.chip,
+.facts dt,
+.quote footer,
+.rec h3,
+.rec time,
+.portraitCap,
+.earlier h3 {
+  font-stretch: 75%;
+  font-weight: 600;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  font-variant-numeric: tabular-nums;
+}
+
+.tri {
+  flex: none;
+  transition: transform 220ms var(--ease);
+}
+
+/* ── header ─────────────────────────────────────────────── */
+.header {
+  position: fixed;
+  inset: 0 0 auto;
+  height: var(--header-h);
+  z-index: 40;
+  background: color-mix(in srgb, var(--table) 74%, transparent);
+  -webkit-backdrop-filter: blur(14px) saturate(1.3);
+  backdrop-filter: blur(14px) saturate(1.3);
+  border-bottom: 1px solid transparent;
+  transition:
+    background-color 300ms var(--ease),
+    border-color 300ms var(--ease);
+}
+.headerScrolled {
+  background: color-mix(in srgb, var(--table) 88%, transparent);
+  border-bottom-color: var(--line);
+}
+@supports not (backdrop-filter: blur(1px)) {
+  .header {
+    background: var(--table);
+  }
+}
+.headerInner {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: center;
+  gap: 12px;
+  height: 100%;
+  max-width: calc(var(--max) + 2 * var(--gutter));
+  margin: 0 auto;
+  padding: 0 var(--gutter);
+}
+.brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  justify-self: start;
+  font-size: 0.9375rem;
+  font-weight: 650;
+  font-stretch: 110%;
+  letter-spacing: -0.01em;
+  white-space: nowrap;
+}
+.mark {
+  display: block;
+  width: 22px;
+  height: 22px;
+}
+.nav {
+  display: none;
+  gap: 30px;
+}
+.nav a {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 7px;
+  padding: 10px 0;
+  color: var(--ink-2);
+  font-size: 0.875rem;
+  font-weight: 500;
+  transition: color 200ms var(--ease);
+}
+.nav small {
+  color: var(--ink-3);
+  font-size: 0.6875rem;
+  transition: color 200ms var(--ease);
+}
+.nav a:hover,
+.nav a:focus-visible,
+.nav a[aria-current] {
+  color: var(--ink);
+}
+.nav a:hover small,
+.nav a:focus-visible small,
+.nav a[aria-current] small {
+  color: var(--grease);
+}
+/* the section you are in is underlined in grease pencil */
+.nav a {
+  position: relative;
+}
+.nav a::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 3px;
+  height: 2px;
+  background: var(--grease);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 320ms var(--ease);
+}
+.nav a[aria-current]::before {
+  transform: scaleX(1);
+}
+.headerEnd {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  justify-self: end;
+}
+.langHeader,
+.headerEnd .headerCta {
+  display: none;
+}
+@media (min-width: 900px) {
+  .headerInner {
+    grid-template-columns: 1fr auto 1fr;
+  }
+  .nav {
+    display: flex;
+  }
+  .langHeader {
+    display: block;
+  }
+  .headerEnd .headerCta {
+    display: inline-flex;
+  }
+  .headerEnd .menuBtn {
+    display: none;
+  }
+}
+
+/* ── controls ───────────────────────────────────────────── */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  min-height: 44px;
+  padding: 0 18px;
+  border: 1.5px solid var(--ink);
+  border-radius: 6px;
+  background: var(--ink);
+  color: var(--table);
+  font-size: 0.8125rem;
+  font-weight: 650;
+  font-stretch: 88%;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  cursor: pointer;
+  transition:
+    background-color 200ms var(--ease),
+    border-color 200ms var(--ease),
+    color 200ms var(--ease),
+    transform 160ms var(--ease);
+}
+.btn:active {
+  transform: translateY(1px);
+}
+@media (hover: hover) {
+  .btn:hover {
+    background: var(--grease);
+    border-color: var(--grease);
+    color: var(--grease-ink);
+  }
+  .btn:hover .tri,
+  .link:hover .tri,
+  .row:hover .tri,
+  .xLine:hover .tri {
+    transform: translateX(3px);
+  }
+}
+.iconBtn {
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  padding: 0;
+  border: 1.5px solid var(--line);
+  border-radius: 6px;
+  background: transparent;
+  color: var(--ink);
+  cursor: pointer;
+  transition:
+    background-color 200ms var(--ease),
+    border-color 200ms var(--ease);
+}
+.iconBtn:hover {
+  background: var(--hover-fill);
+  border-color: var(--line-strong);
+}
+
+/* language dropdown */
+.langMenu {
+  position: relative;
+}
+.langTrigger {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  height: 44px;
+  padding: 0 12px;
+  border: 1.5px solid var(--line);
+  border-radius: 6px;
+  color: var(--ink-2);
+  font-size: 0.8125rem;
+  font-weight: 500;
+  cursor: pointer;
+  list-style: none;
+  white-space: nowrap;
+  user-select: none;
+  transition:
+    border-color 180ms var(--ease),
+    color 180ms var(--ease);
+}
+.langTrigger::-webkit-details-marker {
+  display: none;
+}
+.langTrigger::marker {
+  content: "";
+}
+.langTrigger:hover,
+.langMenu[open] .langTrigger {
+  border-color: var(--line-strong);
+  color: var(--ink);
+}
+.langChevron {
+  display: block;
+  transition: transform 220ms var(--ease);
+}
+.langMenu[open] .langChevron {
+  transform: rotate(180deg);
+}
+.langPop {
+  position: absolute;
+  right: 0;
+  top: calc(100% + 8px);
+  z-index: 60;
+  min-width: 150px;
+  padding: 6px;
+  background: var(--raised);
+  border: 1px solid var(--line-strong);
+  border-radius: 8px;
+  box-shadow: 0 16px 36px -14px rgba(0, 0, 0, 0.4);
+}
+.langMenu[data-side="top"] .langPop {
+  top: auto;
+  bottom: calc(100% + 8px);
+}
+.langItem {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  width: 100%;
+  min-height: 40px;
+  padding: 0 10px;
+  border: 0;
+  border-radius: 4px;
+  background: transparent;
+  color: var(--ink-2);
+  font-size: 0.8125rem;
+  cursor: pointer;
+  transition:
+    background-color 140ms,
+    color 140ms;
+}
+.langItem:hover {
+  background: var(--hover-fill);
+  color: var(--ink);
+}
+.langItem:focus-visible {
+  outline-offset: -2px;
+}
+.langItem[aria-current] {
+  color: var(--ink);
+  font-weight: 650;
+}
+.langCheck {
+  flex: none;
+  color: var(--grease);
+}
+@media (prefers-reduced-motion: no-preference) {
+  .langMenu[open] .langPop {
+    animation: popIn 170ms var(--ease) both;
+  }
+  .langMenu[data-closing] .langPop {
+    animation: popOut 140ms ease-in both;
+  }
+}
+@keyframes popIn {
+  from {
+    opacity: 0;
+    transform: translateY(-5px) scale(0.97);
+  }
+}
+@keyframes popOut {
+  to {
+    opacity: 0;
+    transform: translateY(-4px) scale(0.98);
+  }
+}
+
+/* mobile menu */
+.menuDialog {
+  width: 100%;
+  max-width: none;
+  height: 100dvh;
+  max-height: none;
+  margin: 0;
+  inset: 0;
+  padding: 0;
+  border: 0;
+  background: var(--table);
+  color: var(--ink);
+  overflow: auto;
+  overscroll-behavior: contain;
+}
+.menuDialog::backdrop {
+  background: rgba(0, 0, 0, 0.6);
+}
+.menuPanel {
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  gap: 28px;
+  min-height: 100%;
+  padding: 8px var(--gutter) 36px;
+}
+.menuTop {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: var(--header-h);
+}
+.menuTop p {
+  color: var(--ink-3);
+  font-size: 0.75rem;
+}
+.mobileNav {
+  display: grid;
+  align-content: center;
+}
+.mobileNav a {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 14px 0;
+  border-bottom: 1px solid var(--line);
+  font-size: clamp(1.75rem, 8vw, 2.5rem);
+  font-weight: 750;
+  font-stretch: 112%;
+  letter-spacing: -0.02em;
+}
+.mobileNav small {
+  color: var(--grease);
+  font-size: 0.8125rem;
+}
+.menuFoot {
+  display: grid;
+  gap: 14px;
+  justify-items: start;
+}
+.menuFoot .btn {
+  width: 100%;
+}
+/* the header popover hangs from the right edge; here the trigger sits
+   on the left, so anchor the popover's left side instead */
+.menuFoot .langPop {
+  right: auto;
+  left: 0;
+}
+.menuLights {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  min-height: 44px;
+  padding: 0 14px;
+  border: 1.5px solid var(--line);
+  border-radius: 6px;
+  background: transparent;
+  font-size: 0.875rem;
+  font-weight: 500;
+  cursor: pointer;
+}
+@media (prefers-reduced-motion: no-preference) {
+  .menuDialog[open],
+  .menuDialog[open]::backdrop {
+    animation: fade 200ms var(--ease) both;
+  }
+  .menuDialog[open] .mobileNav a,
+  .menuDialog[open] .menuFoot {
+    animation: rise 380ms var(--ease) both;
+  }
+  .menuDialog[open] .mobileNav a:nth-child(2) {
+    animation-delay: 50ms;
+  }
+  .menuDialog[open] .mobileNav a:nth-child(3) {
+    animation-delay: 100ms;
+  }
+  .menuDialog[open] .mobileNav a:nth-child(4) {
+    animation-delay: 150ms;
+  }
+  .menuDialog[open] .menuFoot {
+    animation-delay: 200ms;
+  }
+}
+@keyframes fade {
+  from {
+    opacity: 0;
+  }
+}
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+}
+
+/* ── page ───────────────────────────────────────────────── */
+.main {
+  padding-top: var(--header-h);
+}
+/* language swap — translated regions dim while the text changes */
+.main,
+.nav,
+.menuPanel,
+.footer {
+  transition:
+    opacity 0.22s var(--ease),
+    filter 0.22s var(--ease);
+}
+.roll[data-lang-swap] :is(.main, .nav, .menuPanel, .footer) {
+  opacity: 0;
+  filter: blur(5px);
+  transition-duration: 0.17s;
+}
+
+.section {
+  padding-top: clamp(76px, 10vw, 136px);
+}
+.head {
+  display: grid;
+  gap: 12px;
+  max-width: 46rem;
+  margin-bottom: clamp(30px, 4.2vw, 52px);
+}
+.head p,
+.body {
+  max-width: 38rem;
+  color: var(--ink-2);
+  text-wrap: pretty;
+}
+.h2 {
+  font-size: clamp(1.9rem, 4.1vw, 3.1rem);
+  font-weight: 750;
+  font-stretch: 118%;
+  line-height: 1.04;
+  letter-spacing: -0.025em;
+  text-wrap: balance;
+}
+
+/* ── the sheet (hero) ───────────────────────────────────── */
+.hero {
+  padding-top: clamp(26px, 4.6vw, 52px);
+}
+.heroHead {
+  display: grid;
+  gap: 20px 48px;
+  align-items: end;
+  margin-bottom: clamp(24px, 3.2vw, 40px);
+}
+.title {
+  --fit: 1;
+  font-size: calc(clamp(1.6rem, 7.7vw, 3.4rem) * var(--fit));
+  font-weight: 800;
+  line-height: 1;
+  letter-spacing: -0.025em;
+}
+.title:lang(fr) {
+  --fit: 0.87;
+}
+.title span {
+  display: block;
+  white-space: nowrap;
+}
+.title span + span {
+  font-weight: 300;
+}
+.lede {
+  max-width: 35rem;
+  color: var(--ink-2);
+  text-wrap: pretty;
+}
+.meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 18px;
+  margin-top: 14px;
+  color: var(--ink-3);
+  font-size: 0.75rem;
+}
+@media (min-width: 700px) {
+  .title {
+    font-size: calc(clamp(2.6rem, 6.3vw, 4.1rem) * var(--fit));
+    font-stretch: 112%;
+  }
+}
+@media (min-width: 1100px) {
+  .heroHead {
+    grid-template-columns: minmax(0, 1fr) minmax(18rem, 25rem);
+  }
+  .title {
+    font-size: calc(clamp(2.7rem, 4.6vw, 4.2rem) * var(--fit));
+    font-stretch: 125%;
+  }
+}
+
+.sheet {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  row-gap: 9px;
+}
+@media (max-width: 899.98px) {
+  .sheet .cell:nth-child(4n + 1) {
+    --ll: 2;
+  }
+  .sheet .cell:nth-child(4n) {
+    --lr: 2;
+  }
+}
+@media (min-width: 900px) {
+  .sheet {
+    grid-template-columns: repeat(8, minmax(0, 1fr));
+    row-gap: 13px;
+  }
+  .sheet .cell:nth-child(8n + 1) {
+    --ll: 7;
+  }
+  .sheet .cell:nth-child(8n) {
+    --lr: 7;
+  }
+}
+.sheetFoot {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 4px 24px;
+  margin-top: 14px;
+  color: var(--ink-3);
+  font-size: 0.8125rem;
+}
+.legend {
+  display: inline-flex;
+  flex-wrap: wrap;
+  gap: 4px 20px;
+}
+.legend span {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+.dotKey {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: var(--grease);
+}
+
+/* ── film ───────────────────────────────────────────────────
+   A cell is one frame's width of film. It is a size container, so
+   everything inside scales off its width: the pitch (--p) is an
+   eighth of a frame — 35mm's eight perforations per frame — and the
+   perforated band, the rebate and the edge print derive from it.
+   Cells sit flush, so a row of them reads as one strip. --ll / --lr
+   run the film past the first / last cell, in whole frames (keeps the
+   perforations in phase), off the edge of the page. */
+.cell {
+  position: relative;
+  min-width: 0;
+  container-type: inline-size;
+}
+.cell > * {
+  --p: calc(100cqw / 8);
+  --band: calc(var(--p) * 0.84);
+  --rebate: calc(var(--p) * 0.2);
+}
+.seg {
+  position: relative;
+  display: block;
+  padding: var(--band) var(--rebate);
+  color: var(--film-ink);
+}
+.film {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: calc(-100cqw * var(--ll, 0) - 0.5px);
+  right: calc(-100cqw * var(--lr, 0) - 0.5px);
+  background: var(--film);
+  -webkit-mask-image: var(--hole), var(--hole), linear-gradient(#000, #000);
+  -webkit-mask-size:
+    var(--p) var(--band),
+    var(--p) var(--band),
+    100% 100%;
+  -webkit-mask-position:
+    0.5px 0,
+    0.5px 100%,
+    0 0;
+  -webkit-mask-repeat: repeat-x, repeat-x, no-repeat;
+  -webkit-mask-composite: xor;
+  mask-image: var(--hole), var(--hole), linear-gradient(#000, #000);
+  mask-size:
+    var(--p) var(--band),
+    var(--p) var(--band),
+    100% 100%;
+  mask-position:
+    0.5px 0,
+    0.5px 100%,
+    0 0;
+  mask-repeat: repeat-x, repeat-x, no-repeat;
+  mask-composite: exclude;
+}
+.pic {
+  position: relative;
+  z-index: 1;
+  display: block;
+  aspect-ratio: 1200 / 630;
+  overflow: hidden;
+  isolation: isolate;
+  background: var(--film-clear);
+  border-radius: max(1.5px, calc(var(--p, 16px) * 0.1));
+}
+.pic img {
+  position: absolute;
+  inset: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+/* the negative: tones inverted, laid over the film's own amber */
+.neg {
+  filter: invert(1) saturate(0.5) contrast(0.92);
+  mix-blend-mode: multiply;
+}
+.edge {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  gap: 0.5em;
+  margin-top: max(3px, calc(var(--p) * 0.2));
+  overflow: hidden;
+  font-size: clamp(9px, 5.6cqw, 12px);
+  font-stretch: 70%;
+  font-weight: 600;
+  line-height: 1.15;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  font-variant-numeric: tabular-nums;
+}
+.edge b {
+  font-weight: 800;
+}
+.edge span {
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+/* newest frames carry a sticker */
+.dot {
+  position: absolute;
+  z-index: 2;
+  top: calc(var(--band) - 4px);
+  right: calc(var(--rebate) - 4px);
+  width: clamp(9px, 6.5cqw, 12px);
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background: var(--grease);
+  border: 2px solid var(--table-hi);
+}
+/* the select mark — a grease-pencil box around the frame you're on */
+a.seg::after {
+  content: "";
+  position: absolute;
+  z-index: 3;
+  inset: -5px 1px;
+  border: 2.5px solid var(--grease);
+  border-radius: 7px;
+  opacity: 0;
+  transform: rotate(-0.8deg) scale(1.04);
+  pointer-events: none;
+  transition:
+    opacity 140ms var(--ease),
+    transform 240ms var(--ease);
+}
+a.seg:hover::after,
+a.seg:focus-visible::after,
+.stub:target a.seg::after {
+  opacity: 1;
+  transform: rotate(-0.8deg);
+}
+a.seg:focus-visible {
+  outline: none;
+}
+a.seg:focus-visible .pic {
+  outline: 2px solid var(--film-ink);
+  outline-offset: 1px;
+}
+
+/* developing ─ a frame's positive washes in over its negative.
+   --dev is registered in globals.css so the gradient can animate. */
+.sheet .pic:not([data-dev="done"]) .pos,
+.pic[data-dev="wait"]:not(.picPrint) .pos,
+.pic[data-dev="run"]:not(.picPrint) .pos {
+  -webkit-mask-image: linear-gradient(100deg, #000 calc(var(--dev) - 30%), transparent var(--dev));
+  mask-image: linear-gradient(100deg, #000 calc(var(--dev) - 30%), transparent var(--dev));
+}
+/* the sheet develops by itself on load, in a diagonal wave */
+.sheet .pic:not([data-dev="done"]) .pos {
+  animation: develop 1000ms var(--ease-wash) both;
+  animation-delay: calc(var(--w, 0) * 85ms + 500ms);
+}
+.sheet[data-hold] .pic:not([data-dev="done"]) .pos {
+  --dev: 0%;
+  animation: none;
+}
+.pic[data-dev="wait"]:not(.picPrint) .pos {
+  --dev: 0%;
+}
+.pic[data-dev="run"]:not(.picPrint) .pos {
+  animation: develop 1100ms var(--ease-wash) both;
+}
+/* a print comes up out of blank paper instead */
+.picPrint[data-dev="wait"] .pos {
+  opacity: 0;
+}
+.picPrint[data-dev="run"] .pos {
+  animation: emerge 1300ms var(--ease-wash) both;
+}
+@keyframes develop {
+  from {
+    --dev: 0%;
+  }
+  to {
+    --dev: 130%;
+  }
+}
+@keyframes emerge {
+  from {
+    opacity: 0;
+    filter: contrast(0.45) brightness(1.35) sepia(0.5);
+  }
+  to {
+    opacity: 1;
+    filter: none;
+  }
+}
+
+/* ── piano ──────────────────────────────────────────────── */
+.piano {
+  display: grid;
+  gap: 48px;
+}
+.pianoCopy {
+  display: grid;
+  gap: 22px;
+  justify-items: start;
+  align-content: start;
+}
+.pianoLine {
+  max-width: 21em;
+  font-size: clamp(1.4rem, 2.8vw, 2.2rem);
+  font-weight: 300;
+  line-height: 1.2;
+  letter-spacing: -0.015em;
+  text-wrap: balance;
+}
+.pianoLine b {
+  font-weight: 750;
+  font-stretch: 112%;
+  white-space: nowrap;
+}
+.stub {
+  --ll: 6;
+  width: min(100%, 21rem);
+  margin-top: 14px;
+}
+/* the reel — cine film runs top to bottom, perforated down both sides */
+.reel {
+  display: grid;
+  gap: 14px;
+  width: min(100%, 300px);
+  justify-self: center;
+}
+.reelSeg {
+  container-type: inline-size;
+}
+.reelInner {
+  --p: calc(100cqw / 12);
+  --band: calc(var(--p) * 0.84);
+  position: relative;
+  display: grid;
+  gap: calc(var(--p) * 0.36);
+  padding: calc(var(--p) * 0.9) calc(var(--band) + var(--p) * 0.2);
+  color: var(--film-ink);
+}
+.reelFilm {
+  position: absolute;
+  inset: 0;
+  background: var(--film);
+  -webkit-mask-image: var(--hole-v), var(--hole-v), linear-gradient(#000, #000);
+  -webkit-mask-size:
+    var(--band) var(--p),
+    var(--band) var(--p),
+    100% 100%;
+  -webkit-mask-position:
+    0 0,
+    100% 0,
+    0 0;
+  -webkit-mask-repeat: repeat-y, repeat-y, no-repeat;
+  -webkit-mask-composite: xor;
+  mask-image: var(--hole-v), var(--hole-v), linear-gradient(#000, #000);
+  mask-size:
+    var(--band) var(--p),
+    var(--band) var(--p),
+    100% 100%;
+  mask-position:
+    0 0,
+    100% 0,
+    0 0;
+  mask-repeat: repeat-y, repeat-y, no-repeat;
+  mask-composite: exclude;
+}
+.reelEdge {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  gap: 0.5em;
+  font-size: 0.6875rem;
+  font-stretch: 70%;
+  font-weight: 600;
+  line-height: 1.2;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  font-variant-numeric: tabular-nums;
+}
+.reelEdge b {
+  font-weight: 800;
+}
+.gate {
+  position: relative;
+  z-index: 1;
+  aspect-ratio: 9 / 16;
+  overflow: hidden;
+  border-radius: 4px;
+  background: #000;
+}
+.gate video {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.sound {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  padding: 0;
+  border: 0;
+  border-radius: 50%;
+  background: rgba(10, 10, 10, 0.62);
+  color: #fff;
+  cursor: pointer;
+  transition: background-color 200ms var(--ease);
+}
+.sound:hover {
+  background: rgba(10, 10, 10, 0.86);
+}
+.sound:focus-visible {
+  outline-color: #fff;
+}
+.reelCap {
+  display: grid;
+  gap: 10px;
+  color: var(--ink-2);
+  font-size: 0.9375rem;
+  line-height: 1.5;
+}
+.reel:target .reelSeg {
+  outline: 2.5px solid var(--grease);
+  outline-offset: 6px;
+  border-radius: 4px;
+}
+.chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  justify-self: start;
+  color: var(--ink-3);
+  font-size: 0.75rem;
+}
+.chip i {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--grease);
+}
+@media (min-width: 900px) {
+  .piano {
+    grid-template-columns: minmax(0, 1.2fr) minmax(0, 0.8fr);
+    gap: 72px;
+    align-items: center;
+  }
+  .reel {
+    width: 300px;
+  }
+}
+
+/* ── prints (selected work) ─────────────────────────────── */
+.prints {
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  gap: clamp(48px, 6vw, 84px) clamp(20px, 3.8vw, 56px);
+}
+.print {
+  grid-column: span 12;
+  display: grid;
+  gap: 18px;
+  align-content: start;
+}
+@media (min-width: 760px) {
+  .print {
+    grid-column: span 6;
+  }
+  .print[data-size="wide"] {
+    grid-column: span 7;
+  }
+  .print[data-size="side"] {
+    grid-column: span 5;
+    align-self: end;
+  }
+}
+.paper {
+  position: relative;
+  display: block;
+  padding: clamp(7px, 0.9vw, 12px);
+  background: var(--paper);
+  border-radius: 2px;
+  box-shadow: var(--print-shadow);
+  transform: rotate(var(--tilt, 0deg));
+  transition:
+    transform 520ms var(--ease),
+    box-shadow 520ms var(--ease);
+}
+@media (hover: hover) {
+  .print:hover .paper {
+    transform: translateY(-4px);
+    box-shadow: var(--print-shadow-up);
+  }
+}
+.print:focus-within .paper {
+  transform: none;
+}
+.print:target .paper {
+  outline: 2.5px solid var(--grease);
+  outline-offset: 6px;
+}
+.picPrint {
+  background: #f0eeeb;
+  border-radius: 1px;
+}
+.filmBtn {
+  position: relative;
+  display: block;
+  width: 100%;
+  padding: 0;
+  border: 0;
+  background: none;
+  cursor: pointer;
+}
+.playBadge {
+  position: absolute;
+  z-index: 2;
+  top: 50%;
+  left: 50%;
+  display: grid;
+  place-items: center;
+  width: 60px;
+  height: 60px;
+  margin: -30px 0 0 -30px;
+  /* the triangle's visual centre sits left of its box */
+  padding-left: 3px;
+  border-radius: 50%;
+  background: var(--grease);
+  color: var(--grease-ink);
+  box-shadow: 0 8px 20px -6px rgba(0, 0, 0, 0.5);
+  transition: transform 260ms var(--ease);
+}
+.filmBtn:hover .playBadge {
+  transform: scale(1.07);
+}
+.filmFrame {
+  display: block;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  border: 0;
+  background: #000;
+}
+.cap {
+  display: grid;
+  gap: 8px;
+  padding-inline: clamp(7px, 0.9vw, 12px);
+}
+.capTop {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 4px 12px;
+}
+.capTop h3 {
+  font-size: clamp(1.25rem, 1.9vw, 1.5rem);
+  font-weight: 700;
+  font-stretch: 112%;
+  line-height: 1.15;
+  letter-spacing: -0.015em;
+}
+.cap p {
+  max-width: 46ch;
+  color: var(--ink-2);
+  font-size: 1rem;
+  text-wrap: pretty;
+}
+/* frame numbers on the table are written in grease pencil */
+.no {
+  color: var(--grease);
+  font-size: 0.75rem;
+}
+.year {
+  margin-left: auto;
+  color: var(--ink-3);
+  font-size: 0.75rem;
+}
+.tag {
+  align-self: center;
+  padding: 2px 6px;
+  border: 1.5px solid var(--grease);
+  border-radius: 3px;
+  color: var(--grease);
+  font-size: 0.6875rem;
+  line-height: 1.2;
+}
+.capLinks {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 2px 10px;
+}
+.link {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  justify-self: start;
+  min-height: 44px;
+  font-size: 0.875rem;
+  font-weight: 650;
+  overflow-wrap: anywhere;
+  text-decoration: underline;
+  text-decoration-color: var(--line-strong);
+  text-decoration-thickness: 1.5px;
+  text-underline-offset: 6px;
+  transition:
+    color 200ms var(--ease),
+    text-decoration-color 200ms var(--ease);
+}
+.link:hover {
+  color: var(--grease);
+  text-decoration-color: currentColor;
+}
+.ghMark {
+  display: inline-flex;
+}
+.capGh {
+  display: grid;
+  place-items: center;
+  width: 42px;
+  height: 42px;
+  margin: -8px 0;
+  color: var(--ink-3);
+  transition: color 200ms var(--ease);
+}
+.capGh:hover {
+  color: var(--grease);
+}
+
+/* ── archive index ──────────────────────────────────────── */
+.index {
+  border-top: 1px solid var(--line-strong);
+}
+.index li {
+  position: relative;
+}
+.row {
+  display: grid;
+  grid-template-columns: auto 72px minmax(0, 1fr) auto;
+  grid-template-areas:
+    "no mini name year"
+    "no mini desc desc";
+  align-items: center;
+  gap: 2px 14px;
+  padding: 14px 2.5rem 14px 0;
+  border-bottom: 1px solid var(--line);
+  transition: background-color 200ms var(--ease);
+}
+.row .no {
+  grid-area: no;
+}
+.mini {
+  grid-area: mini;
+  display: block;
+  padding: 3px;
+  background: var(--film);
+  border-radius: 3px;
+}
+.mini img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 1.5px;
+}
+.rowName {
+  grid-area: name;
+  font-weight: 650;
+  font-stretch: 108%;
+  letter-spacing: -0.01em;
+}
+.rowName .tri {
+  /* the global reset makes every svg a block — keep the arrow on the
+     name's last line */
+  display: inline-block;
+  margin-left: 4px;
+  color: var(--ink-3);
+  transition:
+    transform 220ms var(--ease),
+    color 200ms var(--ease);
+}
+.rowDesc {
+  grid-area: desc;
+  color: var(--ink-2);
+  font-size: 0.9375rem;
+  line-height: 1.45;
+}
+.row .year {
+  grid-area: year;
+  justify-self: end;
+}
+.row:hover {
+  background: var(--hover-fill);
+}
+.row:hover .rowName .tri {
+  color: var(--grease);
+}
+.row:focus-visible {
+  outline-offset: -2px;
+}
+.index li:target .row {
+  background: color-mix(in srgb, var(--grease) 9%, transparent);
+  box-shadow: inset 0 0 0 1.5px var(--grease);
+}
+@media (min-width: 860px) {
+  .row {
+    grid-template-columns: 2.25rem 96px minmax(10rem, 17rem) minmax(0, 1fr) 6.5rem;
+    grid-template-areas: "no mini name desc year";
+    gap: 0 26px;
+    padding: 12px 2.75rem 12px 12px;
+  }
+}
+/* open-source mark — sits just past the year, outside the row link so
+   it can point at the repo instead of the project */
+.gh {
+  position: absolute;
+  top: 50%;
+  right: 0;
+  z-index: 1;
+  display: grid;
+  place-items: center;
+  width: 42px;
+  height: 42px;
+  color: var(--ink-3);
+  transform: translateY(-50%);
+  transition: color 200ms var(--ease);
+}
+.gh:hover {
+  color: var(--grease);
+}
+.earlier {
+  display: grid;
+  gap: 10px;
+  margin-top: 28px;
+}
+.earlier h3 {
+  color: var(--ink-3);
+  font-size: 0.75rem;
+}
+.earlier ul {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px 22px;
+}
+.earlier a {
+  text-decoration: underline;
+  text-decoration-color: var(--line-strong);
+  text-underline-offset: 5px;
+}
+
+/* ── about ──────────────────────────────────────────────── */
+.about {
+  display: grid;
+  gap: 40px 72px;
+  align-items: start;
+}
+@media (min-width: 860px) {
+  .about {
+    grid-template-columns: minmax(240px, 360px) minmax(0, 1fr);
+  }
+}
+.portrait {
+  --tilt: -1.4deg;
+  position: relative;
+  max-width: 360px;
+  padding: 12px 12px 42px;
+  background: var(--paper);
+  border-radius: 2px;
+  box-shadow: var(--print-shadow);
+  transform: rotate(var(--tilt));
+}
+.portraitImg {
+  width: 100%;
+  aspect-ratio: 3 / 4;
+  border-radius: 1px;
+}
+.portraitCap {
+  position: absolute;
+  left: 14px;
+  bottom: 13px;
+  color: #5f6563;
+  font-size: 0.6875rem;
+}
+.bio {
+  max-width: 36rem;
+  font-size: clamp(1.15rem, 1.8vw, 1.4rem);
+  line-height: 1.45;
+  text-wrap: pretty;
+}
+.facts {
+  display: grid;
+  gap: 0 40px;
+  margin-top: 30px;
+  border-top: 1px solid var(--line-strong);
+}
+@media (min-width: 560px) {
+  .facts {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+.facts div {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 12px 0;
+  border-bottom: 1px solid var(--line);
+}
+.facts dt {
+  color: var(--ink-3);
+  font-size: 0.75rem;
+}
+.facts dd {
+  font-weight: 600;
+  text-align: right;
+}
+.quote {
+  margin-top: 40px;
+}
+.quote p {
+  max-width: 21em;
+  font-size: clamp(1.4rem, 2.6vw, 2.05rem);
+  font-weight: 300;
+  font-stretch: 112%;
+  line-height: 1.2;
+  letter-spacing: -0.015em;
+  text-wrap: balance;
+}
+.quote footer {
+  margin-top: 12px;
+  color: var(--ink-3);
+  font-size: 0.75rem;
+}
+.rec {
+  display: grid;
+  gap: 4px;
+  margin-top: 40px;
+}
+.rec h3 {
+  color: var(--ink-3);
+  font-size: 0.75rem;
+}
+.rec li {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 10px 0;
+  border-bottom: 1px solid var(--line);
+  font-size: 0.9375rem;
+}
+.rec time {
+  flex: none;
+  color: var(--ink-3);
+  font-size: 0.75rem;
+}
+
+/* ── the tail of the roll — No. 25 ──────────────────────── */
+.tail {
+  display: grid;
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+  /* same frame size as the old 3-up strip — the strip just runs twice
+     as long, off the right edge of the table */
+  width: 200%;
+  max-width: 1800px;
+}
+.tail .cell:first-child {
+  --ll: 6;
+}
+.tail .cell:last-child {
+  --lr: 6;
+}
+/* where the frame was cut out: bare table, no film */
+.gap {
+  height: 100%;
+  padding: var(--band) var(--rebate);
+}
+.cut {
+  display: grid;
+  place-items: center;
+  align-content: center;
+  gap: clamp(2px, 2cqw, 8px);
+  width: 100%;
+  aspect-ratio: 1200 / 630;
+  padding: 0;
+  border: 1.5px dashed var(--line-strong);
+  border-radius: max(1.5px, calc(var(--p) * 0.1));
+  background: transparent;
+  color: var(--ink-2);
+  cursor: pointer;
+  transition:
+    border-color 200ms var(--ease),
+    color 200ms var(--ease),
+    background-color 200ms var(--ease);
+}
+.cut:hover {
+  border-color: var(--grease);
+  background: color-mix(in srgb, var(--grease) 6%, transparent);
+  color: var(--grease);
+}
+.cutNo {
+  font-size: min(19cqw, 3.5rem);
+  font-weight: 800;
+  font-stretch: 125%;
+  line-height: 0.9;
+  letter-spacing: -0.03em;
+}
+/* unexposed film: nothing on it yet */
+.blank {
+  display: grid;
+  place-items: center;
+}
+.build {
+  color: var(--film-ink);
+  font-family: var(--font-code);
+  font-size: min(8.5cqw, 1.5rem);
+  font-weight: 500;
+}
+.build::after {
+  content: "";
+  display: inline-block;
+  width: 0.55em;
+  height: 1.05em;
+  margin-left: 0.14em;
+  vertical-align: -0.16em;
+  background: currentColor;
+}
+.missing {
+  display: grid;
+  gap: 40px 72px;
+  align-items: end;
+  margin-top: clamp(34px, 5vw, 60px);
+}
+@media (min-width: 960px) {
+  .missing {
+    grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr);
+  }
+}
+.missingCopy {
+  display: grid;
+  gap: 18px;
+  justify-items: start;
+}
+.redactLine {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px 16px;
+}
+.redacted {
+  color: var(--ink);
+  letter-spacing: -0.08em;
+  user-select: none;
+}
+.buildNote {
+  color: var(--ink-3);
+  font-size: 0.9375rem;
+}
+.buildNote code {
+  margin-right: 10px;
+  color: var(--ink);
+  font-family: var(--font-code);
+  font-size: 0.875rem;
+}
+.mitty {
+  margin-top: 0;
+}
+
+/* ── contact ────────────────────────────────────────────── */
+.contact {
+  display: grid;
+  gap: 14px;
+  justify-items: start;
+  padding-top: clamp(96px, 13vw, 176px);
+  padding-bottom: clamp(72px, 10vw, 128px);
+}
+.contact h2 {
+  font-size: clamp(2.7rem, 9.4vw, 6rem);
+  font-weight: 800;
+  font-stretch: 125%;
+  line-height: 0.95;
+  letter-spacing: -0.03em;
+}
+.contact p {
+  color: var(--ink-2);
+}
+.mail {
+  margin-top: 20px;
+  max-width: 100%;
+  font-size: clamp(1.3rem, 4.6vw, 3rem);
+  font-weight: 300;
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+  overflow-wrap: anywhere;
+  text-decoration: underline;
+  text-decoration-color: var(--line-strong);
+  text-decoration-thickness: 2px;
+  text-underline-offset: 0.2em;
+  transition:
+    color 200ms var(--ease),
+    text-decoration-color 200ms var(--ease);
+}
+.mail:hover {
+  color: var(--grease);
+  text-decoration-color: currentColor;
+}
+.xLine {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  min-height: 44px;
+  margin-top: 6px;
+  font-weight: 650;
+  transition: color 200ms var(--ease);
+}
+.xLine:hover {
+  color: var(--grease);
+}
+
+/* ── footer ─────────────────────────────────────────────── */
+.footer {
+  padding: 30px 0 40px;
+  border-top: 1px solid var(--line-strong);
+}
+.footerTop {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 24px 40px;
+}
+.footerBrand p {
+  max-width: 30rem;
+  margin-top: 8px;
+  color: var(--ink-3);
+  font-size: 0.875rem;
+}
+.socials {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0 22px;
+}
+.socials a {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 44px;
+  color: var(--ink-2);
+  font-size: 0.875rem;
+  transition: color 200ms var(--ease);
+}
+.socials a:hover {
+  color: var(--ink);
+}
+.footerBottom {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px 24px;
+  margin-top: 24px;
+  color: var(--ink-3);
+  font-size: 0.8125rem;
+}
+.builtWith {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 44px;
+  transition: color 200ms var(--ease);
+}
+.builtWith:hover {
+  color: var(--ink);
+}
+
+/* ── counters ───────────────────────────────────────────────
+   Each digit is a column of 0–9 clipped to one line; --d picks the
+   row. Waiting, every column sits on 0; arriving, they roll up. */
+.srOnly {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+  border: 0;
+}
+.digit {
+  display: inline-block;
+  height: 1.2em;
+  overflow: hidden;
+  line-height: 1.2;
+  vertical-align: top;
+}
+.digit > span {
+  display: block;
+  transform: translateY(calc(var(--d) * -1.2em));
+}
+.digit i {
+  display: block;
+  height: 1.2em;
+  font-style: normal;
+}
+.roller[data-reveal="wait"] .digit > span {
+  transform: translateY(0);
+}
+.roller[data-reveal="in"] .digit > span {
+  transition: transform 1500ms var(--ease) calc(var(--k) * 40ms + 150ms);
+}
+
+/* ── scroll choreography ────────────────────────────────────
+   [data-reveal] blocks wait just out of sight and play once as they
+   scroll in. RollPage sets wait → in → done; nothing waits without JS
+   or under reduced motion, and "done" drops every rule here so each
+   element gets its own transitions back. Each kind of thing arrives
+   its own way. --s = its place among those arriving together. */
+
+/* headings are exposed left to right */
+.head[data-reveal="wait"] .h2 {
+  clip-path: inset(-0.1em 100% -0.25em -0.1em);
+  transform: translateX(-14px);
+}
+.head[data-reveal="in"] .h2 {
+  clip-path: inset(-0.1em -0.1em -0.25em -0.1em);
+  transition:
+    clip-path 900ms var(--ease-wash),
+    transform 900ms var(--ease);
+}
+.head[data-reveal="wait"] p {
+  opacity: 0;
+  transform: translateY(12px);
+}
+.head[data-reveal="in"] p {
+  transition:
+    opacity 700ms var(--ease) 260ms,
+    transform 700ms var(--ease) 260ms;
+}
+
+/* prints are dealt onto the table, then the picture comes up */
+.print[data-reveal] {
+  --lag: calc(min(var(--s, 0), 4) * 120ms);
+}
+.print[data-reveal="wait"] {
+  opacity: 0;
+  transform: translateY(56px) rotate(3deg) scale(0.96);
+}
+.print:nth-child(even)[data-reveal="wait"] {
+  transform: translateY(56px) rotate(-3deg) scale(0.96);
+}
+.print[data-reveal="in"] {
+  transition:
+    opacity 500ms var(--ease) var(--lag),
+    transform 1000ms var(--ease) var(--lag);
+}
+.print[data-reveal="wait"] .cap {
+  opacity: 0;
+  transform: translateY(14px);
+}
+.print[data-reveal="in"] .cap {
+  transition:
+    opacity 700ms var(--ease) calc(var(--lag) + 340ms),
+    transform 700ms var(--ease) calc(var(--lag) + 340ms);
+}
+.print[data-reveal] .picPrint[data-dev="run"] .pos {
+  animation-delay: calc(var(--lag) + 280ms);
+}
+
+/* index rows file in from the margin */
+.index li[data-reveal] {
+  --lag: calc(min(var(--s, 0), 8) * 60ms);
+}
+.index li[data-reveal="wait"] {
+  opacity: 0;
+  transform: translateX(-22px);
+}
+.index li[data-reveal="in"] {
+  transition:
+    opacity 600ms var(--ease) var(--lag),
+    transform 800ms var(--ease) var(--lag);
+}
+.index li[data-reveal] .pic[data-dev="run"] .pos {
+  animation-delay: calc(var(--lag) + 160ms);
+}
+
+/* copy rises a line at a time */
+.riseGroup[data-reveal="wait"] > *,
+.rise[data-reveal="wait"] {
+  opacity: 0;
+  transform: translateY(20px);
+}
+.riseGroup[data-reveal="in"] > *,
+.rise[data-reveal="in"] {
+  transition:
+    opacity 700ms var(--ease),
+    transform 900ms var(--ease);
+}
+.riseGroup[data-reveal="in"] > :nth-child(2) {
+  transition-delay: 90ms;
+}
+.riseGroup[data-reveal="in"] > :nth-child(3) {
+  transition-delay: 180ms;
+}
+.riseGroup[data-reveal="in"] > :nth-child(4) {
+  transition-delay: 270ms;
+}
+.riseGroup[data-reveal="in"] > :nth-child(5) {
+  transition-delay: 360ms;
+}
+.riseGroup[data-reveal="in"] > :nth-child(n + 6) {
+  transition-delay: 450ms;
+}
+
+/* the reel threads in from the top. The clip sits on the strip, never
+   on .reel itself: a fully clipped element has no visible area, so the
+   observer watching it would never fire and it would stay hidden. */
+.reel[data-reveal="wait"] .reelSeg {
+  clip-path: inset(0 0 100% 0);
+  transform: translateY(-28px);
+}
+.reel[data-reveal="in"] .reelSeg {
+  clip-path: inset(0 0 0 0);
+  transition:
+    clip-path 1200ms var(--ease-wash),
+    transform 1200ms var(--ease);
+}
+.reel[data-reveal="wait"] .reelCap {
+  opacity: 0;
+  transform: translateY(12px);
+}
+.reel[data-reveal="in"] .reelCap {
+  transition:
+    opacity 700ms var(--ease) 700ms,
+    transform 700ms var(--ease) 700ms;
+}
+
+.portrait[data-reveal="wait"] {
+  opacity: 0;
+  transform: translateY(48px) rotate(-7deg) scale(0.96);
+}
+.portrait[data-reveal="in"] {
+  transition:
+    opacity 500ms var(--ease),
+    transform 1100ms var(--ease);
+}
+
+/* the strip closes in around the frame that is not there */
+.tail[data-reveal="wait"] .cell:first-child {
+  transform: translateX(-9vw);
+}
+.tail[data-reveal="wait"] .cell:last-child {
+  transform: translateX(9vw);
+}
+.tail[data-reveal="wait"] .cell:nth-child(2) {
+  opacity: 0;
+  transform: scale(0.9);
+}
+.tail[data-reveal="in"] .cell {
+  transition: transform 1200ms var(--ease);
+}
+.tail[data-reveal="in"] .cell:nth-child(2) {
+  transition:
+    opacity 600ms var(--ease) 700ms,
+    transform 700ms var(--ease) 700ms;
+}
+
+/* the sign-off widens as it lands (Archivo's width axis) */
+.contact[data-reveal="wait"] h2 {
+  font-stretch: 62%;
+}
+.contact[data-reveal="in"] h2 {
+  transition:
+    font-stretch 1300ms var(--ease),
+    opacity 700ms var(--ease),
+    transform 900ms var(--ease);
+}
+
+/* scroll-linked, where the browser can: the film advances with the
+   page, and the sheet's strips pull apart as you leave it */
+@supports (animation-timeline: scroll()) {
+  @media (prefers-reduced-motion: no-preference) {
+    .header::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: -1px;
+      height: 2px;
+      background: var(--film);
+      transform: scaleX(0);
+      transform-origin: left;
+      animation: advance linear both;
+      animation-timeline: scroll(root);
+    }
+    .sheet .cell {
+      animation: pull linear both;
+      animation-timeline: scroll(root);
+      animation-range: 0px 720px;
+    }
+  }
+}
+@media (max-width: 899.98px) {
+  .sheet .cell:nth-child(8n + 5),
+  .sheet .cell:nth-child(8n + 6),
+  .sheet .cell:nth-child(8n + 7),
+  .sheet .cell:nth-child(8n) {
+    --pull: 1;
+  }
+}
+@media (min-width: 900px) {
+  .sheet .cell:nth-child(n + 9):nth-child(-n + 16) {
+    --pull: 1;
+  }
+}
+@keyframes advance {
+  to {
+    transform: scaleX(1);
+  }
+}
+@keyframes pull {
+  to {
+    transform: translateX(calc(var(--pull, -1) * 44px));
+  }
+}
+
+/* ── motion ─────────────────────────────────────────────── */
+@media (prefers-reduced-motion: no-preference) {
+  .build::after {
+    animation: caret 1.1s steps(1) infinite;
+  }
+  .chip i {
+    animation: pulse 2.4s ease-in-out infinite;
+  }
+}
+@keyframes caret {
+  50% {
+    opacity: 0;
+  }
+}
+@keyframes pulse {
+  50% {
+    opacity: 0.35;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .roll *,
+  .roll *::before,
+  .roll *::after {
+    animation: none !important;
+    transition: none !important;
+  }
+  /* no developing — every frame arrives finished */
+  .roll .pic .pos {
+    opacity: 1;
+    -webkit-mask-image: none;
+    mask-image: none;
+  }
+}

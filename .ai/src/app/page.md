@@ -19,3 +19,6 @@ description; OG/Twitter images live in `layout.tsx`).
 
 ## 2026-11-13 Update
 - Updated page `description` metadata to include Cairn alongside LearnX and SpinShare.
+
+## 2026-11-15 Update
+- Renders `RollPage` (was `StackPage`, now at `app/stack/page.tsx`). Metadata description names BLADE and "fourteen million views". Revert = swap the import back.

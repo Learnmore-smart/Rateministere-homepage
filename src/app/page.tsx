@@ -1,17 +1,17 @@
 import type { Metadata } from "next";
-import StackPage from "@/components/stack/StackPage";
+import RollPage from "@/components/roll/RollPage";
 import { LanguageProvider } from "@/components/LanguageContext";
 
 export const metadata: Metadata = {
-  title: "NOAH ZIXIN ZHANG — Creative Developer",
+  title: "NOAH ZIXIN ZHANG · Creative Developer",
   description:
-    "Code in production. Piano in public. Noah Zixin Zhang builds supastack, LearnX, Cairn, Vorlee, Pluto, SpinShare and FkLearn — and runs Noah's Piano Journey, a channel twelve million views deep.",
+    "Code in production. Piano in public. Noah Zixin Zhang builds supastack, LearnX, Cairn, SpinShare, BLADE, Pluto, Vorlee and FkLearn, and runs Noah's Piano Journey, a channel fourteen million views deep.",
 };
 
 export default function Home() {
   return (
     <LanguageProvider>
-      <StackPage />
+      <RollPage />
     </LanguageProvider>
   );
 }

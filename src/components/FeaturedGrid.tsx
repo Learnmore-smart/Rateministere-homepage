@@ -179,7 +179,7 @@ export default function FeaturedGrid() {
                   {item.id === "piano" && (
                     <div className="absolute top-3 right-3 z-10 bg-[#ff0000]/95 text-white font-body text-[9px] uppercase tracking-wider font-bold px-2 py-0.5 rounded-full shadow-sm flex items-center gap-1.5 select-none">
                       <span className="h-1.5 w-1.5 rounded-full bg-white animate-pulse" />
-                      12M+ Views
+                      14M+ Views
                     </div>
                   )}
 
@@ -311,7 +311,7 @@ function ShowcaseModal({
               {item.id === "piano" && (
                 <div className="absolute top-3 right-3 z-10 bg-[#ff0000]/95 text-white font-body text-[9px] uppercase tracking-wider font-bold px-2 py-0.5 rounded-full shadow-sm flex items-center gap-1.5">
                   <span className="h-1.5 w-1.5 rounded-full bg-white animate-pulse" />
-                  12M+ Views
+                  14M+ Views
                 </div>
               )}
             </div>
@@ -483,7 +483,7 @@ function ShowcaseModal({
                   {item.id === "piano" && (
                     <span className="inline-flex items-center gap-1.5 rounded-full bg-[#ff0000]/10 px-2.5 py-0.5 font-body text-[9px] font-bold uppercase tracking-wider text-[#ff0000] select-none">
                       <span className="h-1 w-1 rounded-full bg-[#ff0000] animate-pulse" />
-                      {(t.featured.piano as { shortViews?: string }).shortViews || "3M+ Views"}
+                      {(t.featured.piano as { shortViews?: string }).shortViews || "4.5M+ Views"}
                     </span>
                   )}
                 </h4>

@@ -21,3 +21,10 @@ Single source of truth for the mockup pages (profile, piano channel, portrait pa
 | 2026-09-23 | `PIANO.views` 10M→12M (+ blurb); supastack card image → `/supastack-OG.png` | Devin |
 | 2026-11-01 | FEATURED +fklearn (6 total); ARCHIVE +novapuraai +file-guardian (12 total); rate year → 2025 | Devin |
 | 2026-11-13 | FEATURED +cairn before spinshare (7 total, `/cairn-OG.png`) | Antigravity |
+
+## 2026-11-15 Update
+- `FEATURED` +**BLADE** (after SpinShare, `github` set, `/blade-OG.png`) → 8 entries. `PIANO.views` 14,000,000+, `viralShort` 4,500,000+, blurb reworded.
+- `/` (RollPage) derives its 24-frame roll from `FEATURED` + `ARCHIVE` in `components/roll/frames.ts`: a new FEATURED entry pushes the last ARCHIVE entry off the sheet, and each new frame needs assets in `public/roll/` (see RollPage.md).
+- Known dead link: `novapuraai.com` refuses connections (mirror says the service is archived). Left as is pending the user's call.
+- `ARCHIVE` reordered 2026-11-15 (user: "the voting teacher platform rateministere is the first platform"): **rate** moved to the END of the array (after `msu`) → on the roll it takes frame **No. 01** (last archive row, "first frame" of the roll) and `msu` sits at No. 02. Still 12 entries, nothing dropped. An earlier attempt added a `homepage` self-entry instead — reverted per user.
+- 2026-11-16: every `ARCHIVE` entry now carries `github` (repo URLs copied from `ArchiveSection.tsx`, the published source). Convention: **open source ⇒ `github` set ⇒ GitHub mark in row UIs** (RollPage `.gh`, StackPage `.archiveGh`); icons open the repo in a new tab. `FEATURED` entries without a public repo keep `github` unset (BLADE is the only featured repo).

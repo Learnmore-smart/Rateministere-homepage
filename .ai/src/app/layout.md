@@ -34,3 +34,6 @@ fonts, site metadata (OG/Twitter), and the gtag.js snippet.
 
 ## 2026-11-13 Update
 - Added `metadata.icons` pointing to `/favicon.ico` (7-size PNG-packed `src/app/favicon.ico`) and `/favicon.svg` (`public/favicon.svg`) using the StackMark 3-rectangle piano motif.
+
+## 2026-11-15 Update
+- Added `Archivo` (`--font-archivo`, `axes: ["wdth"]`) for RollPage — the homepage sets width per role via `font-stretch`, so the axis must stay.

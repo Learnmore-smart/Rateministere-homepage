@@ -29,3 +29,7 @@ CSS Modules (they target `html`/`body` or pseudo-elements).
 | Date | Change | Author |
 |------|--------|--------|
 | 2026-09-23 | Created mirror; added `::view-transition-*` root block for the stack theme spread | Devin |
+
+## 2026-11-15 Update
+- `html[data-roll-theme]` background + dark scrollbar rules for RollPage (same reason as the stack rule: overscroll / view-transition snapshots).
+- `@property --dev` (percentage, initial 130%) — lets RollPage animate the mask gradient that develops a frame. Must stay global; it cannot live in the CSS module.

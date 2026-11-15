@@ -1,20 +1,21 @@
 # PROJECT CONTEXT — rateministere-homepage
 
-> Last updated: 2026-09-23 | Protection: STANDARD
+> Last updated: 2026-11-15 | Protection: STANDARD
 
 ## Architecture
 
 - Next.js **16.2.3** (App Router, Turbopack default) + React 19.2 + Tailwind CSS 4 (`@theme` tokens in `src/app/globals.css`) + framer-motion + lucide-react.
 - Path alias `@/*` → `src/*`.
 - `vercel.json` proxies subpaths (`/trae-echoes`, `/rateministere`, etc.) to other deployed apps — the homepage owns `rateministere.com` and mounts satellite projects under it. See `.ai/vercel.md`.
-- i18n: custom `LanguageContext` (en/zh/fr JSON in `src/i18n/`) — used by `/classic`, `/sequencer`, AND `/` (stack homepage wraps in `LanguageProvider`; UI strings in `t.stack.*`). Other mockup routes remain English-only.
-- Fonts: `next/font/google` Inter (sans) + Instrument Serif (accent italic) in `layout.tsx`.
+- i18n: custom `LanguageContext` (en/zh/fr JSON in `src/i18n/`) — used by `/classic`, `/sequencer`, `/stack`, AND `/` (RollPage wraps in `LanguageProvider`; strings in `t.roll.*` + shared `t.stack.*`). Other mockup routes remain English-only.
+- Fonts: `next/font/google` in `layout.tsx` — Archivo with the `wdth` axis (RollPage), Inter + Instrument Serif (StackPage), plus the study faces.
 
-## Route map (post-2026-09-18 — Supastack APPLIED)
+## Route map (post-2026-11-15 — Roll applied locally)
 
 | Route | What |
 |-------|------|
-| `/` | **Homepage = StackPage** (supastack dialect — see `.ai/src/components/stack/StackPage.md`) |
+| `/` | **Homepage = RollPage** (film roll / contact sheet — see `.ai/src/components/roll/RollPage.md`) |
+| `/stack` | Previous homepage, StackPage (supastack dialect) — archived, unlinked |
 | `/classic` | Previous homepage (moved verbatim from old `app/page.tsx`) |
 | `/sequencer` | Archived DAW homepage (SequencerPage, still multilingual) |
 | `/arcade` | Mockup — fighting-game select screen, CRT, locked challenger = secret |
@@ -28,6 +29,8 @@ above remain reachable by direct URL only.
 
 ## Current Work
 
+- 2026-11-15: **Full revamp, local only (not committed/pushed/deployed), awaiting user verdict** — `/` is now `RollPage` ("The Roll": contact sheet of 24 film frames, selects as prints, frame No. 25 = the secret). StackPage archived at `/stack`. **BLADE** added to `FEATURED` after SpinShare (8 featured; `/blade-OG.png` authored from its logo + README). Piano stats → **14M total / 4.5M best Short** everywhere (content.ts, three JSONs, sequencer/arcade/classic, page metadata, PRODUCT.md). New assets in `public/roll/`. Read `.ai/src/components/roll/RollPage.md` before touching the homepage.
+- 2026-11-15 (later): `ARCHIVE` reordered — **rate** (RateMinistere voting platform, his first platform) moved to the end of the array → frame **No. 01** on the roll, `msu` at No. 02; all 12 archive entries stay on the sheet (user rejected a `rateministere.com` self-entry and the resulting `msu` displacement). Favicon mark center bar → orange `#e08b33` (the page's film amber) in `favicon.svg` + regenerated `src/app/favicon.ico`.
 - 2026-11-13: Featured + favicon refresh — **Cairn** (`cairn.supastack.dev`, `/cairn-OG.png`) added to `FEATURED` right before **SpinShare** (`7` featured projects total); `featured.cairn`, `stack.heroLede`, and `stack.workSub` updated across `en.json`, `zh.json`, `fr.json` plus `src/app/page.tsx` metadata description; replaced `src/app/favicon.ico` (7-size PNG-packed ICO) and added `public/favicon.svg` + `src/app/layout.tsx` `icons` metadata using the StackMark 3-rectangle piano motif (`#17181c` outer outlines, `#1d4ed8` center bar on `#fafaf8` tile).
 - 2026-11-01: Content refresh — **FkLearn** (fklearn.com, student tutoring marketplace) added to `FEATURED` after Vorlee with `/fklearn-OG.png` copied from the local `../fklearn` repo; **NovapuraAI** (novapuraai.com, gh `novapuraai-router`) + **File Guardian** (gh `file-guardian-skill`) added to both archive lists (content.ts `ARCHIVE` + ArchiveSection `projects`) after opennotes → 12 entries; **RateMinistere year corrected 2026→2025** in both lists. i18n: `featured.fklearn` + `projects.novapuraai`/`file-guardian` in all three JSONs, `workSub`→"Six live", `archiveSub`→"Twelve entries", heroLede + meta description name FkLearn. New `.ai` mirrors: `components/ArchiveSection.md`, `i18n/{en,zh,fr}.md`, `app/page.md`.
 - 2026-09-26: LearnX launch-film card added to `#work` — click-to-play YouTube facade (`youtu.be/u1BplKvekjc`, "Ace your exams with LearnX"), span-2 card after the secret card; `LEARNX_FILM` in content.ts, `film*` i18n keys, `/learnx-film.jpg` poster.

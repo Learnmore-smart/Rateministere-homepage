@@ -27,7 +27,7 @@ type Fighter = {
 const FIGHTERS: Fighter[] = [
   {
     id: "piano", name: "PIANO JOURNEY", tag: "MAIN", color: "#ffd23b",
-    desc: "The flagship. 12,000,000+ views of keys, plateaus and breakthroughs — documented in public.",
+    desc: "The flagship. 14,000,000+ views of keys, plateaus and breakthroughs — documented in public.",
     href: PIANO.url,
     stats: [{ label: "VIEWS", v: 97 }, { label: "TEMPO", v: 82 }, { label: "GRIND", v: 100 }],
   },

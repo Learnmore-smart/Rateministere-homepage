@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Bricolage_Grotesque, JetBrains_Mono, Fraunces, Space_Grotesk, Silkscreen, Inter, Instrument_Serif } from "next/font/google";
+import { Archivo, Bricolage_Grotesque, JetBrains_Mono, Fraunces, Space_Grotesk, Silkscreen, Inter, Instrument_Serif } from "next/font/google";
 import Script from "next/script";
 import "./globals.css";
 
@@ -49,9 +49,18 @@ const instrument = Instrument_Serif({
   display: "swap",
 });
 
+/* the homepage (RollPage) sets everything in Archivo and leans on its
+   width axis — wide titles, condensed edge print */
+const archivo = Archivo({
+  variable: "--font-archivo",
+  subsets: ["latin"],
+  axes: ["wdth"],
+  display: "swap",
+});
+
 export const metadata: Metadata = {
   metadataBase: new URL("https://www.rateministere.com"),
-  title: "NOAH ZIXIN ZHANG — PORTFOLIO",
+  title: "NOAH ZIXIN ZHANG · PORTFOLIO",
   description: "Software Developer, Creator of LearnX.",
   icons: {
     icon: [
@@ -60,7 +69,7 @@ export const metadata: Metadata = {
     ],
   },
   openGraph: {
-    title: "NOAH ZIXIN ZHANG — PORTFOLIO",
+    title: "NOAH ZIXIN ZHANG · PORTFOLIO",
     description: "Software Developer, Creator of LearnX.",
     images: [
       {
@@ -74,7 +83,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "NOAH ZIXIN ZHANG — PORTFOLIO",
+    title: "NOAH ZIXIN ZHANG · PORTFOLIO",
     description: "Software Developer, Creator of LearnX.",
     images: ["/OG-image-noah-zixin-zhang.png"],
   },
@@ -89,7 +98,7 @@ export default function RootLayout({
     <html
       lang="en"
       suppressHydrationWarning
-      className={`${bricolage.variable} ${jetbrains.variable} ${fraunces.variable} ${spaceGrotesk.variable} ${silkscreen.variable} ${inter.variable} ${instrument.variable} h-full antialiased scroll-smooth`}
+      className={`${bricolage.variable} ${jetbrains.variable} ${fraunces.variable} ${spaceGrotesk.variable} ${silkscreen.variable} ${inter.variable} ${instrument.variable} ${archivo.variable} h-full antialiased scroll-smooth`}
     >
       <head>
         {/* Google tag (gtag.js) */}
