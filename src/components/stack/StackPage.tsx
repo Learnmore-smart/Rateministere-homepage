@@ -883,20 +883,34 @@ export default function StackPage() {
             {ARCHIVE.map((p) => {
               const i18n = archiveI18n(p.id);
               const external = p.url.startsWith("http");
+              const name = i18n?.name ?? p.name;
               return (
-                <a
-                  key={p.id}
-                  className={styles.archiveRow}
-                  href={p.url}
-                  {...(external ? { target: "_blank", rel: "noreferrer" } : {})}
-                >
-                  <span className={styles.archiveName}>
-                    {i18n?.name ?? p.name}
-                    <ArrowUpRight size={14} aria-hidden="true" />
-                  </span>
-                  <span className={styles.archiveDesc}>{i18n?.description ?? p.desc}</span>
-                  <span className={styles.archiveYear}>{p.year}</span>
-                </a>
+                <div key={p.id} className={styles.archiveItem}>
+                  <a
+                    className={styles.archiveRow}
+                    href={p.url}
+                    {...(external ? { target: "_blank", rel: "noreferrer" } : {})}
+                  >
+                    <span className={styles.archiveName}>
+                      {name}
+                      <ArrowUpRight size={14} aria-hidden="true" />
+                    </span>
+                    <span className={styles.archiveDesc}>{i18n?.description ?? p.desc}</span>
+                    <span className={styles.archiveYear}>{p.year}</span>
+                  </a>
+                  {p.github ? (
+                    <a
+                      className={styles.archiveGh}
+                      href={p.github}
+                      target="_blank"
+                      rel="noreferrer"
+                      aria-label={s.ghLabel.replace("{name}", name)}
+                      title={s.ghLabel.replace("{name}", name)}
+                    >
+                      <BrandIcon name="github" size={15} />
+                    </a>
+                  ) : null}
+                </div>
               );
             })}
           </div>
